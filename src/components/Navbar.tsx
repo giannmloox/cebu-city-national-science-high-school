@@ -91,16 +91,27 @@ const Navbar = () => {
             className="lg:hidden bg-primary/95 backdrop-blur-md overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.href.startsWith("/") ? (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
               <a
                 href="#admissions"
                 onClick={() => setMobileOpen(false)}
