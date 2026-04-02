@@ -18,7 +18,7 @@ const newsItems: NewsItem[] = [
       "Cebu City National Science High School made history on March 25, 2026, when the SpinQ Gemini, the country's first desktop quantum computer, was demonstrated before students, educators, and industry leader",
     image:
       "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
-    link: "https://www.facebook.com/share/p/14ZKhLjR3nz/",
+    link: "https://www.facebook.com/share/p/1BNoAK3bA9/",
     date: "MARCH 25, 2026",
   },
   {
