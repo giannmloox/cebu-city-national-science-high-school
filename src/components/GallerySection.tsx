@@ -1,11 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import heroImg from "@/assets/hero-science.jpg";
-import roboticsImg from "@/assets/robotics.jpg";
+import roboticsImg from "@/assets/robotics-new.jpg";
 import campusImg from "@/assets/campus.jpg";
-import labImg from "@/assets/lab-microscope.jpg";
-import studentLifeImg from "@/assets/student-life.jpg";
-import achievementsImg from "@/assets/achievements.jpg";
+import labImg from "@/assets/lab-microscope-new.jpg";
+import studentLifeImg from "@/assets/student-life-new.jpg";
+import achievementsImg from "@/assets/achievements-new.jpg";
 
 const images = [
   { src: heroImg, alt: "Science laboratory experiments", span: "md:col-span-2 md:row-span-2" },
