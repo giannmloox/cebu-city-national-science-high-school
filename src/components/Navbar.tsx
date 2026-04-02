@@ -43,25 +43,15 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
+            >
+              {link.label}
+            </a>
+          ))}
           <a
             href="#admissions"
             className="ml-3 px-5 py-2 gold-gradient text-secondary-foreground font-heading font-semibold text-sm rounded-full hover:opacity-90 transition-opacity glow-gold"
