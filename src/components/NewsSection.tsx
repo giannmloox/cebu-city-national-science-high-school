@@ -28,7 +28,7 @@ const newsItems: NewsItem[] = [
       "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026",
     image:
       "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
-    link: "https://www.facebook.com/ccnshs",
+    link: "https://www.facebook.com/share/p/1EZ2UkAZs2/",
     date: "MARCH 11, 2026",
   },
   {
