@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Newspaper, Trophy, Heart } from "lucide-react";
-import achievementsImg from "@/assets/achievements.jpg";
+import achievementsImg from "@/assets/d371670d-4ae1-419f-89fd-cb6f3d482b1e.jpg";
 
 const highlights = [
   {
