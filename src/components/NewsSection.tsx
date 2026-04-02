@@ -13,13 +13,13 @@ export interface NewsItem {
 const newsItems: NewsItem[] = [
   {
     id: 1,
-    title: "CCNSHS Wins Regional Science Olympiad",
+    title: "SciHi Makes History as Host of the Philippines' First Desktop Quantum Computer Demo",
     excerpt:
-      "Our students brought home gold medals in the Regional Science Olympiad, showcasing excellence in physics, chemistry, and biology.",
+      "Cebu City National Science High School became the venue for a landmark moment in Philippine science education on march 25, ",
     image:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop",
+      "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
     link: "https://www.facebook.com/share/p/14ZKhLjR3nz/",
-    date: "March 28, 2026",
+    date: "MARCH 25, 2026",
   },
   {
     id: 2,
@@ -27,9 +27,9 @@ const newsItems: NewsItem[] = [
     excerpt:
       "CCNSHS inaugurated a state-of-the-art robotics laboratory to further empower future innovators and tech leaders.",
     image:
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+      "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
     link: "https://www.facebook.com/ccnshs",
-    date: "March 15, 2026",
+    date: "",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const newsItems: NewsItem[] = [
     excerpt:
       "The CCNSHS Math Team has qualified for the National Mathematics Competition after a stellar performance at the regional level.",
     image:
-      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&h=400&fit=crop",
+      "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
     link: "https://www.facebook.com/ccnshs",
     date: "March 5, 2026",
   },
