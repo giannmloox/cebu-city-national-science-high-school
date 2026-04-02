@@ -29,7 +29,7 @@ const newsItems: NewsItem[] = [
     image:
       "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
     link: "https://www.facebook.com/ccnshs",
-    date: "",
+    date: "MARCH 11, 2026",
   },
   {
     id: 3,
