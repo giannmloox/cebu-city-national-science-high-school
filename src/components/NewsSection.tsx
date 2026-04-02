@@ -33,13 +33,13 @@ const newsItems: NewsItem[] = [
   },
   {
     id: 3,
-    title: "Math Team Qualifies for Nationals",
+    title: "Scholars' Voice Named Region VII's Best School Paper for the 10th Consecutive Year",
     excerpt:
-      "The CCNSHS Math Team has qualified for the National Mathematics Competition after a stellar performance at the regional level.",
+      "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026. extending a winning streak that dates bac ",
     image:
       "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
     link: "https://www.facebook.com/ccnshs",
-    date: "March 5, 2026",
+    date: "MARCH 7, 2026",
   },
 ];
 
