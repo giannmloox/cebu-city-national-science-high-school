@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-science.jpg";
-import logoImg from "@/assets/ccnshs-logo.png";
+import logoImg from "@/assets/ccnshs-logo-transparent.png";
 
 const HeroSection = () => {
   return (
