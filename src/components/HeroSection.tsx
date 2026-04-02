@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-science.jpg";
+import logoImg from "@/assets/ccnshs-logo.png";
 
 const HeroSection = () => {
   return (
@@ -29,6 +30,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          <img src={logoImg} alt="CCNSHS Logo" className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 drop-shadow-lg" />
           <span className="inline-block px-4 py-1.5 mb-6 text-xs font-heading font-semibold tracking-widest uppercase text-gold border border-gold/30 rounded-full bg-gold/5">
             The Cream of the Crop
           </span>
