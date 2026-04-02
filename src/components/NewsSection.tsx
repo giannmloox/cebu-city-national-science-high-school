@@ -38,7 +38,7 @@ const newsItems: NewsItem[] = [
       "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026. extending a winning streak that dates bac ",
     image:
       "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
-    link: "https://www.facebook.com/ccnshs",
+    link: "https://www.facebook.com/share/p/18Ra7nPSgF/",
     date: "MARCH 7, 2026",
   },
 ];
