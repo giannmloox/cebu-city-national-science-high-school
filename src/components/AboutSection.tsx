@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import campusImg from "@/assets/campus.jpg";
+import campusImg from "@/assets/campus-new.jpg";
 
 const stats = [
   { value: "1970", label: "Established" },
