@@ -23,9 +23,9 @@ const newsItems: NewsItem[] = [
   },
   {
     id: 2,
-    title: "New Robotics Lab Grand Opening",
+    title: "Tinig Iskolar Returns Stronger at RSPC 2026 with Multiple Wins",
     excerpt:
-      "CCNSHS inaugurated a state-of-the-art robotics laboratory to further empower future innovators and tech leaders.",
+      "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026",
     image:
       "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
     link: "https://www.facebook.com/ccnshs",
