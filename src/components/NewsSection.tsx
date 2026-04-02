@@ -13,9 +13,9 @@ export interface NewsItem {
 const newsItems: NewsItem[] = [
   {
     id: 1,
-    title: "SciHi Makes History as Host of the Philippines' First Desktop Quantum Computer Demo",
+    title: "SciHi Hosts the Philippines' First Desktop Quantum Computer Demo",
     excerpt:
-      "Cebu City National Science High School became the venue for a landmark moment in Philippine science education on march 25, ",
+      "Cebu City National Science High School made history on March 25, 2026, when the SpinQ Gemini, the country's first desktop quantum computer, was demonstrated before students, educators, and industry leader",
     image:
       "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
     link: "https://www.facebook.com/share/p/14ZKhLjR3nz/",
