@@ -18,7 +18,7 @@ const newsItems: NewsItem[] = [
       "Our students brought home gold medals in the Regional Science Olympiad, showcasing excellence in physics, chemistry, and biology.",
     image:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop",
-    link: "https://www.facebook.com/ccnshs",
+    link: "https://www.facebook.com/share/p/14ZKhLjR3nz/",
     date: "March 28, 2026",
   },
   {
