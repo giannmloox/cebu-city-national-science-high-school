@@ -66,7 +66,13 @@ const HeroSection = () => {
             href="#admissions"
             className="inline-flex items-center justify-center px-8 py-4 gold-gradient text-secondary-foreground font-heading font-bold text-lg rounded-full animate-pulse-glow hover:scale-105 transition-transform"
           >
-            🎓 Be a Scihiyista! Apply Now
+            🎓 Apply for Admission
+          </a>
+          <a
+            href="#news"
+            className="inline-flex items-center justify-center px-8 py-4 bg-primary-foreground/10 border-2 border-gold/50 text-gold font-heading font-bold text-lg rounded-full hover:bg-gold/20 hover:border-gold transition-all"
+          >
+            📰 Latest News
           </a>
           <a
             href="#about"
