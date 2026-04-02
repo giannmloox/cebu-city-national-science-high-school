@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Why Sci-Hi", href: "#why" },
   { label: "Student Life", href: "#life" },
   { label: "Gallery", href: "#gallery" },
+  { label: "News", href: "/news" },
   { label: "Contact", href: "#contact" },
 ];
 
