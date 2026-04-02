@@ -18,7 +18,7 @@ const newsItems: NewsItem[] = [
       "Cebu City National Science High School made history on March 25, 2026, when the SpinQ Gemini, the country's first desktop quantum computer, was demonstrated before students, educators, and industry leader",
     image:
       "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
-    link: "https://www.facebook.com/share/p/14ZKhLjR3nz/",
+    link: "https://www.facebook.com/share/p/1BNoAK3bA9/",
     date: "MARCH 25, 2026",
   },
   {
@@ -28,7 +28,7 @@ const newsItems: NewsItem[] = [
       "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026",
     image:
       "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
-    link: "https://www.facebook.com/ccnshs",
+    link: "https://www.facebook.com/share/p/1EZ2UkAZs2/",
     date: "MARCH 11, 2026",
   },
   {
@@ -38,7 +38,7 @@ const newsItems: NewsItem[] = [
       "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026. extending a winning streak that dates bac ",
     image:
       "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
-    link: "https://www.facebook.com/ccnshs",
+    link: "https://www.facebook.com/share/p/18Ra7nPSgF/",
     date: "MARCH 7, 2026",
   },
 ];
