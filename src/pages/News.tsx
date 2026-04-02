@@ -14,27 +14,30 @@ export interface NewsItem {
 const newsItems: NewsItem[] = [
   {
     id: 1,
-    title: "CCNSHS Wins Regional Science Olympiad",
-    excerpt: "Our students brought home gold medals in the Regional Science Olympiad, showcasing excellence in physics, chemistry, and biology.",
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop",
-    link: "https://www.facebook.com/ccnshs",
-    date: "March 28, 2026",
+    title: "SciHi Hosts the Philippines' First Desktop Quantum Computer Demo",
+    excerpt:
+      "Cebu City National Science High School made history on March 25, 2026, when the SpinQ Gemini, the country's first desktop quantum computer, was demonstrated before students, educators, and industry leader",
+    image: "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
+    link: "https://www.facebook.com/share/p/1BNoAK3bA9/",
+    date: "MARCH 25, 2026",
   },
   {
     id: 2,
-    title: "New Robotics Lab Grand Opening",
-    excerpt: "CCNSHS inaugurated a state-of-the-art robotics laboratory to further empower future innovators and tech leaders.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
-    link: "https://www.facebook.com/ccnshs",
-    date: "March 15, 2026",
+    title: "Tinig Iskolar Returns Stronger at RSPC 2026 with Multiple Wins",
+    excerpt:
+      "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026",
+    image: "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
+    link: "https://www.facebook.com/share/p/1EZ2UkAZs2/",
+    date: "MARCH 11, 2026",
   },
   {
     id: 3,
-    title: "Math Team Qualifies for Nationals",
-    excerpt: "The CCNSHS Math Team has qualified for the National Mathematics Competition after a stellar performance at the regional level.",
-    image: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&h=400&fit=crop",
-    link: "https://www.facebook.com/ccnshs",
-    date: "March 5, 2026",
+    title: "Scholars' Voice Named Region VII's Best School Paper for the 10th Consecutive Year",
+    excerpt:
+      "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026. extending a winning streak that dates bac ",
+    image: "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
+    link: "https://www.facebook.com/share/p/18Ra7nPSgF/",
+    date: "MARCH 7, 2026",
   },
 ];
 
