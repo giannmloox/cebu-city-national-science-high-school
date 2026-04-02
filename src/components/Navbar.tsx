@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -10,7 +9,7 @@ const navLinks = [
   { label: "Why Sci-Hi", href: "#why" },
   { label: "Student Life", href: "#life" },
   { label: "Gallery", href: "#gallery" },
-  { label: "News", href: "/news" },
+  { label: "News", href: "#news" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -44,25 +43,15 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3 py-2 text-sm text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-md"
+            >
+              {link.label}
+            </a>
+          ))}
           <a
             href="#admissions"
             className="ml-3 px-5 py-2 gold-gradient text-secondary-foreground font-heading font-semibold text-sm rounded-full hover:opacity-90 transition-opacity glow-gold"
@@ -91,27 +80,16 @@ const Navbar = () => {
             className="lg:hidden bg-primary/95 backdrop-blur-md overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link) =>
-                link.href.startsWith("/") ? (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
-                  >
-                    {link.label}
-                  </a>
-                )
-              )}
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-3 text-primary-foreground/80 hover:text-gold transition-colors font-medium rounded-lg"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
                 href="#admissions"
                 onClick={() => setMobileOpen(false)}
