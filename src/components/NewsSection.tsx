@@ -22,7 +22,7 @@ const newsItems = [
   },
   {
     id: 3,
-    date: "APRIL 1, 2026",
+    date: "APRIL 18, 2026",
     title: "SciHi NSEF Champs Present Award-Winning Antifungal Study at UP Manila Health Summit",
     excerpt:
       "Three Scihiyistas presented their NSEF Grand Champion research on the antifungal properties of the endemic Mana plant at the Health Exploration Summit 2026 in UP Manila.",
