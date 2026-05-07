@@ -45,7 +45,7 @@ const News = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-primary py-20 pt-28">
+      <div className="py-20 pt-28 border-b border-white/10" style={{ background: "linear-gradient(135deg, hsl(216 72% 8%), hsl(216 65% 14%))" }}>
         <div className="container mx-auto px-4">
           <Link
             to="/"
@@ -75,7 +75,7 @@ const News = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i }}
-              className="group block rounded-2xl overflow-hidden card-elevated hover-lift cursor-pointer"
+              className="group block overflow-hidden glass-card hover-lift cursor-pointer"
             >
               <div className="relative h-52 overflow-hidden">
                 <img
