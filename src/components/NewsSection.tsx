@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import newsResearch from "@/assets/news-research.jpg";
 
 const newsItems = [
   {
@@ -27,7 +26,7 @@ const newsItems = [
     title: "SciHi NSEF Champs Present Award-Winning Antifungal Study at UP Manila Health Summit",
     excerpt:
       "Three Scihiyistas presented their NSEF Grand Champion research on the antifungal properties of the endemic Mana plant at the Health Exploration Summit 2026 in UP Manila.",
-    image: newsResearch,
+    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/673503260_941296918789971_8496263782888122753_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFZrN2usQHL0NKDiFhCVNZHNSb1JblO0FA1JvUluU7QUJBwZxyQyUin7OoT4WwiojwZtyHGwoo_rz8gp9KR9a1Q&_nc_ohc=POmO6-ii6EUQ7kNvwFIyVyh&_nc_oc=AdogOsTnvSRgIPAHNhtxwwppQcRzx-YNgIW4EbBS6Q6FytNJFdz4KTbo42li1QVQ8OU&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=xNeKJX6WNJ2JlpSQqhnQZA&_nc_ss=7b2a8&oh=00_Af4cJypYSRGs7gYe1HATzm2rYPHasUVz3SK8y6DOmAQo_g&oe=6A01F1D1",
     link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
   },
 ];
