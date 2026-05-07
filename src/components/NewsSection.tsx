@@ -33,7 +33,7 @@ const newsItems = [
 
 const NewsSection = () => {
   return (
-    <section id="news" className="py-20" style={{ backgroundColor: "#f5f0dc" }}>
+    <section id="news" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -65,7 +65,7 @@ const NewsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * i }}
-              className="group block rounded-2xl overflow-hidden bg-background card-elevated hover-lift cursor-pointer"
+              className="group block overflow-hidden glass-card hover-lift cursor-pointer"
             >
               <div className="relative h-52 overflow-hidden">
                 <img
