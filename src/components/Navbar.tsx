@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Student Life", href: "#life" },
   { label: "Gallery", href: "#gallery" },
   { label: "News", href: "#news" },
+  { label: "ScihiZine", href: "/scihizine" },
   { label: "Contact", href: "#contact" },
 ];
 
