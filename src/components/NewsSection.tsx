@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import newsGraduates from "@/assets/news-graduates.jpg";
 import newsResearch from "@/assets/news-research.jpg";
 
 const newsItems = [
@@ -19,7 +18,7 @@ const newsItems = [
     title: "Congratulations, SciHigh Graduates — UPCAT Passers!",
     excerpt:
       "SciHigh celebrates its graduates who passed the UPCAT, proving that the school nurtures world-class minds. Padayon, Iskolar ng Bayan!",
-    image: newsGraduates,
+    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/678435978_944431651809831_2868352732478494904_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG5Je-9rUnJWa-Roxm20El30DAOwArfgafQMA7ACt-Bp08K41OtkGIwaPo1jKHOJuyoAj48NoIQa4AfVqy6OJ72&_nc_ohc=QF_xdAUubUcQ7kNvwEchKRi&_nc_oc=AdrvGkNcOY-AMwav0bJVDMk2mvUf7cpC8viIDNuP_SYvAEsFxTm9fKEdB_y4SgSNSvM&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=tBA2NXg3iIiKVBDGI7o85Q&_nc_ss=7a2a8&oh=00_Af5DBLawFIjvoDj4SxkyFht2cY4HljgJTy9VkIpNHAe6JQ&oe=6A020BFB",
     link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
   {
