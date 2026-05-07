@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import newsCalendar from "@/assets/news-calendar.jpg";
 import newsGraduates from "@/assets/news-graduates.jpg";
 import newsResearch from "@/assets/news-research.jpg";
 
@@ -11,7 +10,7 @@ const newsItems = [
     title: "Education Calendar Sees Major Shift",
     excerpt:
       "Public schools are set to roll out a three-term academic system by School Year 2026–2027, marking a significant change in the national education calendar.",
-    image: newsCalendar,
+    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/684271984_949136818005981_6009933188965294653_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHMaGbcxJ0FE8GrGPrIndESt6fzU4gVVpu3p_NTiBVWm_0AoRdH-NPRRvr_3Hw2B-G3sOyBJEBvwCN_0j_AO2AC&_nc_ohc=DXzy5FaIUbwQ7kNvwGTBesz&_nc_oc=Adq9kITQYpGy5oZOKM8EQZCtNYqTp-WqPLxsTjzVnrjpvoI-OSRIw1_dn7RhUP-o3Eg&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=qder6khJGATHZwwif0Iq3w&_nc_ss=7a2a8&oh=00_Af7E2GbxudUL4XabQgzay_8KSTLTwKUVgNqyPLHGf2gFlw&oe=6A01E2E2",
     link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
