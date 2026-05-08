@@ -1,53 +1,40 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { MapPin, Phone, Mail, Facebook, ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { MapPin, Phone, Mail, Facebook } from "lucide-react";
 
 const ContactFooter = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail("");
-    }
-  };
 
   return (
     <>
-      {/* Newsletter */}
+      {/* Google Form Application */}
       <section className="py-20 hero-gradient relative overflow-hidden">
         <div className="absolute inset-0 particle-bg opacity-40" />
-        <div className="container mx-auto px-4 relative z-10 text-center" ref={ref}>
+        <div className="container mx-auto px-4 relative z-10" ref={ref}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
+            className="text-center max-w-4xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
-              Join the <span className="text-gradient-gold">Sci-Hi Family</span>
+              Apply to <span className="text-gradient-gold">Sci-Hi</span>
             </h2>
-            <p className="mt-3 text-primary-foreground/60 max-w-md mx-auto">
-              Stay updated on admissions, events, and news from Cebu City National Science High School.
-            </p>
-            <form onSubmit={handleSubscribe} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-5 py-3 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-gold transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 gold-gradient text-secondary-foreground font-heading font-semibold rounded-full hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+            <div className="mt-8 w-full">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScmKyKNHC48dEWMdkcrIYyDiVsJCs7Po-DMb5wmXBFBtEEiUA/viewform?embedded=true"
+                width="100%"
+                height="900"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="Apply to Sci-Hi"
+                className="w-full h-[700px] md:h-[900px] bg-transparent"
+                style={{ border: "none" }}
               >
-                {subscribed ? "Subscribed! ✓" : <>Subscribe <ArrowRight size={16} /></>}
-              </button>
-            </form>
+                Loading…
+              </iframe>
+            </div>
           </motion.div>
         </div>
       </section>
