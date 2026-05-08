@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Phone, Mail, Facebook } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Globe } from "lucide-react";
 
 const ContactFooter = () => {
   const ref = useRef(null);
@@ -20,6 +20,38 @@ const ContactFooter = () => {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
               Apply to <span className="text-gradient-gold">Sci-Hi</span>
             </h2>
+
+            {/* Connect With Us */}
+            <div className="mt-10">
+              <h3 className="text-sm font-heading font-semibold tracking-widest uppercase text-gold mb-4">
+                Connect With Us
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="https://www.facebook.com/ccnshs303141"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                >
+                  <Facebook size={18} /> Facebook
+                </a>
+                <a
+                  href="mailto:ccnshs@deped.gov.ph"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                >
+                  <Mail size={18} /> Email
+                </a>
+                <a
+                  href="https://www.ccnshs.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                >
+                  <Globe size={18} /> Official Website
+                </a>
+              </div>
+            </div>
+
             <div className="mt-8 w-full">
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLScmKyKNHC48dEWMdkcrIYyDiVsJCs7Po-DMb5wmXBFBtEEiUA/viewform?embedded=true"
@@ -52,6 +84,33 @@ const ContactFooter = () => {
               <p className="mt-4 text-background/50 text-sm leading-relaxed">
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
+              <div className="mt-5 flex items-center gap-3">
+                <a
+                  href="https://www.facebook.com/ccnshs303141"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                >
+                  <Facebook size={16} />
+                </a>
+                <a
+                  href="mailto:ccnshs@deped.gov.ph"
+                  aria-label="Email"
+                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                >
+                  <Mail size={16} />
+                </a>
+                <a
+                  href="https://www.ccnshs.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Official Website"
+                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                >
+                  <Globe size={16} />
+                </a>
+              </div>
             </div>
 
             {/* Contact */}
