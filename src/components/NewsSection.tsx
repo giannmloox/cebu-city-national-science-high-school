@@ -25,7 +25,7 @@ const newsItems = [
     date: "APRIL 18, 2026",
     title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
     excerpt:
-      "The school celebrates Tinig Iskolar's achievement in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
+      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
     image: "/news-tinig.jpg",
     link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
   },
