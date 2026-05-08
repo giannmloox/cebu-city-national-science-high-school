@@ -1,5 +1,6 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import heroImg from "@/assets/hero-science.jpg";
 import roboticsImg from "@/assets/robotics-new.jpg";
 import campusImg from "@/assets/campus.jpg";
@@ -19,6 +20,28 @@ const images = [
 const GallerySection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const close = useCallback(() => setActiveIndex(null), []);
+  const prev = useCallback(
+    () => setActiveIndex((i) => (i === null ? i : (i - 1 + images.length) % images.length)),
+    []
+  );
+  const next = useCallback(
+    () => setActiveIndex((i) => (i === null ? i : (i + 1) % images.length)),
+    []
+  );
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeIndex, close, prev, next]);
 
   return (
     <section id="gallery" className="py-24 bg-background">
@@ -43,7 +66,8 @@ const GallerySection = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.05 * i }}
-              className={`rounded-xl overflow-hidden group ${img.span}`}
+              onClick={() => setActiveIndex(i)}
+              className={`rounded-xl overflow-hidden group cursor-pointer ${img.span}`}
             >
               <img
                 src={img.src}
@@ -55,6 +79,53 @@ const GallerySection = () => {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {activeIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={close}
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            style={{ background: "rgba(0,0,0,0.85)" }}
+          >
+            <button
+              onClick={(e) => { e.stopPropagation(); close(); }}
+              aria-label="Close"
+              className="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+            >
+              <X size={28} />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              aria-label="Previous"
+              className="absolute left-2 md:left-6 text-white p-3 rounded-full hover:bg-white/10 transition-colors"
+            >
+              <ChevronLeft size={36} />
+            </button>
+            <motion.img
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              src={images[activeIndex].src}
+              alt={images[activeIndex].alt}
+              onClick={(e) => e.stopPropagation()}
+              className="object-contain rounded-lg"
+              style={{ maxWidth: "90vw", maxHeight: "90vh" }}
+            />
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              aria-label="Next"
+              className="absolute right-2 md:right-6 text-white p-3 rounded-full hover:bg-white/10 transition-colors"
+            >
+              <ChevronRight size={36} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

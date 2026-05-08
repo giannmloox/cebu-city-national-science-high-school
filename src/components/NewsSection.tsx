@@ -8,7 +8,7 @@ const newsItems = [
     title: "Education Calendar Sees Major Shift",
     excerpt:
       "Public schools are set to roll out a three-term academic system by School Year 2026–2027, marking a significant change in the national education calendar.",
-    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/684271984_949136818005981_6009933188965294653_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHMaGbcxJ0FE8GrGPrIndESt6fzU4gVVpu3p_NTiBVWm_0AoRdH-NPRRvr_3Hw2B-G3sOyBJEBvwCN_0j_AO2AC&_nc_ohc=DXzy5FaIUbwQ7kNvwGTBesz&_nc_oc=Adq9kITQYpGy5oZOKM8EQZCtNYqTp-WqPLxsTjzVnrjpvoI-OSRIw1_dn7RhUP-o3Eg&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=qder6khJGATHZwwif0Iq3w&_nc_ss=7a2a8&oh=00_Af7E2GbxudUL4XabQgzay_8KSTLTwKUVgNqyPLHGf2gFlw&oe=6A01E2E2",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",
     link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
@@ -17,7 +17,7 @@ const newsItems = [
     title: "Congratulations, SciHigh Graduates — UPCAT Passers!",
     excerpt:
       "SciHigh celebrates its graduates who passed the UPCAT, proving that the school nurtures world-class minds. Padayon, Iskolar ng Bayan!",
-    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/678435978_944431651809831_2868352732478494904_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG5Je-9rUnJWa-Roxm20El30DAOwArfgafQMA7ACt-Bp08K41OtkGIwaPo1jKHOJuyoAj48NoIQa4AfVqy6OJ72&_nc_ohc=QF_xdAUubUcQ7kNvwEchKRi&_nc_oc=AdrvGkNcOY-AMwav0bJVDMk2mvUf7cpC8viIDNuP_SYvAEsFxTm9fKEdB_y4SgSNSvM&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=tBA2NXg3iIiKVBDGI7o85Q&_nc_ss=7a2a8&oh=00_Af5DBLawFIjvoDj4SxkyFht2cY4HljgJTy9VkIpNHAe6JQ&oe=6A020BFB",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600",
     link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
   {
@@ -26,7 +26,7 @@ const newsItems = [
     title: "SciHi NSEF Champs Present Award-Winning Antifungal Study at UP Manila Health Summit",
     excerpt:
       "Three Scihiyistas presented their NSEF Grand Champion research on the antifungal properties of the endemic Mana plant at the Health Exploration Summit 2026 in UP Manila.",
-    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/673503260_941296918789971_8496263782888122753_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFZrN2usQHL0NKDiFhCVNZHNSb1JblO0FA1JvUluU7QUJBwZxyQyUin7OoT4WwiojwZtyHGwoo_rz8gp9KR9a1Q&_nc_ohc=POmO6-ii6EUQ7kNvwFIyVyh&_nc_oc=AdogOsTnvSRgIPAHNhtxwwppQcRzx-YNgIW4EbBS6Q6FytNJFdz4KTbo42li1QVQ8OU&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=xNeKJX6WNJ2JlpSQqhnQZA&_nc_ss=7b2a8&oh=00_Af4cJypYSRGs7gYe1HATzm2rYPHasUVz3SK8y6DOmAQo_g&oe=6A01F1D1",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600",
     link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
   },
 ];
