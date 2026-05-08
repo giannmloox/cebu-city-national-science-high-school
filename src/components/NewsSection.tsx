@@ -4,29 +4,29 @@ import { ExternalLink } from "lucide-react";
 const newsItems = [
   {
     id: 1,
-    date: "APRIL 28, 2026",
-    title: "Education Calendar Sees Major Shift",
+    date: "MARCH 25, 2026",
+    title: "SciHi Hosts the Philippines' First Desktop Quantum Computer Demo",
     excerpt:
-      "Public schools are set to roll out a three-term academic system by School Year 2026–2027, marking a significant change in the national education calendar.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",
-    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
+      "Cebu City National Science High School made history on March 25, 2026, when the SpinQ Gemini, the country's first desktop quantum computer, was demonstrated before students, educators, and industry leaders.",
+    image: "/52868a7f-ca68-483c-b634-d0a4b86a039f.jpg",
+    link: "https://www.facebook.com/share/p/1BNoAK3bA9/",
   },
   {
     id: 2,
-    date: "APRIL 22, 2026",
-    title: "Congratulations, SciHigh Graduates — UPCAT Passers!",
+    date: "MARCH 11, 2026",
+    title: "Tinig Iskolar Returns Stronger at RSPC 2026 with Multiple Wins",
     excerpt:
-      "SciHigh celebrates its graduates who passed the UPCAT, proving that the school nurtures world-class minds. Padayon, Iskolar ng Bayan!",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600",
-    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+      "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026.",
+    image: "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
+    link: "https://www.facebook.com/share/p/1EZ2UkAZs2/",
   },
   {
     id: 3,
-    date: "APRIL 18, 2026",
-    title: "SciHi NSEF Champs Present Award-Winning Antifungal Study at UP Manila Health Summit",
+    date: "MARCH 11, 2026",
+    title: "Scholars' Voice Named Region VII's Best School Paper for the 10th Consecutive Year",
     excerpt:
-      "Three Scihiyistas presented their NSEF Grand Champion research on the antifungal properties of the endemic Mana plant at the Health Exploration Summit 2026 in UP Manila.",
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600",
+      "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026, extending a winning streak that dates back a decade.",
+    image: "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
     link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
   },
 ];
