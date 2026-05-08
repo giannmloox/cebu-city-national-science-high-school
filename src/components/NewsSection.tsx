@@ -27,7 +27,7 @@ const newsItems = [
     excerpt:
       "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
     image: "/news-tinig.jpg",
-    link: "https://www.facebook.com/share/p/1B1unY7ezM/",
+    link: "https://www.facebook.com/share/p/1CPKQjM7xh/",
   },
 ];
 
