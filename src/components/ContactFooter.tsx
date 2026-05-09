@@ -36,13 +36,15 @@ const ContactFooter = () => {
                   <Facebook size={18} /> Facebook
                 </a>
                 <a
-                  href="mailto:ccnshs303141@deped.gov.ph"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
-                >
+                  href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transi"
+               >
                   <Mail size={18} /> Email
-                </a>
-                <a
-                  href="https://www.ccnshs.com"
+               </a>
+               <a
+                  href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
