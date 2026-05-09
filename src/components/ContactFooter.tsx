@@ -36,7 +36,7 @@ const ContactFooter = () => {
                   <Facebook size={18} /> Facebook
                 </a>
                 <a
-                  href="mailto:ccnshs@deped.gov.ph"
+                  href="mailto:ccnshs303141@deped.gov.ph"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Mail size={18} /> Email
