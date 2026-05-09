@@ -293,11 +293,12 @@ const Shop = () => {
                         required
                         value={grade}
                         onChange={(e) => { setGrade(e.target.value); setSection(""); }}
-                        className="w-full px-3 py-2 rounded-md bg-[#0a1628] border border-white/15 text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none"
+                        style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
+                        className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none"
                       >
-                        <option value="" className="text-black">Select grade...</option>
+                        <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select grade...</option>
                         {Object.keys(SECTIONS_BY_GRADE).map((g) => (
-                          <option key={g} value={g} className="text-black">{g}</option>
+                          <option key={g} value={g} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{g}</option>
                         ))}
                       </select>
                     </div>
@@ -308,11 +309,12 @@ const Shop = () => {
                         disabled={!grade}
                         value={section}
                         onChange={(e) => setSection(e.target.value)}
-                        className="w-full px-3 py-2 rounded-md bg-[#0a1628] border border-white/15 text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                        style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
+                        className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <option value="" className="text-black">Select section...</option>
+                        <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select section...</option>
                         {grade && SECTIONS_BY_GRADE[grade].map((s) => (
-                          <option key={s} value={s} className="text-black">{s}</option>
+                          <option key={s} value={s} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{s}</option>
                         ))}
                       </select>
                     </div>
