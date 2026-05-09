@@ -23,6 +23,15 @@ const PRODUCTS: Product[] = [
 
 const FILTERS = ["All", "Uniform", "ID", "Yearbook", "Merch"] as const;
 
+const SECTIONS_BY_GRADE: Record<string, string[]> = {
+  "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
+  "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
+  "Grade 9": ["Argon", "Krypton", "Helium", "Xenon", "Neon"],
+  "Grade 10": ["Copernicus", "Galileo", "Einstein", "Newton", "Kepler"],
+  "Grade 11": ["STEM", "ABM"],
+  "Grade 12": ["STEM", "ABM"],
+};
+
 const productImg = (name: string) =>
   `https://placehold.co/400x400/1a3a6b/f5c518?text=${encodeURIComponent(name)}`;
 
@@ -40,6 +49,7 @@ const Shop = () => {
   // checkout form
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
+  const [section, setSection] = useState("");
   const [contact, setContact] = useState("");
   const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
   const [address, setAddress] = useState("");
@@ -81,7 +91,7 @@ const Shop = () => {
   const closeCheckout = () => {
     setCheckoutOpen(false);
     setOrderPlaced(false);
-    setName(""); setGrade(""); setContact(""); setAddress(""); setPayment("");
+    setName(""); setGrade(""); setSection(""); setContact(""); setAddress(""); setPayment("");
     setDelivery("Pickup at School");
   };
 
@@ -276,8 +286,36 @@ const Shop = () => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <Field label="Full Name" value={name} onChange={setName} required />
-                    <Field label="Grade & Section" value={grade} onChange={setGrade} required />
                     <Field label="Contact Number" value={contact} onChange={setContact} required type="tel" />
+                    <div>
+                      <label className="block text-sm text-white/80 mb-1">Grade Level *</label>
+                      <select
+                        required
+                        value={grade}
+                        onChange={(e) => { setGrade(e.target.value); setSection(""); }}
+                        className="w-full px-3 py-2 rounded-md bg-[#0a1628] border border-white/15 text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none"
+                      >
+                        <option value="" className="text-black">Select grade...</option>
+                        {Object.keys(SECTIONS_BY_GRADE).map((g) => (
+                          <option key={g} value={g} className="text-black">{g}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-white/80 mb-1">Section *</label>
+                      <select
+                        required
+                        disabled={!grade}
+                        value={section}
+                        onChange={(e) => setSection(e.target.value)}
+                        className="w-full px-3 py-2 rounded-md bg-[#0a1628] border border-white/15 text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <option value="" className="text-black">Select section...</option>
+                        {grade && SECTIONS_BY_GRADE[grade].map((s) => (
+                          <option key={s} value={s} className="text-black">{s}</option>
+                        ))}
+                      </select>
+                    </div>
                     <div>
                       <label className="block text-sm text-white/80 mb-1">Delivery Option</label>
                       <select
