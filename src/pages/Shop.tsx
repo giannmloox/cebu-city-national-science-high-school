@@ -23,6 +23,15 @@ const PRODUCTS: Product[] = [
 
 const FILTERS = ["All", "Uniform", "ID", "Yearbook", "Merch"] as const;
 
+const SECTIONS_BY_GRADE: Record<string, string[]> = {
+  "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
+  "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
+  "Grade 9": ["Argon", "Krypton", "Helium", "Xenon", "Neon"],
+  "Grade 10": ["Copernicus", "Galileo", "Einstein", "Newton", "Kepler"],
+  "Grade 11": ["STEM", "ABM"],
+  "Grade 12": ["STEM", "ABM"],
+};
+
 const productImg = (name: string) =>
   `https://placehold.co/400x400/1a3a6b/f5c518?text=${encodeURIComponent(name)}`;
 
