@@ -13,9 +13,9 @@ interface Product {
 }
 
 const PRODUCTS: Product[] = [
-  { id: "p1", name: "SciHi PE Uniform", price: 350, category: "Uniform" },
-  { id: "p2", name: "SciHi School ID", price: 150, category: "ID" },
-  { id: "p3", name: "SciHi Yearbook 2026", price: 850, category: "Yearbook" },
+  { id: "p1", name: "TShirt 1", price: 350, category: "Merch" },
+  { id: "p2", name: "TShirt 2", price: 150, category: "Merch" },
+  { id: "p3", name: "Keychain", price: 850, category: "Yearbook" },
   { id: "p4", name: "SciHi Lanyard", price: 80, category: "Merch" },
   { id: "p5", name: "SciHi Tote Bag", price: 200, category: "Merch" },
   { id: "p6", name: "SciHi Pin Set", price: 120, category: "Merch" },
