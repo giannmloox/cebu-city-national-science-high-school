@@ -95,7 +95,7 @@ const ContactFooter = () => {
         </div>
 
         {/* Bottom bar - full width with school image */}
-        <div className="relative mt-12 w-full" style={{ minHeight: "100px" }}>
+        <div className="relative mt-12 w-full" style={{ minHeight: "250px" }}>
           <div
             className="absolute inset-0"
             style={{
@@ -105,7 +105,7 @@ const ContactFooter = () => {
             }}
           />
           <div className="absolute inset-0 bg-[#0a1628]/55" />
-          <div className="relative flex flex-col sm:flex-row justify-between items-center gap-4 px-8 py-8 container mx-auto">
+          <div className="relative flex flex-col sm:flex-row justify-between items-center gap-4 px-8 py-16 container mx-auto">
             <p className="text-white/80 text-xs">
               © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
             </p>
