@@ -95,21 +95,27 @@ const ContactFooter = () => {
 
           {/* Bottom bar with school image background */}
           <div
-            className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-xl px-6 py-4 overflow-hidden relative"
-            style={{
-              backgroundImage: "url('/school-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+            className="mt-12 rounded-xl overflow-hidden relative"
           >
-            <div className="absolute inset-0 bg-[#0a1628]/75 backdrop-blur-sm" />
-            <p className="relative text-white/60 text-xs">
-              © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
-            </p>
-            <p className="relative text-gold/80 text-xs font-heading">
-              Aim High! Soar High! Science High.
-            </p>
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: "url('https://ccnshs.vercel.app/school-bg.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+            <div className="absolute inset-0 bg-[#0a1628]/70" />
+            <div className="relative flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4">
+              <p className="text-white/60 text-xs">
+                © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
+              </p>
+              <p className="text-gold/80 text-xs font-heading">
+                Aim High! Soar High! Science High.
+              </p>
+            </div>
           </div>
+
         </div>
       </footer>
     </>
