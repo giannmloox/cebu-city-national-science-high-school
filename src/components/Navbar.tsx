@@ -118,7 +118,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="#admissions"
+                href="/#admissions"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 px-5 py-3 gold-gradient text-secondary-foreground font-heading font-semibold text-center rounded-full"
               >
