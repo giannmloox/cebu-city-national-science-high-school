@@ -93,12 +93,22 @@ const ContactFooter = () => {
             </div>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-background/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-background/30 text-xs">
+          {/* Bottom bar with school image background */}
+          <div
+            className="mt-12 pt-6 border-t border-gold/30 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-xl px-4 py-4 overflow-hidden relative"
+            style={{
+              backgroundImage: "url('/school-bg.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            {/* Overlay: navy + gold tint semi-transparent */}
+            <div className="absolute inset-0 bg-[#0a1628]/75 backdrop-blur-sm" />
+            <p className="relative text-background/60 text-xs">
               © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
             </p>
-            <p className="text-background/30 text-xs font-heading">
-              Aim High! Soar High! Science High. 🚀
+            <p className="relative text-gold/80 text-xs font-heading">
+              Aim High! Soar High! Science High.
             </p>
           </div>
         </div>
