@@ -3,16 +3,16 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Admissions", href: "#admissions" },
-  { label: "Programs", href: "#programs" },
-  { label: "Why Sci-Hi", href: "#why" },
-  { label: "Student Life", href: "#life" },
+  { label: "About", href: "/#about" },
+  { label: "Admissions", href: "/#admissions" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Why Sci-Hi", href: "/#why" },
+  { label: "Student Life", href: "/#life" },
   { label: "Shop", href: "/shop" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "News", href: "#news" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "News", href: "/#news" },
   { label: "ScihiZine", href: "/scihizine" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
