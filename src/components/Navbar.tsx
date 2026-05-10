@@ -118,7 +118,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="/#apply-form"
+                href="/#apply"
                 onClick={() => setMobileOpen(false)}
                 className="px-5 py-2.5 rounded-full bg-gold text-[#0a1628] font-semibold text-sm hover:opacity-90 transition-opacity"
               >
