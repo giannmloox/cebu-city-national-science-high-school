@@ -21,7 +21,7 @@ const ContactFooter = () => {
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Facebook size={15} /> Facebook
                 </a>
@@ -29,7 +29,7 @@ const ContactFooter = () => {
                   href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Mail size={15} /> Email
                 </a>
@@ -37,7 +37,7 @@ const ContactFooter = () => {
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Globe size={15} /> Official Website
                 </a>
