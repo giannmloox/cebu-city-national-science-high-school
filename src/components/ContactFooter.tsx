@@ -9,7 +9,7 @@ const ContactFooter = () => {
   return (
     <>
       {/* Google Form Application */}
-      <section id="apply" className="py-20 hero-gradient relative overflow-hidden">
+      <section id="apply" className="py-20 hero-gradient relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 particle-bg opacity-40" />
         <div className="container mx-auto px-4 relative z-10" ref={ref}>
           <motion.div
