@@ -14,14 +14,14 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   { id: "p1", name: "TShirt 1", price: 350, category: "T-shirt" },
-  { id: "p2", name: "TShirt 2", price: 150, category: "T-shirt" },
-  { id: "p3", name: "Keychain", price: 850, category: "Accesories" },
-  { id: "p4", name: "SciHi Lanyard", price: 80, category: "Accesories" },
-  { id: "p5", name: "SciHi Tote Bag", price: 200, category: "Accesories" },
-  { id: "p6", name: "SciHi Pin Set", price: 120, category: "Accesories" },
+  { id: "p2", name: "TShirt 2", price: 250, category: "T-shirt" },
+  { id: "p3", name: "Keychain", price: 120, category: "Accesories" },
+  { id: "p4", name: "SciHi Lanyard", price: 120, category: "Accesories" },
+  { id: "p5", name: "SciHi Tote Bag", price: 270, category: "Accesories" },
+  { id: "p6", name: "SciHi Pin Set", price: 70, category: "Accesories" },
 ];
 
-const FILTERS = [ "T-shirts", "Accesories"] as const;
+const FILTERS = ["All", "T-shirt", "Accesories"] as const;
 
 const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
