@@ -1,78 +1,8 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Globe } from "lucide-react";
 
 const ContactFooter = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
     <>
-      {/* Google Form Application */}
-      <section id="apply" className="py-20 hero-gradient relative overflow-hidden scroll-mt-20">
-        <div className="absolute inset-0 particle-bg opacity-40" />
-        <div className="container mx-auto px-4 relative z-10" ref={ref}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
-              Apply to <span className="text-gradient-gold">Sci-Hi</span>
-            </h2>
-
-            {/* Connect With Us */}
-            <div className="mt-10">
-              <h3 className="text-sm font-heading font-semibold tracking-widest uppercase text-gold mb-4">
-                Connect With Us
-              </h3>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="https://www.facebook.com/ccnshs303141"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
-                >
-                  <Facebook size={18} /> Facebook
-                </a>
-                <a
-                  href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transi"
-               >
-                  <Mail size={18} /> Email
-               </a>
-               <a
-                  href="https://www.ccnshs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
-                >
-                  <Globe size={18} /> Official Website
-                </a>
-              </div>
-            </div>
-
-            <div id="apply-form" className="mt-8 w-full">
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLScmKyKNHC48dEWMdkcrIYyDiVsJCs7Po-DMb5wmXBFBtEEiUA/viewform?embedded=true"
-                width="100%"
-                height="900"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="Apply to Sci-Hi"
-                className="w-full h-[700px] md:h-[900px] bg-transparent"
-                style={{ border: "none" }}
-              >
-                Loading…
-              </iframe>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Contact & Footer */}
       <footer id="contact" className="bg-foreground py-16">
         <div className="container mx-auto px-4">
@@ -87,7 +17,7 @@ const ContactFooter = () => {
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
               <div className="mt-5 flex items-center gap-3">
-                <a
+                
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -96,14 +26,14 @@ const ContactFooter = () => {
                 >
                   <Facebook size={16} />
                 </a>
-                <a
+                
                   href="mailto:ccnshs@deped.gov.ph"
                   aria-label="Email"
                   className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
                 >
                   <Mail size={16} />
                 </a>
-                <a
+                
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -148,7 +78,7 @@ const ContactFooter = () => {
               <div className="space-y-2 text-sm">
                 {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map(
                   (link) => (
-                    <a
+                    
                       key={link}
                       href={`#${link.toLowerCase().replace(/\s/g, "")}`}
                       className="block text-background/50 hover:text-gold transition-colors"
