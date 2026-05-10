@@ -1,7 +1,17 @@
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Facebook } from "lucide-react";
 
-const newsItems = [
+type NewsItem = {
+  id: number;
+  date: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  link: string;
+};
+
+const schoolNews: NewsItem[] = [
   {
     id: 1,
     date: "APRIL 28, 2026",
@@ -31,7 +41,127 @@ const newsItems = [
   },
 ];
 
+const scholarsVoice: NewsItem[] = [
+  {
+    id: 1,
+    date: "APRIL 28, 2026",
+    title: "Education Calendar Sees Major Shift",
+    excerpt:
+      "Public schools are set to roll out a three-term academic system by SY 2026–2027 under DepEd Order No. 009, s. 2026.",
+    image: "/news-calendar.jpg",
+    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
+  },
+  {
+    id: 2,
+    date: "APRIL 22, 2026",
+    title: "Congratulations, SciHigh Graduates — UPCAT Passers!",
+    excerpt:
+      "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026.",
+    image: "/news-upcat.jpg",
+    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+  },
+  {
+    id: 3,
+    date: "APRIL 18, 2026",
+    title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
+    excerpt:
+      "The school celebrates Tinig Iskolar's achievement in Secondary Filipino Radio Broadcasting at NSRC 2026.",
+    image: "/news-tinig.jpg",
+    link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
+  },
+];
+
+const tinigIskolar: NewsItem[] = [
+  {
+    id: 1,
+    date: "APRIL 18, 2026",
+    title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
+    excerpt:
+      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at NSRC 2026 held in Ormoc City.",
+    image: "/news-tinig.jpg",
+    link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
+  },
+  {
+    id: 2,
+    date: "MARCH 11, 2026",
+    title: "Tinig Iskolar Returns Stronger at RSPC 2026 with Multiple Wins",
+    excerpt:
+      "Tinig Iskolar made a triumphant comeback at the Regional Schools Press Conference 2026.",
+    image: "/news-upcat.jpg",
+    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+  },
+];
+
+type TabKey = "school" | "scholars" | "tinig";
+
+const tabs: { key: TabKey; label: string }[] = [
+  { key: "school", label: "School News" },
+  { key: "scholars", label: "Scholars' Voice" },
+  { key: "tinig", label: "Tinig Iskolar" },
+];
+
+const tabMeta: Record<
+  Exclude<TabKey, "school">,
+  { tagline: string; fb: string }
+> = {
+  scholars: {
+    tagline: "In Reverie, We Write to Be Heard",
+    fb: "https://www.facebook.com/profile.php?id=100087290154105",
+  },
+  tinig: {
+    tagline:
+      "Sama-sama, tayo ay titindig para sa boses ng katarungan, katotohanan, at sangkatauhan.",
+    fb: "https://www.facebook.com/profile.php?id=61551319650573",
+  },
+};
+
+const NewsCard = ({ item, i }: { item: NewsItem; i: number }) => (
+  <motion.a
+    href={item.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4, delay: 0.08 * i }}
+    className="group block overflow-hidden glass-card hover-lift cursor-pointer"
+  >
+    <div className="relative h-52 overflow-hidden">
+      <img
+        src={item.image}
+        alt={item.title}
+        loading="lazy"
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+        <ExternalLink size={16} />
+      </div>
+    </div>
+    <div className="p-5">
+      <span className="text-xs text-gold font-heading font-semibold tracking-wider uppercase">
+        {item.date}
+      </span>
+      <h3 className="mt-2 text-lg font-heading font-bold text-foreground group-hover:text-gold transition-colors">
+        {item.title}
+      </h3>
+      <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
+        {item.excerpt}
+      </p>
+    </div>
+  </motion.a>
+);
+
 const NewsSection = () => {
+  const [active, setActive] = useState<TabKey>("school");
+
+  const items =
+    active === "school"
+      ? schoolNews
+      : active === "scholars"
+      ? scholarsVoice
+      : tinigIskolar;
+
+  const meta = active !== "school" ? tabMeta[active] : null;
+
   return (
     <section id="news" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -40,7 +170,7 @@ const NewsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-heading font-semibold tracking-widest uppercase text-gold border border-gold/30 rounded-full bg-gold/5">
             Stay Updated
@@ -48,52 +178,59 @@ const NewsSection = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Latest <span className="text-gradient-gold">News</span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-            Stay updated with the latest happenings at Cebu City National
-            Science High School.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsItems.map((item, i) => (
-            <motion.a
-              key={item.id}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-              className="group block overflow-hidden glass-card hover-lift cursor-pointer"
-            >
-              <div className="relative h-52 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink size={16} />
-                </div>
-              </div>
-              <div className="p-5">
-                <span className="text-xs text-gold font-heading font-semibold tracking-wider uppercase">
-                  {item.date}
-                </span>
-                <h3 className="mt-2 text-lg font-heading font-bold text-foreground group-hover:text-gold transition-colors">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
-                  {item.excerpt}
-                </p>
-              </div>
-            </motion.a>
-          ))}
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {tabs.map((t) => {
+            const isActive = t.key === active;
+            return (
+              <button
+                key={t.key}
+                onClick={() => setActive(t.key)}
+                className={
+                  "px-5 py-2 rounded-full text-sm font-heading font-semibold tracking-wide transition-all border " +
+                  (isActive
+                    ? "bg-gold text-[#0a1628] border-gold shadow-[0_4px_20px_-4px_hsl(46_91%_53%/0.5)]"
+                    : "bg-transparent text-gold border-gold/60 hover:border-gold hover:bg-gold/10")
+                }
+              >
+                {t.label}
+              </button>
+            );
+          })}
         </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {meta && (
+              <div className="flex flex-col items-center text-center mb-8 gap-3">
+                <p className="italic text-gold max-w-2xl">{meta.tagline}</p>
+                <a
+                  href={meta.fb}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/60 text-gold text-sm font-heading font-semibold hover:bg-gold/10 transition-colors"
+                >
+                  <Facebook size={16} />
+                  Follow on Facebook
+                </a>
+              </div>
+            )}
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {items.map((item, i) => (
+                <NewsCard key={item.id} item={item} i={i} />
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
