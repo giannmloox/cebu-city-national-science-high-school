@@ -28,7 +28,7 @@ const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
   "Grade 9": ["Argon", "Krypton", "Helium", "Xenon", "Neon"],
   "Grade 10": ["Copernicus", "Galileo", "Einstein", "Newton", "Kepler"],
-  "Grade 11": ["STEM", "ABM"],
+  "Grade 11": ["Pioneer", "Voyager", "Spitzer", "Cassini", "Apollo"],
   "Grade 12": ["STEM", "ABM"],
 };
 
@@ -52,7 +52,8 @@ const Shop = () => {
   const [section, setSection] = useState("");
   const [contact, setContact] = useState("");
   const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
-  const [address, setAddress] = useState("");
+  const [building, setBuilding] = useState("");
+  const [room, setRoom] = useState("");
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const filtered = useMemo(
@@ -62,6 +63,8 @@ const Shop = () => {
 
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+  const deliveryFee = delivery === "Delivery" ? 25 : 0;
+  const total = subtotal + deliveryFee;
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -91,7 +94,7 @@ const Shop = () => {
   const closeCheckout = () => {
     setCheckoutOpen(false);
     setOrderPlaced(false);
-    setName(""); setGrade(""); setSection(""); setContact(""); setAddress(""); setPayment("");
+    setName(""); setGrade(""); setSection(""); setContact(""); setBuilding(""); setRoom(""); setPayment("");
     setDelivery("Pickup at School");
   };
 
@@ -279,8 +282,18 @@ const Shop = () => {
                       ))}
                     </ul>
                     <div className="flex justify-between mt-3 pt-3 border-t border-white/10 text-white font-bold">
-                      <span>Subtotal</span>
-                      <span className="text-gold">₱{subtotal}</span>
+                      <span className="text-white/80 font-medium">Subtotal</span>
+                      <span className="text-white">₱{subtotal}</span>
+                    </div>
+                    {deliveryFee > 0 && (
+                      <div className="flex justify-between text-white/80 text-sm mt-1">
+                        <span>Delivery Fee</span>
+                        <span>₱{deliveryFee}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between mt-2 pt-2 border-t border-white/10 font-bold">
+                      <span className="text-white">Total</span>
+                      <span className="text-gold">₱{total}</span>
                     </div>
                   </div>
 
@@ -332,7 +345,15 @@ const Shop = () => {
                   </div>
 
                   {delivery === "Delivery" && (
-                    <Field label="Address" value={address} onChange={setAddress} required />
+                    <div className="space-y-3">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Main Building" />
+                        <Field label="Room Number" value={room} onChange={setRoom} required placeholder="e.g. Room 201" />
+                      </div>
+                      <p className="text-xs text-white/60">
+                        Delivery is within school premises only — ₱25 fee applies
+                      </p>
+                    </div>
                   )}
 
                   <div>
@@ -357,8 +378,13 @@ const Shop = () => {
 
                   {payment === "GCash" && (
                     <div className="text-center bg-white/5 border border-white/10 rounded-lg p-4">
+                      <p className="text-white font-semibold mb-2">Scan to Pay via GCash</p>
                       <img src="https://placehold.co/200x200/ffffff/1a3a6b?text=GCash+QR" alt="GCash QR" className="mx-auto rounded" />
-                      <p className="text-white/80 text-sm mt-3">Scan to pay via GCash — send screenshot as proof</p>
+                      <p className="text-gold text-3xl font-heading font-bold mt-3">₱{total}</p>
+                      <p className="text-white/80 text-sm mt-2">
+                        Send exactly <span className="text-gold font-semibold">₱{total}</span> — screenshot your payment as proof
+                      </p>
+                      <p className="text-white/70 text-sm mt-1">GCash name: <span className="text-white font-semibold">SSLG CCNSHS</span></p>
                     </div>
                   )}
 
@@ -380,9 +406,9 @@ const Shop = () => {
 };
 
 const Field = ({
-  label, value, onChange, required, type = "text",
+  label, value, onChange, required, type = "text", placeholder,
 }: {
-  label: string; value: string; onChange: (v: string) => void; required?: boolean; type?: string;
+  label: string; value: string; onChange: (v: string) => void; required?: boolean; type?: string; placeholder?: string;
 }) => (
   <div>
     <label className="block text-sm text-white/80 mb-1">{label}{required && " *"}</label>
@@ -390,8 +416,9 @@ const Field = ({
       type={type}
       required={required}
       value={value}
+      placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full px-3 py-2 rounded-md bg-white/5 border border-white/15 text-white focus:border-gold outline-none"
+      className="w-full px-3 py-2 rounded-md bg-white/5 border border-white/15 text-white placeholder:text-white/40 focus:border-gold outline-none"
     />
   </div>
 );
