@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
-type Category = "Uniform" | "ID" | "Yearbook" | "Merch";
+type Category = "T-shirt" | "Accesories";
 
 interface Product {
   id: string;
@@ -13,15 +13,15 @@ interface Product {
 }
 
 const PRODUCTS: Product[] = [
-  { id: "p1", name: "TShirt 1", price: 350, category: "Merch" },
-  { id: "p2", name: "TShirt 2", price: 150, category: "Merch" },
-  { id: "p3", name: "Keychain", price: 850, category: "Yearbook" },
-  { id: "p4", name: "SciHi Lanyard", price: 80, category: "Merch" },
-  { id: "p5", name: "SciHi Tote Bag", price: 200, category: "Merch" },
-  { id: "p6", name: "SciHi Pin Set", price: 120, category: "Merch" },
+  { id: "p1", name: "TShirt 1", price: 350, category: "T-shirt" },
+  { id: "p2", name: "TShirt 2", price: 150, category: "T-shirt" },
+  { id: "p3", name: "Keychain", price: 850, category: "Accesories" },
+  { id: "p4", name: "SciHi Lanyard", price: 80, category: "Accesories" },
+  { id: "p5", name: "SciHi Tote Bag", price: 200, category: "Accesories" },
+  { id: "p6", name: "SciHi Pin Set", price: 120, category: "Accesories" },
 ];
 
-const FILTERS = ["All", "Uniform", "ID", "Yearbook", "Merch"] as const;
+const FILTERS = [ "T-shirts", "Accesories"] as const;
 
 const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
