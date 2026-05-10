@@ -54,7 +54,7 @@ const ContactFooter = () => {
               </div>
             </div>
 
-            <div className="mt-8 w-full">
+            <div id="apply-form" className="mt-8 w-full">
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLScmKyKNHC48dEWMdkcrIYyDiVsJCs7Po-DMb5wmXBFBtEEiUA/viewform?embedded=true"
                 width="100%"
