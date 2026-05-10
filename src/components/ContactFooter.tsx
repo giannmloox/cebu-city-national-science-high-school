@@ -3,10 +3,8 @@ import { MapPin, Phone, Mail, Facebook, Globe } from "lucide-react";
 const ContactFooter = () => {
   return (
     <>
-      {/* Contact & Footer */}
       <footer id="contact" className="relative py-16 overflow-hidden">
-        
-        {/* Background image */}
+
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -15,13 +13,11 @@ const ContactFooter = () => {
             backgroundPosition: "center",
           }}
         />
-        {/* Dark overlay */}
         <div className="absolute inset-0 z-0 bg-[#0a1628]/85" />
 
-        {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-12">
-            {/* School Info */}
+
             <div>
               <h3 className="font-heading font-bold text-xl text-white">CCNSHS</h3>
               <p className="text-white/40 text-sm mt-1 font-heading">
@@ -31,7 +27,7 @@ const ContactFooter = () => {
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                
+                <a
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -39,7 +35,7 @@ const ContactFooter = () => {
                 >
                   <Facebook size={15} /> Facebook
                 </a>
-                
+                <a
                   href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -47,7 +43,7 @@ const ContactFooter = () => {
                 >
                   <Mail size={15} /> Email
                 </a>
-                
+                <a
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -58,7 +54,6 @@ const ContactFooter = () => {
               </div>
             </div>
 
-            {/* Contact */}
             <div>
               <h4 className="font-heading font-bold text-white mb-4">Contact Us</h4>
               <div className="space-y-3 text-sm">
@@ -85,12 +80,11 @@ const ContactFooter = () => {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div>
               <h4 className="font-heading font-bold text-white mb-4">Quick Links</h4>
               <div className="space-y-2 text-sm">
                 {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map((link) => (
-                  
+                  <a
                     key={link}
                     href={`/#${link.toLowerCase().replace(/\s/g, "")}`}
                     className="block text-white/50 hover:text-gold transition-colors"
@@ -107,5 +101,19 @@ const ContactFooter = () => {
             </div>
           </div>
 
-          {/* Bottom bar */}
-          <div className="mt-12 pt-6 bor
+          <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-white/50 text-xs">
+              © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
+            </p>
+            <p className="text-gold text-xs font-heading font-semibold tracking-wide">
+              Aim High! Soar High! Science High. 🚀
+            </p>
+          </div>
+        </div>
+
+      </footer>
+    </>
+  );
+};
+
+export default ContactFooter;
