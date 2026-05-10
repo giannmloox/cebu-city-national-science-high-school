@@ -28,7 +28,7 @@ const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
   "Grade 9": ["Argon", "Krypton", "Helium", "Xenon", "Neon"],
   "Grade 10": ["Copernicus", "Galileo", "Einstein", "Newton", "Kepler"],
-  "Grade 11": ["STEM", "ABM"],
+  "Grade 11": ["Pioneer", "Voyager", "Spitzer", "Cassini", "Apollo"],
   "Grade 12": ["STEM", "ABM"],
 };
 
@@ -52,7 +52,8 @@ const Shop = () => {
   const [section, setSection] = useState("");
   const [contact, setContact] = useState("");
   const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
-  const [address, setAddress] = useState("");
+  const [building, setBuilding] = useState("");
+  const [room, setRoom] = useState("");
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const filtered = useMemo(
@@ -62,6 +63,8 @@ const Shop = () => {
 
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+  const deliveryFee = delivery === "Delivery" ? 25 : 0;
+  const total = subtotal + deliveryFee;
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -91,7 +94,7 @@ const Shop = () => {
   const closeCheckout = () => {
     setCheckoutOpen(false);
     setOrderPlaced(false);
-    setName(""); setGrade(""); setSection(""); setContact(""); setAddress(""); setPayment("");
+    setName(""); setGrade(""); setSection(""); setContact(""); setBuilding(""); setRoom(""); setPayment("");
     setDelivery("Pickup at School");
   };
 
