@@ -3,16 +3,16 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Admissions", href: "#admissions" },
-  { label: "Programs", href: "#programs" },
-  { label: "Why Sci-Hi", href: "#why" },
-  { label: "Student Life", href: "#life" },
+  { label: "About", href: "/#about" },
+  { label: "Admissions", href: "/#admissions" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Why Sci-Hi", href: "/#why" },
+  { label: "Student Life", href: "/#life" },
   { label: "Shop", href: "/shop" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "News", href: "#news" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "News", href: "/#news" },
   { label: "ScihiZine", href: "/scihizine" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -28,8 +28,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const sectionIds = navLinks
-      .filter((l) => l.href.startsWith("#"))
-      .map((l) => l.href.slice(1));
+      .filter((l) => l.href.startsWith("/#"))
+      .map((l) => l.href.slice(2));
     const onScroll = () => {
       const y = window.scrollY + 120;
       let current = "";
@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => {
             const isActive =
-              link.href.startsWith("#") && activeSection === link.href.slice(1);
+              link.href.startsWith("/#") && activeSection === link.href.slice(2);
             return (
               <a
                 key={link.href}
@@ -80,7 +80,7 @@ const Navbar = () => {
             );
           })}
           <a
-            href="#admissions"
+            href="/#admissions"
             className="ml-3 px-5 py-2 gold-gradient text-secondary-foreground font-heading font-semibold text-sm rounded-full hover:opacity-90 transition-opacity glow-gold"
           >
             Apply Now
@@ -118,7 +118,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="#admissions"
+                href="/#admissions"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 px-5 py-3 gold-gradient text-secondary-foreground font-heading font-semibold text-center rounded-full"
               >
