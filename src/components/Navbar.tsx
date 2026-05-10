@@ -80,7 +80,7 @@ const Navbar = () => {
             );
           })}
           <a
-            href="#admissions"
+            href="/#admissions"
             className="ml-3 px-5 py-2 gold-gradient text-secondary-foreground font-heading font-semibold text-sm rounded-full hover:opacity-90 transition-opacity glow-gold"
           >
             Apply Now
