@@ -28,8 +28,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const sectionIds = navLinks
-      .filter((l) => l.href.startsWith("#"))
-      .map((l) => l.href.slice(1));
+      .filter((l) => l.href.startsWith("/#"))
+      .map((l) => l.href.slice(2));
     const onScroll = () => {
       const y = window.scrollY + 120;
       let current = "";
