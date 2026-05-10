@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => {
             const isActive =
-              link.href.startsWith("#") && activeSection === link.href.slice(1);
+              link.href.startsWith("/#") && activeSection === link.href.slice(2);
             return (
               <a
                 key={link.href}
