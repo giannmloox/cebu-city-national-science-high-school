@@ -17,7 +17,7 @@ const ContactFooter = () => {
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
               <div className="mt-5 flex items-center gap-3">
-                
+                <a
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -26,14 +26,14 @@ const ContactFooter = () => {
                 >
                   <Facebook size={16} />
                 </a>
-                
+                <a
                   href="mailto:ccnshs@deped.gov.ph"
                   aria-label="Email"
                   className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
                 >
                   <Mail size={16} />
                 </a>
-                
+                <a
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -65,7 +65,7 @@ const ContactFooter = () => {
                 </div>
                 <div className="flex items-center gap-3 text-background/60">
                   <Facebook size={16} className="shrink-0 text-gold" />
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                  <a href="https://www.facebook.com/ccnshs303141" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
                     Facebook Page
                   </a>
                 </div>
@@ -76,17 +76,15 @@ const ContactFooter = () => {
             <div>
               <h4 className="font-heading font-bold text-background mb-4">Quick Links</h4>
               <div className="space-y-2 text-sm">
-                {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map(
-                  (link) => (
-                    
-                      key={link}
-                      href={`#${link.toLowerCase().replace(/\s/g, "")}`}
-                      className="block text-background/50 hover:text-gold transition-colors"
-                    >
-                      {link}
-                    </a>
-                  )
-                )}
+                {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(/\s/g, "")}`}
+                    className="block text-background/50 hover:text-gold transition-colors"
+                  >
+                    {link}
+                  </a>
+                ))}
               </div>
               <p className="mt-6 text-background/40 text-xs">
                 Principal: <strong>Mme. Marilou Tabal Dela Cuesta</strong>
