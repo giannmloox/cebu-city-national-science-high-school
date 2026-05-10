@@ -16,31 +16,30 @@ const ContactFooter = () => {
               <p className="mt-4 text-background/50 text-sm leading-relaxed">
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
-              <div className="mt-5 flex items-center gap-3">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <a
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
-                  <Facebook size={16} />
+                  <Facebook size={15} /> Facebook
                 </a>
                 <a
-                  href="mailto:ccnshs@deped.gov.ph"
-                  aria-label="Email"
-                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                  href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
-                  <Mail size={16} />
+                  <Mail size={15} /> Email
                 </a>
                 <a
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Official Website"
-                  className="w-9 h-9 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-gold hover:border-gold transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
-                  <Globe size={16} />
+                  <Globe size={15} /> Official Website
                 </a>
               </div>
             </div>
