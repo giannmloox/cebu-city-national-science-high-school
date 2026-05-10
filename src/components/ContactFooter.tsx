@@ -4,8 +4,22 @@ const ContactFooter = () => {
   return (
     <>
       {/* Contact & Footer */}
-      <footer id="contact" className="bg-[#0a1628] py-16">
-        <div className="container mx-auto px-4">
+      <footer id="contact" className="relative py-16 overflow-hidden">
+        
+        {/* Background image */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('/campus.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 z-0 bg-[#0a1628]/85" />
+
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-12">
             {/* School Info */}
             <div>
@@ -17,27 +31,27 @@ const ContactFooter = () => {
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <a
+                
                   href="https://www.facebook.com/ccnshs303141"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628]/60 border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Facebook size={15} /> Facebook
                 </a>
-                <a
+                
                   href="https://mail.google.com/mail/?view=cm&to=ccnshs303141@deped.gov.ph"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628]/60 border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Mail size={15} /> Email
                 </a>
-                <a
+                
                   href="https://www.ccnshs.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628] border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628]/60 border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628]"
                 >
                   <Globe size={15} /> Official Website
                 </a>
@@ -76,9 +90,9 @@ const ContactFooter = () => {
               <h4 className="font-heading font-bold text-white mb-4">Quick Links</h4>
               <div className="space-y-2 text-sm">
                 {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map((link) => (
-                  <a
+                  
                     key={link}
-                    href={`#${link.toLowerCase().replace(/\s/g, "")}`}
+                    href={`/#${link.toLowerCase().replace(/\s/g, "")}`}
                     className="block text-white/50 hover:text-gold transition-colors"
                   >
                     {link}
@@ -92,32 +106,6 @@ const ContactFooter = () => {
               </p>
             </div>
           </div>
-        </div>
 
-        {/* Bottom bar - full width with school image */}
-        <div className="relative mt-12 w-full" style={{ minHeight: "250px" }}>
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: "url('https://ccnshs.vercel.app/school-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center 60%",
-            }}
-          />
-          <div className="absolute inset-0 bg-[#0a1628]/55" />
-          <div className="relative flex flex-col sm:flex-row justify-between items-center gap-4 px-8 py-16 container mx-auto">
-            <p className="text-white/80 text-xs">
-              © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
-            </p>
-            <p className="text-gold text-xs font-heading font-semibold tracking-wide">
-              Aim High! Soar High! Science High.
-            </p>
-          </div>
-        </div>
-
-      </footer>
-    </>
-  );
-};
-
-export default ContactFooter;
+          {/* Bottom bar */}
+          <div className="mt-12 pt-6 bor
