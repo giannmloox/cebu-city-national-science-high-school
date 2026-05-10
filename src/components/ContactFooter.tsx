@@ -4,16 +4,16 @@ const ContactFooter = () => {
   return (
     <>
       {/* Contact & Footer */}
-      <footer id="contact" className="bg-foreground py-16">
+      <footer id="contact" className="bg-[#0a1628] py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-12">
             {/* School Info */}
             <div>
-              <h3 className="font-heading font-bold text-xl text-background">CCNSHS</h3>
-              <p className="text-background/40 text-sm mt-1 font-heading">
+              <h3 className="font-heading font-bold text-xl text-white">CCNSHS</h3>
+              <p className="text-white/40 text-sm mt-1 font-heading">
                 Cebu City National Science High School
               </p>
-              <p className="mt-4 text-background/50 text-sm leading-relaxed">
+              <p className="mt-4 text-white/50 text-sm leading-relaxed">
                 "Quality is never an accident. It is always the result of intelligent effort." — John Ruskin
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -46,23 +46,23 @@ const ContactFooter = () => {
 
             {/* Contact */}
             <div>
-              <h4 className="font-heading font-bold text-background mb-4">Contact Us</h4>
+              <h4 className="font-heading font-bold text-white mb-4">Contact Us</h4>
               <div className="space-y-3 text-sm">
-                <div className="flex items-start gap-3 text-background/60">
+                <div className="flex items-start gap-3 text-white/60">
                   <MapPin size={16} className="shrink-0 mt-0.5 text-gold" />
                   <span>Salvador Street, Labangon, Cebu City, Philippines 6000</span>
                 </div>
-                <div className="flex items-center gap-3 text-background/60">
+                <div className="flex items-center gap-3 text-white/60">
                   <Phone size={16} className="shrink-0 text-gold" />
                   <span>(032) 261-2802 — Principal's Office</span>
                 </div>
-                <div className="flex items-center gap-3 text-background/60">
+                <div className="flex items-center gap-3 text-white/60">
                   <Mail size={16} className="shrink-0 text-gold" />
                   <a href="mailto:sciencehighschoolcebucity@gmail.com" className="hover:text-gold transition-colors">
                     sciencehighschoolcebucity@gmail.com
                   </a>
                 </div>
-                <div className="flex items-center gap-3 text-background/60">
+                <div className="flex items-center gap-3 text-white/60">
                   <Facebook size={16} className="shrink-0 text-gold" />
                   <a href="https://www.facebook.com/ccnshs303141" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
                     Facebook Page
@@ -73,19 +73,19 @@ const ContactFooter = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-heading font-bold text-background mb-4">Quick Links</h4>
+              <h4 className="font-heading font-bold text-white mb-4">Quick Links</h4>
               <div className="space-y-2 text-sm">
                 {["About", "Admissions", "Programs", "Why Sci-Hi", "Gallery", "Contact"].map((link) => (
                   <a
                     key={link}
                     href={`#${link.toLowerCase().replace(/\s/g, "")}`}
-                    className="block text-background/50 hover:text-gold transition-colors"
+                    className="block text-white/50 hover:text-gold transition-colors"
                   >
                     {link}
                   </a>
                 ))}
               </div>
-              <p className="mt-6 text-background/40 text-xs">
+              <p className="mt-6 text-white/40 text-xs">
                 Principal: <strong>Mme. Marilou Tabal Dela Cuesta</strong>
                 <br />
                 (2024–present)
@@ -95,16 +95,15 @@ const ContactFooter = () => {
 
           {/* Bottom bar with school image background */}
           <div
-            className="mt-12 pt-6 border-t border-gold/30 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-xl px-4 py-4 overflow-hidden relative"
+            className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-xl px-6 py-4 overflow-hidden relative"
             style={{
               backgroundImage: "url('/school-bg.jpg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            {/* Overlay: navy + gold tint semi-transparent */}
             <div className="absolute inset-0 bg-[#0a1628]/75 backdrop-blur-sm" />
-            <p className="relative text-background/60 text-xs">
+            <p className="relative text-white/60 text-xs">
               © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
             </p>
             <p className="relative text-gold/80 text-xs font-heading">
