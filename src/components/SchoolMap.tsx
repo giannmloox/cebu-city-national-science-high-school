@@ -17,7 +17,7 @@ const SchoolMap = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
-  const lineRef = useRef<L.Polyline | null>(null);
+  const routeLineRef = useRef<L.Polyline | null>(null);
   const tileLayerRef = useRef<L.TileLayer | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -61,6 +61,7 @@ const SchoolMap = () => {
     };
   }, []);
 
+  // Layer switcher
   useEffect(() => {
     const map = mapInstance.current;
     if (!map) return;
@@ -83,7 +84,7 @@ const SchoolMap = () => {
     }
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      async (pos) => {
         const map = mapInstance.current!;
         const userLat = pos.coords.latitude;
         const userLng = pos.coords.longitude;
@@ -96,36 +97,64 @@ const SchoolMap = () => {
         });
 
         if (userMarkerRef.current) userMarkerRef.current.remove();
-        if (lineRef.current) lineRef.current.remove();
+        if (routeLineRef.current) routeLineRef.current.remove();
 
         userMarkerRef.current = L.marker([userLat, userLng], { icon: blueIcon })
           .addTo(map)
           .bindPopup("📍 You are here");
 
-        lineRef.current = L.polyline(
-          [
-            [userLat, userLng],
-            [SCHOOL_LAT, SCHOOL_LNG],
-          ],
-          { color: "#FFD700", weight: 3, dashArray: "8, 8" }
-        ).addTo(map);
+        // Fetch road route from OSRM
+        try {
+          const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${userLng},${userLat};${SCHOOL_LNG},${SCHOOL_LAT}?overview=full&geometries=geojson`;
+          const res = await fetch(osrmUrl);
+          const data = await res.json();
 
-        const distMeters = map.distance([userLat, userLng], [SCHOOL_LAT, SCHOOL_LNG]);
-        const km = distMeters / 1000;
-        const walkMin = Math.round((km / 5) * 60);
-        const driveMin = Math.round((km / 40) * 60);
+          if (data.routes && data.routes.length > 0) {
+            const route = data.routes[0];
+            const coords: [number, number][] = route.geometry.coordinates.map(
+              ([lng, lat]: [number, number]) => [lat, lng]
+            );
 
-        setInfo(
-          `Distance: ${km.toFixed(2)} km · 🚶 ~${walkMin} min walking · 🚗 ~${driveMin} min driving`
-        );
+            routeLineRef.current = L.polyline(coords, {
+              color: "#FFD700",
+              weight: 4,
+              opacity: 0.85,
+            }).addTo(map);
 
-        map.fitBounds(
-          [
-            [userLat, userLng],
-            [SCHOOL_LAT, SCHOOL_LNG],
-          ],
-          { padding: [50, 50] }
-        );
+            const distKm = (route.distance / 1000).toFixed(2);
+            const durationMin = Math.round(route.duration / 60);
+            const walkMin = Math.round((parseFloat(distKm) / 5) * 60);
+
+            setInfo(
+              `Distance: ${distKm} km · 🚶 ~${walkMin} min walking · 🚗 ~${durationMin} min driving`
+            );
+
+            map.fitBounds(routeLineRef.current.getBounds(), { padding: [50, 50] });
+          } else {
+            throw new Error("No route found");
+          }
+        } catch {
+          // Fallback to straight line if OSRM fails
+          routeLineRef.current = L.polyline(
+            [[userLat, userLng], [SCHOOL_LAT, SCHOOL_LNG]],
+            { color: "#FFD700", weight: 3, dashArray: "8, 8" }
+          ).addTo(map);
+
+          const distMeters = map.distance([userLat, userLng], [SCHOOL_LAT, SCHOOL_LNG]);
+          const km = distMeters / 1000;
+          const walkMin = Math.round((km / 5) * 60);
+          const driveMin = Math.round((km / 40) * 60);
+
+          setInfo(
+            `Distance: ${km.toFixed(2)} km · 🚶 ~${walkMin} min walking · 🚗 ~${driveMin} min driving`
+          );
+
+          map.fitBounds(
+            [[userLat, userLng], [SCHOOL_LAT, SCHOOL_LNG]],
+            { padding: [50, 50] }
+          );
+        }
+
         setLoading(false);
       },
       (err) => {
@@ -146,6 +175,8 @@ const SchoolMap = () => {
   return (
     <div className="mt-12">
       <h4 className="font-heading font-bold text-gold text-2xl mb-4">📍 Find Us</h4>
+
+      {/* Action buttons */}
       <div className="flex flex-wrap gap-3 mb-4">
         <button
           onClick={findMyLocation}
@@ -160,14 +191,9 @@ const SchoolMap = () => {
         >
           🗺️ Get Directions
         </button>
-      </div>
-      {info && (
-        <p className="text-white/80 text-sm mb-3 bg-[#0a1628]/60 border border-gold/30 rounded-lg px-4 py-2">
-          {info}
-        </p>
-      )}
-      <div className="relative">
-        <div className="absolute top-3 right-3 z-[400] flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40 backdrop-blur-sm">
+
+        {/* Layer switcher as React buttons */}
+        <div className="flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40">
           {(["light", "satellite"] as LayerKey[]).map((key) => (
             <button
               key={key}
@@ -175,19 +201,26 @@ const SchoolMap = () => {
               className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                 layer === key
                   ? "bg-gold text-[#0a1628]"
-                  : "border border-gold text-gold hover:bg-gold/10"
+                  : "text-gold hover:bg-gold/10"
               }`}
             >
-              {key === "light" ? "Light" : "Satellite"}
+              {key === "light" ? "🗺 Light" : "🛰 Satellite"}
             </button>
           ))}
         </div>
-        <div
-          ref={mapRef}
-          className="w-full rounded-xl border border-gold/30 overflow-hidden"
-          style={{ height: "400px" }}
-        />
       </div>
+
+      {info && (
+        <p className="text-white/80 text-sm mb-3 bg-[#0a1628]/60 border border-gold/30 rounded-lg px-4 py-2">
+          {info}
+        </p>
+      )}
+
+      <div
+        ref={mapRef}
+        className="w-full rounded-xl border border-gold/30 overflow-hidden"
+        style={{ height: "400px" }}
+      />
     </div>
   );
 };
