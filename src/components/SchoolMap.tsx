@@ -167,11 +167,28 @@ const SchoolMap = () => {
           {info}
         </p>
       )}
-      <div
-        ref={mapRef}
-        className="w-full rounded-xl border border-gold/30 overflow-hidden"
-        style={{ height: "400px" }}
-      />
+      <div className="relative">
+        <div className="absolute top-3 right-3 z-[400] flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40 backdrop-blur-sm">
+          {(["dark", "light", "satellite"] as LayerKey[]).map((key) => (
+            <button
+              key={key}
+              onClick={() => setLayer(key)}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                layer === key
+                  ? "bg-gold text-[#0a1628]"
+                  : "border border-gold text-gold hover:bg-gold/10"
+              }`}
+            >
+              {key === "dark" ? "Dark" : key === "light" ? "Light" : "Satellite"}
+            </button>
+          ))}
+        </div>
+        <div
+          ref={mapRef}
+          className="w-full rounded-xl border border-gold/30 overflow-hidden"
+          style={{ height: "400px" }}
+        />
+      </div>
     </div>
   );
 };
