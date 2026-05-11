@@ -8,7 +8,7 @@ const ContactFooter = () => {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url('/campus.jpg')",
+            backgroundImage: "url('/school-bg.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
