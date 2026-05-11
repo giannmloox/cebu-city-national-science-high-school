@@ -5,10 +5,9 @@ import "leaflet/dist/leaflet.css";
 const SCHOOL_LAT = 10.30043;
 const SCHOOL_LNG = 123.87942;
 
-type LayerKey = "dark" | "light" | "satellite";
+type LayerKey = "light" | "satellite";
 
 const TILE_URLS: Record<LayerKey, string> = {
-  dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
   light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
   satellite:
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
@@ -22,7 +21,7 @@ const SchoolMap = () => {
   const tileLayerRef = useRef<L.TileLayer | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [layer, setLayer] = useState<LayerKey>("dark");
+  const [layer, setLayer] = useState<LayerKey>("light");
 
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
@@ -34,7 +33,7 @@ const SchoolMap = () => {
     });
     mapInstance.current = map;
 
-    tileLayerRef.current = L.tileLayer(TILE_URLS.dark, {
+    tileLayerRef.current = L.tileLayer(TILE_URLS.light, {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
       maxZoom: 19,
@@ -169,7 +168,7 @@ const SchoolMap = () => {
       )}
       <div className="relative">
         <div className="absolute top-3 right-3 z-[400] flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40 backdrop-blur-sm">
-          {(["dark", "light", "satellite"] as LayerKey[]).map((key) => (
+          {(["light", "satellite"] as LayerKey[]).map((key) => (
             <button
               key={key}
               onClick={() => setLayer(key)}
@@ -179,7 +178,7 @@ const SchoolMap = () => {
                   : "border border-gold text-gold hover:bg-gold/10"
               }`}
             >
-              {key === "dark" ? "Dark" : key === "light" ? "Light" : "Satellite"}
+              {key === "light" ? "Light" : "Satellite"}
             </button>
           ))}
         </div>
