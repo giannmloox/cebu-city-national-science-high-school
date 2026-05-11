@@ -50,7 +50,7 @@ const SchoolMap = () => {
     L.marker([SCHOOL_LAT, SCHOOL_LNG], { icon: goldIcon })
       .addTo(map)
       .bindPopup(
-        "📍 <b>Cebu City National Science High School</b><br/>Salvador Street, Labangon, Cebu City 6000"
+        "<b>Cebu City National Science High School</b><br/>Salvador Street, Labangon, Cebu City 6000"
       )
       .openPopup();
 
@@ -61,7 +61,6 @@ const SchoolMap = () => {
     };
   }, []);
 
-  // Layer switcher
   useEffect(() => {
     const map = mapInstance.current;
     if (!map) return;
@@ -101,9 +100,8 @@ const SchoolMap = () => {
 
         userMarkerRef.current = L.marker([userLat, userLng], { icon: blueIcon })
           .addTo(map)
-          .bindPopup("📍 You are here");
+          .bindPopup("You are here");
 
-        // Fetch road route from OSRM
         try {
           const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${userLng},${userLat};${SCHOOL_LNG},${SCHOOL_LAT}?overview=full&geometries=geojson`;
           const res = await fetch(osrmUrl);
@@ -126,7 +124,7 @@ const SchoolMap = () => {
             const walkMin = Math.round((parseFloat(distKm) / 5) * 60);
 
             setInfo(
-              `Distance: ${distKm} km · 🚶 ~${walkMin} min walking · 🚗 ~${durationMin} min driving`
+              `Distance: ${distKm} km · ~${walkMin} min walking · ~${durationMin} min driving`
             );
 
             map.fitBounds(routeLineRef.current.getBounds(), { padding: [50, 50] });
@@ -134,7 +132,6 @@ const SchoolMap = () => {
             throw new Error("No route found");
           }
         } catch {
-          // Fallback to straight line if OSRM fails
           routeLineRef.current = L.polyline(
             [[userLat, userLng], [SCHOOL_LAT, SCHOOL_LNG]],
             { color: "#FFD700", weight: 3, dashArray: "8, 8" }
@@ -146,7 +143,7 @@ const SchoolMap = () => {
           const driveMin = Math.round((km / 40) * 60);
 
           setInfo(
-            `Distance: ${km.toFixed(2)} km · 🚶 ~${walkMin} min walking · 🚗 ~${driveMin} min driving`
+            `Distance: ${km.toFixed(2)} km · ~${walkMin} min walking · ~${driveMin} min driving`
           );
 
           map.fitBounds(
@@ -174,25 +171,23 @@ const SchoolMap = () => {
 
   return (
     <div className="mt-12">
-      <h4 className="font-heading font-bold text-gold text-2xl mb-4">📍 Find Us</h4>
+      <h4 className="font-heading font-bold text-gold text-2xl mb-4">Find Us</h4>
 
-      {/* Action buttons */}
       <div className="flex flex-wrap gap-3 mb-4">
         <button
           onClick={findMyLocation}
           disabled={loading}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a1628]/60 border-2 border-gold text-gold font-medium text-sm transition-all duration-200 hover:bg-gold hover:text-[#0a1628] disabled:opacity-60"
         >
-          {loading ? "Locating..." : "📍 Find My Location"}
+          {loading ? "Locating..." : "Find My Location"}
         </button>
         <button
           onClick={getDirections}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-[#0a1628] font-medium text-sm transition-all duration-200 hover:bg-gold/90"
         >
-          🗺️ Get Directions
+          Get Directions
         </button>
 
-        {/* Layer switcher as React buttons */}
         <div className="flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40">
           {(["light", "satellite"] as LayerKey[]).map((key) => (
             <button
@@ -204,7 +199,7 @@ const SchoolMap = () => {
                   : "text-gold hover:bg-gold/10"
               }`}
             >
-              {key === "light" ? "🗺 Light" : "🛰 Satellite"}
+              {key === "light" ? "Light" : "Satellite"}
             </button>
           ))}
         </div>
