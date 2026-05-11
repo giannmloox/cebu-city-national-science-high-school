@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Facebook, Globe } from "lucide-react";
+import SchoolMap from "./SchoolMap";
 
 const ContactFooter = () => {
   return (
@@ -100,6 +101,8 @@ const ContactFooter = () => {
               </p>
             </div>
           </div>
+
+          <SchoolMap />
 
           <div className="mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-white/50 text-xs">
