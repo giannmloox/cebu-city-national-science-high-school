@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const SCHOOL_LAT = 10.30043;
-const SCHOOL_LNG = 123.87942;
+const SCHOOL_LAT = 10.3002997;
+const SCHOOL_LNG = 123.8786598;
 
 type LayerKey = "light" | "satellite";
 
@@ -50,7 +50,7 @@ const SchoolMap = () => {
     L.marker([SCHOOL_LAT, SCHOOL_LNG], { icon: goldIcon })
       .addTo(map)
       .bindPopup(
-        "<b>Cebu City National Science High School</b><br/>Salvador Street, Labangon, Cebu City 6000"
+        "<b>Cebu City National Science High School</b><br/>Front Gate, Salvador Street, Labangon, Cebu City 6000"
       )
       .openPopup();
 
