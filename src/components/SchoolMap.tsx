@@ -5,13 +5,24 @@ import "leaflet/dist/leaflet.css";
 const SCHOOL_LAT = 10.30043;
 const SCHOOL_LNG = 123.87942;
 
+type LayerKey = "dark" | "light" | "satellite";
+
+const TILE_URLS: Record<LayerKey, string> = {
+  dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+  light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  satellite:
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+};
+
 const SchoolMap = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
   const lineRef = useRef<L.Polyline | null>(null);
+  const tileLayerRef = useRef<L.TileLayer | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [layer, setLayer] = useState<LayerKey>("dark");
 
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
@@ -23,7 +34,7 @@ const SchoolMap = () => {
     });
     mapInstance.current = map;
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    tileLayerRef.current = L.tileLayer(TILE_URLS.dark, {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
       maxZoom: 19,
@@ -47,8 +58,24 @@ const SchoolMap = () => {
     return () => {
       map.remove();
       mapInstance.current = null;
+      tileLayerRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map) return;
+    if (tileLayerRef.current) {
+      tileLayerRef.current.remove();
+    }
+    tileLayerRef.current = L.tileLayer(TILE_URLS[layer], {
+      attribution:
+        layer === "satellite"
+          ? "Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics"
+          : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      maxZoom: 19,
+    }).addTo(map);
+  }, [layer]);
 
   const findMyLocation = () => {
     if (!navigator.geolocation || !mapInstance.current) {
@@ -140,11 +167,28 @@ const SchoolMap = () => {
           {info}
         </p>
       )}
-      <div
-        ref={mapRef}
-        className="w-full rounded-xl border border-gold/30 overflow-hidden"
-        style={{ height: "400px" }}
-      />
+      <div className="relative">
+        <div className="absolute top-3 right-3 z-[400] flex gap-1 p-1 rounded-full bg-[#0a1628]/80 border border-gold/40 backdrop-blur-sm">
+          {(["dark", "light", "satellite"] as LayerKey[]).map((key) => (
+            <button
+              key={key}
+              onClick={() => setLayer(key)}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                layer === key
+                  ? "bg-gold text-[#0a1628]"
+                  : "border border-gold text-gold hover:bg-gold/10"
+              }`}
+            >
+              {key === "dark" ? "Dark" : key === "light" ? "Light" : "Satellite"}
+            </button>
+          ))}
+        </div>
+        <div
+          ref={mapRef}
+          className="w-full rounded-xl border border-gold/30 overflow-hidden"
+          style={{ height: "400px" }}
+        />
+      </div>
     </div>
   );
 };
