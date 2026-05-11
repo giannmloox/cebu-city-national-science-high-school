@@ -13,7 +13,7 @@ const ContactFooter = () => {
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 z-0 bg-[#0a1628]/85" />
+        <div className="absolute inset-0 z-0 hero-gradient opacity-85" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-12">
@@ -101,7 +101,7 @@ const ContactFooter = () => {
             </div>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-white/50 text-xs">
               © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
             </p>
