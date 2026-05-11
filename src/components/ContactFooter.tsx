@@ -106,7 +106,7 @@ const ContactFooter = () => {
               © {new Date().getFullYear()} Cebu City National Science High School. All rights reserved.
             </p>
             <p className="text-gold text-xs font-heading font-semibold tracking-wide">
-              Aim High! Soar High! Science High. 🚀
+              Aim High! Soar High! Science High. 
             </p>
           </div>
         </div>
