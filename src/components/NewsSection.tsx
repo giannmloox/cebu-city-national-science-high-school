@@ -63,13 +63,13 @@ const scholarsVoice: NewsItem[] = [
   },
   {
     id: 3,
-    date: "MAY 8, 2026",
-    title: "First Time in the Limelight",
+    date: "MAY 11, 2026",
+    title: "𝗧𝗮𝗸𝗲 𝗮 𝘀𝘁𝗲𝗽 𝗳𝗼𝗿𝘄𝗮𝗿𝗱 𝗮𝗻𝗱 𝘀𝗵𝗼𝘄 𝗲𝘃𝗲𝗿𝘆𝗼𝗻𝗲 𝘄𝗵𝘆 𝘆𝗼𝘂 𝗯𝗲𝗹𝗼𝗻𝗴 𝗶𝗻 𝘁𝗵𝗲 𝘀𝗽𝗼𝘁𝗹𝗶𝗴𝗵𝘁!",
     excerpt:
-      "With the new Strengthened SHS Curriculum, the school schedule is no longer just a document — it marks a restructured, flexible, and expanded Senior High School experience for incoming Grade 11 students.",
+      "Aspiring broadcasters have finally made it to the final tryouts. Your voice has been recognized, and it’s time for the final audition that decides it all.",
     image:
-      "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/696228277_957286507191012_490680385252847936_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeGa1AMYkxHW_bTEbXj0MBGAkkSF-Eab2aaSRIX4RpvZpq4CUPfRPyKCES5u7VObIgnJ-U3NqVEVBqCS3j7Dqo0u&_nc_ohc=2JcfE9OuATAQ7kNvwHZB27M&_nc_oc=AdpS2y30cUizfgDMy6uThIlbCSx_9yKgtyHgOfaCX1Ai91EfN7sV1k4rWYA-nvjcYwA&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=Ckj3Tk7Fs0kMo9tg9nlIDg&_nc_ss=7b2a8&oh=00_Af7L02NlrWAdWHK0XcnAHsZSuHBdYcH0l2Vwl3ihZXrR9g&oe=6A05DF7B",
-    link: "https://www.facebook.com/share/p/1F2EX3uEhE/",
+      "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/697197943_960039956915667_5732052605412242850_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeF-UKzgFu6P8PLX90kaAR56gXm0B5gswkOBebQHmCzCQxttPT5ymHnfft3dB78mWzObVXAzTmQ0mBKhau4dF6mQ&_nc_ohc=xn8ehw21ADIQ7kNvwFSbfZb&_nc_oc=AdpdARn2nMfhsR69vt0Hq17Qhfhuz7Rb34E8OKbW5tMKsvDvNmO0mkrhPyCKX6qlvVA&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=73l4T9081qPvvzofpRr-9g&_nc_ss=7b2a8&oh=00_Af4aFPiGI2zAngHtOPVRn8HWS0bdHchI2H0mJVSMyjbqhA&oe=6A09199A",
+    link: "https://www.facebook.com/share/p/188qt7zDSP/",
   },
 ];
 
