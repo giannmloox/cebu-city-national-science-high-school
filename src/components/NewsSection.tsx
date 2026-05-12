@@ -49,7 +49,7 @@ const scholarsVoice: NewsItem[] = [
     excerpt:
       "Amid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfaces—known for claiming nearly half of the severe cases it infects—sparking public fears of a “next COVID.” However, health officials emphasize that the outbreak does not pose a widespread global threat.",
     image:
-      "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/699214960_960549243531405_4958089874500311990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeECj-HA9tmkcPAQUmqPdl11M2cJbA-j_80zZwlsD6P_zVgS2KKxrRLo1OdOHgFgkrY0WwncDKaxZVEhnZeukJ_j&_nc_ohc=SbznwLbXODkQ7kNvwGxRa4L&_nc_oc=AdqkIYHylfFxYA__nrq_FBqY1igB9ycPQrQ0zhKjGBn_1YVNHEAymRF5czl9DRy7IMc&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=73l4T9081qPvvzofpRr-9g&_nc_ss=7b2a8&oh=00_Af7T7nFYrxmgKO9enbh8L4qJR07oisLpxmChvdaUu6tqWA&oe=6A090EBA",
+      "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/698389767_960868790166117_4860146697349121883_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFATuxvsPb_01L2ZNOYTzBbmPB8K3tN5lyY8Hwre03mXFz6r7FzStkYqjcViVW2iNFc8oVwip9Io6pan-4k9Gu2&_nc_ohc=DQMhc5EzaPMQ7kNvwFPWwM9&_nc_oc=Adr011O5Th5LrC4CEludaWDEK_Bnc1w1TjZ1rySVi-EZsSkejUIbfN3idUAzQcalr-Q&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=eoAkf-8yiO8xAbnA5WeGFA&_nc_ss=7b2a8&oh=00_Af4LFbTmXNhXWNSDmcjXOsPC_PNUNWEGPGWWi-MwMNJhtg&oe=6A09301C",
     link: "https://www.facebook.com/share/p/1BUFqVzRYL/",
   },
   {
@@ -59,8 +59,7 @@ const scholarsVoice: NewsItem[] = [
     excerpt:
       "Thank you for being more than just our school paper adviser—you guide us with patience, inspire us to always do our best, and remind us that our words can make a difference. Through every correction, reminder, and deadline, you continue to help us grow not only as journalists, but also as individuals.",
     image:
-      "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/690683492_958114690441527_479226915656026369_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeH7ro_G9XSt5LDgViOhB8UkAObpljmiLrQA5umWOaIutDIFs5yZwgHHypt4ZAl4p8GHBfm4spV3NPBfHvYYqmbV&_nc_ohc=41eOcm3z5GgQ7kNvwHShWqN&_nc_oc=AdqbZlm1bxGEznqckKv16xshyQqi_BXoGGaCNpMqPAZ1J2wJUooHpwPtf1iu1WvPNFg&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=11p1tVCVeZHs6y5ppUL6Xg&_nc_ss=7b2a8&oh=00_Af6nvT2cQ3TLg_MxncU8BK1xBPTgL6tQFf8Pb0B3ImXxWg&oe=6A05E088",
-    link: "https://www.facebook.com/share/p/1CKrFXR5uH/",
+      "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/699214960_960549243531405_4958089874500311990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeECj-HA9tmkcPAQUmqPdl11M2cJbA-j_80zZwlsD6P_zVgS2KKxrRLo1OdOHgFgkrY0WwncDKaxZVEhnZeukJ_j&_nc_ohc=SbznwLbXODkQ7kNvwGxRa4L&_nc_oc=AdqkIYHylfFxYA__nrq_FBqY1igB9ycPQrQ0zhKjGBn_1YVNHEAymRF5czl9DRy7IMc&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=73l4T9081qPvvzofpRr-9g&_nc_ss=7b2a8&oh=00_Af7T7nFYrxmgKO9enbh8L4qJR07oisLpxmChvdaUu6tqWA&oe=6A090EBA",
   },
   {
     id: 3,
