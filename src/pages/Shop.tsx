@@ -103,7 +103,7 @@ const Shop = () => {
       <Navbar />
       <main className="container mx-auto px-4 pt-32 pb-20">
         <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-heading font-bold text-white">
             SSLG <span className="text-gradient-gold">Shop</span>
           </h1>
           <p className="mt-4 text-white/75 max-w-2xl mx-auto">
@@ -129,7 +129,7 @@ const Shop = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filtered.map((p) => (
             <motion.div
               key={p.id}
@@ -243,16 +243,16 @@ const Shop = () => {
         {checkoutOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 z-[60] bg-black/70 flex items-end md:items-center justify-center md:p-4"
             onClick={closeCheckout}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-card max-w-2xl w-full my-8 p-6 md:p-8 bg-[#0a1628]/95"
+              className="glass-card max-w-2xl w-full md:my-8 p-5 md:p-8 bg-[#0a1628]/95 max-h-[90vh] overflow-y-auto rounded-t-2xl md:rounded-2xl mx-0 md:mx-auto"
             >
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-2xl font-heading font-bold text-white">
+                <h2 className="text-xl md:text-2xl font-heading font-bold text-white">
                   {orderPlaced ? "Order Confirmed" : "Checkout"}
                 </h2>
                 <button onClick={closeCheckout} className="text-white/70 hover:text-gold"><X size={22} /></button>
@@ -285,12 +285,10 @@ const Shop = () => {
                       <span className="text-white/80 font-medium">Subtotal</span>
                       <span className="text-white">₱{subtotal}</span>
                     </div>
-                    {deliveryFee > 0 && (
-                      <div className="flex justify-between text-white/80 text-sm mt-1">
-                        <span>Delivery Fee</span>
-                        <span>₱{deliveryFee}</span>
-                      </div>
-                    )}
+                    <div className="flex justify-between text-white/80 text-sm mt-1">
+                      <span>Delivery Fee</span>
+                      <span>{deliveryFee > 0 ? `₱${deliveryFee}` : "Free"}</span>
+                    </div>
                     <div className="flex justify-between mt-2 pt-2 border-t border-white/10 font-bold">
                       <span className="text-white">Total</span>
                       <span className="text-gold">₱{total}</span>
