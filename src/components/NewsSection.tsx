@@ -17,14 +17,14 @@ const schoolNews: NewsItem[] = [
     date: "APRIL 28, 2026",
     title: "Education Calendar Sees Major Shift",
     excerpt:
-      "Public schools are set to roll out a three-term academic system by School Year 2026–2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
+      "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
     image: "/news-calendar.jpg",
     link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
     id: 2,
     date: "APRIL 22, 2026",
-    title: "Congratulations, SciHigh Graduates — UPCAT Passers!",
+    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
     excerpt:
       "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
     image: "/news-upcat.jpg",
@@ -48,8 +48,8 @@ const scholarsVoice: NewsItem[] = [
     title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
     excerpt:
       "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
-    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/698389767_960868790166117_4860146697349121883_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFATuxvsPb_01L2ZNOYTzBbmPB8K3tN5lyY8Hwre03mXFz6r7FzStkYqjcViVW2iNFc8oVwip9Io6pan-4k9Gu2&_nc_ohc=DQMhc5EzaPMQ7kNvwFPWwM9&_nc_oc=Adr011O5Th5LrC4CEludaWDEK_Bnc1w1TjZ1rySVi-EZsSkejUIbfN3idUAzQcalr-Q&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=eoAkf-8yiO8xAbnA5WeGFA&_nc_ss=7b2a8&oh=00_Af4LFbTmXNhXWNSDmcjXOsPC_PNUNWEGPGWWi-MwMNJhtg&oe=6A09301C",
-    link: "https://www.facebook.com/share/p/1BUFqVzRYL/",
+    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/698389767_960868790166117_4860146697349121883_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFATuxvsPb_01L2ZNOYTzBbmPB8K3tN5lyY8Hwre03mXFz6r7FzStkYqjcViVW2iNFc8oVwip9Io6pan-4k9Gu2&_nc_ohc=DQMhc5EzaPMQ7kNvwFPWwM9&_nc_oc=Adr011O5Th5LrC4CEludaWDEK_Bnc1w1TjZ1rySVi-EZsSkejUIbfN3idUAzQcalr-Q&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=ByIvVR4NxR7H2J7rF1gsFA&_nc_ss=7b2a8&oh=00_Af70rin98RrUXWl9UhniQHONG5HwntcSFWPzqFH9f-9Cag&oe=6A0A111C",
+    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
   {
     id: 2,
@@ -57,17 +57,17 @@ const scholarsVoice: NewsItem[] = [
     title: "Happy Birthday, Ma'am Allyssa!",
     excerpt:
       "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/699214960_960549243531405_4958089874500311990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeECj-HA9tmkcPAQUmqPdl11M2cJbA-j_80zZwlsD6P_zVgS2KKxrRLo1OdOHgFgkrY0WwncDKaxZVEhnZeukJ_j&_nc_ohc=SbznwLbXODkQ7kNvwGxRa4L&_nc_oc=AdqkIYHylfFxYA__nrq_FBqY1igB9ycPQrQ0zhKjGBn_1YVNHEAymRF5czl9DRy7IMc&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=73l4T9081qPvvzofpRr-9g&_nc_ss=7b2a8&oh=00_Af7T7nFYrxmgKO9enbh8L4qJR07oisLpxmChvdaUu6tqWA&oe=6A090EBA",
-    link: "https://www.facebook.com/share/p/1Fp2ivURWu/",
+    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/699214960_960549243531405_4958089874500311990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeECj-HA9tmkcPAQUmqPdl11M2cJbA-j_80zZwlsD6P_zVgS2KKxrRLo1OdOHgFgkrY0WwncDKaxZVEhnZeukJ_j&_nc_ohc=SbznwLbXODkQ7kNvwGxRa4L&_nc_oc=AdqkIYHylfFxYA__nrq_FBqY1igB9ycPQrQ0zhKjGBn_1YVNHEAymRF5czl9DRy7IMc&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=eUgYOBU6Y9J2172dS7CUzw&_nc_ss=7b2a8&oh=00_Af78dLsJCdvK8PcPXGMWSt-y_UdCwuVshQA5NvVtS8-Ykw&oe=6A0A27FA",
+    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
   {
     id: 3,
     date: "MAY 11, 2026",
-    title: "Take a Step Forward — Final Broadcasting Tryouts Announced",
+    title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
     excerpt:
       "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
-    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/697197943_960039956915667_5732052605412242850_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeF-UKzgFu6P8PLX90kaAR56gXm0B5gswkOBebQHmCzCQxttPT5ymHnfft3dB78mWzObVXAzTmQ0mBKhau4dF6mQ&_nc_ohc=xn8ehw21ADIQ7kNvwFSbfZb&_nc_oc=AdpdARn2nMfhsR69vt0Hq17Qhfhuz7Rb34E8OKbW5tMKsvDvNmO0mkrhPyCKX6qlvVA&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=73l4T9081qPvvzofpRr-9g&_nc_ss=7b2a8&oh=00_Af4aFPiGI2zAngHtOPVRn8HWS0bdHchI2H0mJVSMyjbqhA&oe=6A09199A",
-    link: "https://www.facebook.com/share/p/188qt7zDSP/",
+    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/697197943_960039956915667_5732052605412242850_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF-UKzgFu6P8PLX90kaAR56gXm0B5gswkOBebQHmCzCQxttPT5ymHnfft3dB78mWzObVXAzTmQ0mBKhau4dF6mQ&_nc_ohc=xn8ehw21ADIQ7kNvwFSbfZb&_nc_oc=AdpdARn2nMfhsR69vt0Hq17Qhfhuz7Rb34E8OKbW5tMKsvDvNmO0mkrhPyCKX6qlvVA&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=3LwRCu-LWmnHh8__XGviKA&_nc_ss=7b2a8&oh=00_Af4lcCpDBmPoT7ROzQZk61A1CZHXIEXkJbtRM6RyoL9cLg&oe=6A09FA9A",
+    link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
   },
 ];
 
@@ -77,7 +77,7 @@ const tinigIskolar: NewsItem[] = [
     date: "MAY 3, 2026",
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
-      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya — ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
+      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
     image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/688177573_122237611364043988_430063421778108016_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHKI2WzW4xlxHVpAyEFNE9ES4Gf1ddVmUFLgZ_V11WZQa--3hMvxik6rXQIXJO8cO8F_cCSmNv4XYBp5XLrJRte&_nc_ohc=BoYKLsOBG5gQ7kNvwHrr-Uo&_nc_oc=AdpzEe8GWKSS0bUQ10AhTgJr52WNCm9jXnT0GZXxxNP92HNW0EQB_ZG_4tfooqH8x24&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=yfZTC9Q3haHiqU7qVWDBiQ&_nc_ss=7b2a8&oh=00_Af4LbuRHJOKOcZc3kSN1B8kk7C7oCaLkZC5jhx4I4eDdSw&oe=6A0605B5",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
@@ -95,7 +95,7 @@ const tinigIskolar: NewsItem[] = [
     date: "APRIL 12, 2026",
     title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
     excerpt:
-      "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon — tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
+      "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
     image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/670365198_122234038868043988_2471364011346843589_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFVA1vWWz0gmw0firzJ6MxjKDmlgz4CjnsoOaWDPgKOe8MWMJoPFVHf_3MFuA9qXXZsxR6TCyFNARkHPE6EFqad&_nc_ohc=Q45QAELrrecQ7kNvwEH2q4a&_nc_oc=AdpJ7Gf4aEM0vPSNWlWJkYgZchGvyjus7InjnLSRrsxdpdL3Db_bGYJuG6mA-aiFTpI&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=GfIHPfX3KxXpCG0PVxYhsQ&_nc_ss=7b2a8&oh=00_Af68aEmWF_XoZjyLqLLeyH2MpsxXgkDYDDrJLZ4QNj999A&oe=6A05D7A3",
     link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
