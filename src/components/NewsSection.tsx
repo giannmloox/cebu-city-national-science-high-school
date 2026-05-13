@@ -96,7 +96,7 @@ const tinigIskolar: NewsItem[] = [
     title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
     excerpt:
       "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "/Tinig41226.jpg",
+    image: "/Tinig-41226.jpg",
     link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
 ];
