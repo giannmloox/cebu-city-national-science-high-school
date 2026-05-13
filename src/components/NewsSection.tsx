@@ -78,7 +78,7 @@ const tinigIskolar: NewsItem[] = [
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
       "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/688177573_122237611364043988_430063421778108016_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHKI2WzW4xlxHVpAyEFNE9ES4Gf1ddVmUFLgZ_V11WZQa--3hMvxik6rXQIXJO8cO8F_cCSmNv4XYBp5XLrJRte&_nc_ohc=BoYKLsOBG5gQ7kNvwHrr-Uo&_nc_oc=AdpzEe8GWKSS0bUQ10AhTgJr52WNCm9jXnT0GZXxxNP92HNW0EQB_ZG_4tfooqH8x24&_nc_zt=23&_nc_ht=scontent.fceb9-1.fna&_nc_gid=yfZTC9Q3haHiqU7qVWDBiQ&_nc_ss=7b2a8&oh=00_Af4LbuRHJOKOcZc3kSN1B8kk7C7oCaLkZC5jhx4I4eDdSw&oe=6A0605B5",
+    image: "/Tinig-5326.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
   {
@@ -87,7 +87,7 @@ const tinigIskolar: NewsItem[] = [
     title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
     excerpt:
       "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII and 4th place in Radio Broadcasting.",
-    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/672114892_122235055808043988_5659775990861552524_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHgTdBeaCchv-r9wgGGQQJ10uWDO-egMyXS5YM756AzJa5xhfcFdr_IwnTS8nr9rO_GfT1Ec-Z1rqDAuwdqCY9h&_nc_ohc=NwDqYvkfr-4Q7kNvwF78ZgH&_nc_oc=Ado9d5Phgbfu90Xjo8VF4oix81t07Sw0YAqKY5syUdEAAUtHrCLHn82fxDwwcEuXrmw&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=GfIHPfX3KxXpCG0PVxYhsQ&_nc_ss=7b2a8&oh=00_Af7VZ2SNca24Qsl3DswLfLnSuzgXQ9oJnmWGvIj4hWJfmA&oe=6A05D734",
+    image: "/Tinig-41826.jpg",
     link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
   },
   {
@@ -96,7 +96,7 @@ const tinigIskolar: NewsItem[] = [
     title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
     excerpt:
       "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/670365198_122234038868043988_2471364011346843589_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFVA1vWWz0gmw0firzJ6MxjKDmlgz4CjnsoOaWDPgKOe8MWMJoPFVHf_3MFuA9qXXZsxR6TCyFNARkHPE6EFqad&_nc_ohc=Q45QAELrrecQ7kNvwEH2q4a&_nc_oc=AdpJ7Gf4aEM0vPSNWlWJkYgZchGvyjus7InjnLSRrsxdpdL3Db_bGYJuG6mA-aiFTpI&_nc_zt=23&_nc_ht=scontent.fceb3-1.fna&_nc_gid=GfIHPfX3KxXpCG0PVxYhsQ&_nc_ss=7b2a8&oh=00_Af68aEmWF_XoZjyLqLLeyH2MpsxXgkDYDDrJLZ4QNj999A&oe=6A05D7A3",
+    image: "/Tinig41226.jpg",
     link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
 ];
