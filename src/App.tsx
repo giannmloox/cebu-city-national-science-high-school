@@ -9,6 +9,7 @@ import ScihiZine from "./pages/ScihiZine.tsx";
 import Shop from "./pages/Shop.tsx";
 import Apply from "./pages/Apply.tsx";
 import BackToTop from "./components/BackToTop";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BackToTop />
+        <SpeedInsights />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
