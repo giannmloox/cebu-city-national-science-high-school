@@ -35,9 +35,9 @@ interface CartItem extends Product {
 }
 
 // EmailJS config
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "service_bni5zql";
+const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
+const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt";
 
 const Shop = () => {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
