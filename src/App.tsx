@@ -10,6 +10,7 @@ import Shop from "./pages/Shop.tsx";
 import Apply from "./pages/Apply.tsx";
 import BackToTop from "./components/BackToTop";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
         </Routes>
         <BackToTop />
         <SpeedInsights />
+        <Analytics />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
