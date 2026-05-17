@@ -2,16 +2,15 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import emailjs from "@emailjs/browser";
 
 type Category = "T-shirt" | "Accesories";
-
 interface Product {
   id: string;
   name: string;
   price: number;
   category: Category;
 }
-
 const PRODUCTS: Product[] = [
   { id: "p1", name: "TShirt 1", price: 350, category: "T-shirt" },
   { id: "p2", name: "TShirt 2", price: 250, category: "T-shirt" },
@@ -20,9 +19,7 @@ const PRODUCTS: Product[] = [
   { id: "p5", name: "SciHi Tote Bag", price: 270, category: "Accesories" },
   { id: "p6", name: "SciHi Pin Set", price: 70, category: "Accesories" },
 ];
-
 const FILTERS = ["All", "T-shirt", "Accesories"] as const;
-
 const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
   "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
@@ -31,13 +28,16 @@ const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 11": ["Pioneer", "Voyager", "Spitzer", "Cassini", "Apollo"],
   "Grade 12": ["STEM", "ABM"],
 };
-
 const productImg = (name: string) =>
   `https://placehold.co/400x400/1a3a6b/f5c518?text=${encodeURIComponent(name)}`;
-
 interface CartItem extends Product {
   qty: number;
 }
+
+// EmailJS config
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 const Shop = () => {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
@@ -45,8 +45,9 @@ const Shop = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
-  // checkout form
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
   const [section, setSection] = useState("");
@@ -60,7 +61,6 @@ const Shop = () => {
     () => (filter === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === filter)),
     [filter],
   );
-
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
   const deliveryFee = delivery === "Delivery" ? 25 : 0;
@@ -74,27 +74,58 @@ const Shop = () => {
     });
     setDrawerOpen(true);
   };
-
   const updateQty = (id: string, delta: number) => {
     setCart((c) =>
-      c
-        .map((i) => (i.id === id ? { ...i, qty: i.qty + delta } : i))
-        .filter((i) => i.qty > 0),
+      c.map((i) => (i.id === id ? { ...i, qty: i.qty + delta } : i)).filter((i) => i.qty > 0),
     );
   };
-
   const removeItem = (id: string) => setCart((c) => c.filter((i) => i.id !== id));
 
-  const placeOrder = (e: React.FormEvent) => {
+  const placeOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    setOrderPlaced(true);
-    setCart([]);
+    setSending(true);
+    setSendError(false);
+
+    const orderItems = cart
+      .map((i) => `${i.name} x${i.qty} = ₱${i.price * i.qty}`)
+      .join("\n");
+
+    const templateParams = {
+      to_email: "giannmloox@gmail.com",
+      customer_name: name,
+      grade_section: `${grade} - ${section}`,
+      contact_number: contact,
+      delivery_option: delivery,
+      location: delivery === "Delivery" ? `${building}, ${room}` : "Pickup at School",
+      payment_method: payment,
+      order_items: orderItems,
+      subtotal: `₱${subtotal}`,
+      delivery_fee: `₱${deliveryFee}`,
+      total: `₱${total}`,
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+      setOrderPlaced(true);
+      setCart([]);
+    } catch (error) {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   const closeCheckout = () => {
     setCheckoutOpen(false);
     setOrderPlaced(false);
-    setName(""); setGrade(""); setSection(""); setContact(""); setBuilding(""); setRoom(""); setPayment("");
+    setSendError(false);
+    setName(""); setGrade(""); setSection(""); setContact("");
+    setBuilding(""); setRoom(""); setPayment("");
     setDelivery("Pickup at School");
   };
 
@@ -110,8 +141,6 @@ const Shop = () => {
             Official school products by the Supreme Student Government
           </p>
         </header>
-
-        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {FILTERS.map((f) => (
             <button
@@ -127,8 +156,6 @@ const Shop = () => {
             </button>
           ))}
         </div>
-
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filtered.map((p) => (
             <motion.div
@@ -139,11 +166,7 @@ const Shop = () => {
               whileHover={{ y: -4 }}
               className="glass-card overflow-hidden flex flex-col"
             >
-              <img
-                src={productImg(p.name)}
-                alt={p.name}
-                className="w-full aspect-square object-cover"
-              />
+              <img src={productImg(p.name)} alt={p.name} className="w-full aspect-square object-cover" />
               <div className="p-5 flex flex-col gap-3 flex-1">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-white font-bold text-lg">{p.name}</h3>
@@ -151,9 +174,7 @@ const Shop = () => {
                     {p.category}
                   </span>
                 </div>
-                <p className="text-gold text-2xl font-heading font-bold">
-                  ₱{p.price}
-                </p>
+                <p className="text-gold text-2xl font-heading font-bold">₱{p.price}</p>
                 <button
                   onClick={() => addToCart(p)}
                   className="mt-auto w-full py-2.5 rounded-full bg-gold text-[#0a1628] font-semibold hover:opacity-90 transition-opacity"
@@ -260,9 +281,11 @@ const Shop = () => {
 
               {orderPlaced ? (
                 <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-10 md:px-8 text-center">
+                  <div className="text-5xl mb-4">✅</div>
                   <p className="text-white text-lg">
                     Your order has been placed! The <span className="text-gold font-semibold">SSLG</span> will contact you shortly.
                   </p>
+                  <p className="text-white/60 text-sm mt-2">A confirmation has been sent to the SSLG.</p>
                   <button onClick={closeCheckout} className="mt-6 px-6 py-2.5 rounded-full bg-gold text-[#0a1628] font-semibold">
                     Close
                   </button>
@@ -271,6 +294,7 @@ const Shop = () => {
                 <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
                   <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-5 py-5 md:px-8 md:py-6">
                     <div className="space-y-5 pb-4">
+                      {/* Order Summary */}
                       <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                         <h3 className="text-white font-semibold mb-2">Order Summary</h3>
                         <ul className="space-y-1 text-sm">
@@ -296,6 +320,7 @@ const Shop = () => {
                         </div>
                       </div>
 
+                      {/* Form Fields */}
                       <div className="grid md:grid-cols-2 gap-4">
                         <Field label="Full Name" value={name} onChange={setName} required />
                         <Field label="Contact Number" value={contact} onChange={setContact} required type="tel" />
@@ -346,7 +371,7 @@ const Shop = () => {
                       {delivery === "Delivery" && (
                         <div className="space-y-3">
                           <div className="grid md:grid-cols-2 gap-4">
-                            <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Science Building" />
+                            <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Main Building" />
                             <Field label="Room Number/Name" value={room} onChange={setRoom} required placeholder="e.g. SB3" />
                           </div>
                           <p className="text-xs text-white/60">
@@ -355,6 +380,7 @@ const Shop = () => {
                         </div>
                       )}
 
+                      {/* Payment Method */}
                       <div>
                         <label className="block text-sm text-white/80 mb-2">Payment Method</label>
                         <div className="grid grid-cols-2 gap-3">
@@ -386,16 +412,22 @@ const Shop = () => {
                           <p className="text-white/70 text-sm mt-1">GCash name: <span className="text-white font-semibold">SSLG CCNSHS</span></p>
                         </div>
                       )}
+
+                      {sendError && (
+                        <p className="text-red-400 text-sm text-center">
+                          Failed to send order. Please try again or contact the SSLG directly.
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div className="shrink-0 border-t border-white/10 bg-[#0a1628]/95 px-5 py-4 md:px-8 sticky bottom-0">
                     <button
                       type="submit"
-                      disabled={!payment || cart.length === 0}
+                      disabled={!payment || cart.length === 0 || sending}
                       className="w-full py-3 rounded-full bg-gold text-[#0a1628] font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
                     >
-                      Place Order
+                      {sending ? "Sending Order..." : "Place Order"}
                     </button>
                   </div>
                 </form>
