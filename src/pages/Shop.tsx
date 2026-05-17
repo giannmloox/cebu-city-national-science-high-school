@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
+import { ShoppingCart, X, Plus, Minus, Trash2, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
 
@@ -277,7 +277,9 @@ const Shop = () => {
 
               {orderPlaced ? (
                 <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-10 md:px-8 text-center">
-                  <div className="text-5xl mb-4">✅</div>
+                  <div className="w-20 h-20 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-10 h-10 text-gold" strokeWidth={1.5} />
+                  </div>
                   <p className="text-white text-lg">
                     Your order has been placed! The <span className="text-gold font-semibold">SSLG</span> will contact you shortly.
                   </p>
