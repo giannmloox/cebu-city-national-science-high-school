@@ -34,7 +34,6 @@ interface CartItem extends Product {
   qty: number;
 }
 
-// EmailJS config
 const EMAILJS_SERVICE_ID = "service_bni5zql";
 const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
 const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt";
@@ -87,7 +86,7 @@ const Shop = () => {
     setSendError(false);
 
     const orderItems = cart
-      .map((i) => `${i.name} x${i.qty} = ₱${i.price * i.qty}`)
+      .map((i) => `${i.name} x${i.qty} = P${i.price * i.qty}`)
       .join("\n");
 
     const templateParams = {
@@ -99,9 +98,9 @@ const Shop = () => {
       location: delivery === "Delivery" ? `${building}, ${room}` : "Pickup at School",
       payment_method: payment,
       order_items: orderItems,
-      subtotal: `₱${subtotal}`,
-      delivery_fee: `₱${deliveryFee}`,
-      total: `₱${total}`,
+      subtotal: `P${subtotal}`,
+      delivery_fee: `P${deliveryFee}`,
+      total: `P${total}`,
     };
 
     try {
@@ -174,7 +173,7 @@ const Shop = () => {
                     {p.category}
                   </span>
                 </div>
-                <p className="text-gold text-2xl font-heading font-bold">₱{p.price}</p>
+                <p className="text-gold text-2xl font-heading font-bold">P{p.price}</p>
                 <button
                   onClick={() => addToCart(p)}
                   className="mt-auto w-full py-2.5 rounded-full bg-gold text-[#0a1628] font-semibold hover:opacity-90 transition-opacity"
@@ -187,7 +186,6 @@ const Shop = () => {
         </div>
       </main>
 
-      {/* Floating cart button */}
       <button
         onClick={() => setDrawerOpen(true)}
         className="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-gold text-[#0a1628] shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
@@ -201,7 +199,6 @@ const Shop = () => {
         )}
       </button>
 
-      {/* Drawer */}
       <AnimatePresence>
         {drawerOpen && (
           <>
@@ -228,7 +225,7 @@ const Shop = () => {
                     <img src={productImg(i.name)} alt={i.name} className="w-16 h-16 rounded object-cover" />
                     <div className="flex-1 min-w-0">
                       <p className="text-white font-semibold truncate">{i.name}</p>
-                      <p className="text-gold font-bold">₱{i.price}</p>
+                      <p className="text-gold font-bold">P{i.price}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <button onClick={() => updateQty(i.id, -1)} className="w-7 h-7 rounded-full border border-white/20 text-white hover:border-gold hover:text-gold flex items-center justify-center"><Minus size={14} /></button>
                         <span className="text-white w-6 text-center">{i.qty}</span>
@@ -244,7 +241,7 @@ const Shop = () => {
               <div className="border-t border-white/10 p-5 space-y-3">
                 <div className="flex justify-between text-white">
                   <span>Subtotal</span>
-                  <span className="text-gold font-bold text-xl">₱{subtotal}</span>
+                  <span className="text-gold font-bold text-xl">P{subtotal}</span>
                 </div>
                 <button
                   disabled={cart.length === 0}
@@ -259,7 +256,6 @@ const Shop = () => {
         )}
       </AnimatePresence>
 
-      {/* Checkout Modal */}
       <AnimatePresence>
         {checkoutOpen && (
           <motion.div
@@ -294,33 +290,31 @@ const Shop = () => {
                 <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
                   <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-5 py-5 md:px-8 md:py-6">
                     <div className="space-y-5 pb-4">
-                      {/* Order Summary */}
                       <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                         <h3 className="text-white font-semibold mb-2">Order Summary</h3>
                         <ul className="space-y-1 text-sm">
                           {cart.length === 0 && <li className="text-white/60">No items.</li>}
                           {cart.map((i) => (
                             <li key={i.id} className="flex justify-between gap-3 text-white/80">
-                              <span className="min-w-0 break-words">{i.name} × {i.qty}</span>
-                              <span className="shrink-0">₱{i.price * i.qty}</span>
+                              <span className="min-w-0 break-words">{i.name} x {i.qty}</span>
+                              <span className="shrink-0">P{i.price * i.qty}</span>
                             </li>
                           ))}
                         </ul>
-                        <div className="flex justify-between mt-3 pt-3 border-t border-white/10 text-white font-bold">
+                        <div className="flex justify-between mt-3 pt-3 border-t border-white/10">
                           <span className="text-white/80 font-medium">Subtotal</span>
-                          <span className="text-white">₱{subtotal}</span>
+                          <span className="text-white font-bold">P{subtotal}</span>
                         </div>
                         <div className="flex justify-between text-white/80 text-sm mt-1">
                           <span>Delivery Fee</span>
-                          <span>{deliveryFee > 0 ? `₱${deliveryFee}` : "Free"}</span>
+                          <span>{deliveryFee > 0 ? `P${deliveryFee}` : "Free"}</span>
                         </div>
                         <div className="flex justify-between mt-2 pt-2 border-t border-white/10 font-bold">
                           <span className="text-white">Total</span>
-                          <span className="text-gold">₱{total}</span>
+                          <span className="text-gold">P{total}</span>
                         </div>
                       </div>
 
-                      {/* Form Fields */}
                       <div className="grid md:grid-cols-2 gap-4">
                         <Field label="Full Name" value={name} onChange={setName} required />
                         <Field label="Contact Number" value={contact} onChange={setContact} required type="tel" />
@@ -375,12 +369,11 @@ const Shop = () => {
                             <Field label="Room Number/Name" value={room} onChange={setRoom} required placeholder="e.g. SB3" />
                           </div>
                           <p className="text-xs text-white/60">
-                            Delivery is within school premises only — ₱25 fee applies
+                            Delivery is within school premises only — P25 fee applies
                           </p>
                         </div>
                       )}
 
-                      {/* Payment Method */}
                       <div>
                         <label className="block text-sm text-white/80 mb-2">Payment Method</label>
                         <div className="grid grid-cols-2 gap-3">
@@ -405,9 +398,9 @@ const Shop = () => {
                         <div className="text-center bg-white/5 border border-white/10 rounded-lg p-4">
                           <p className="text-white font-semibold mb-2">Scan to Pay via GCash</p>
                           <img src="https://placehold.co/200x200/ffffff/1a3a6b?text=GCash+QR" alt="GCash QR" className="mx-auto rounded" />
-                          <p className="text-gold text-3xl font-heading font-bold mt-3">₱{total}</p>
+                          <p className="text-gold text-3xl font-heading font-bold mt-3">P{total}</p>
                           <p className="text-white/80 text-sm mt-2">
-                            Send exactly <span className="text-gold font-semibold">₱{total}</span> — screenshot your payment as proof
+                            Send exactly <span className="text-gold font-semibold">P{total}</span> — screenshot your payment as proof
                           </p>
                           <p className="text-white/70 text-sm mt-1">GCash name: <span className="text-white font-semibold">SSLG CCNSHS</span></p>
                         </div>
