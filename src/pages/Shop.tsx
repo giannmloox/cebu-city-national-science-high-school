@@ -346,7 +346,7 @@ const Shop = () => {
                     <div className="space-y-3">
                       <div className="grid md:grid-cols-2 gap-4">
                         <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Main Building" />
-                        <Field label="Room Number" value={room} onChange={setRoom} required placeholder="e.g. Room 201" />
+                        <Field label="Room Number/Name" value={room} onChange={setRoom} required placeholder="e.g. SB3" />
                       </div>
                       <p className="text-xs text-white/60">
                         Delivery is within school premises only — ₱25 fee applies
