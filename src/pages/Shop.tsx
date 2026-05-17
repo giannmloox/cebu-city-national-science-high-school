@@ -243,15 +243,15 @@ const Shop = () => {
         {checkoutOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/70 flex items-end md:items-center justify-center md:p-4"
+            className="fixed inset-0 z-[60] bg-black/70 flex items-end md:items-center justify-center overflow-y-auto overscroll-contain md:p-4"
             onClick={closeCheckout}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-card max-w-2xl w-full md:my-8 p-5 md:p-8 bg-[#0a1628]/95 max-h-[90vh] overflow-y-auto rounded-t-2xl md:rounded-2xl mx-0 md:mx-auto"
+              className="glass-card max-w-2xl w-full h-screen md:h-auto md:max-h-[90vh] bg-[#0a1628]/95 rounded-none md:rounded-2xl mx-0 md:mx-auto flex flex-col overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center justify-between p-5 md:p-8 border-b border-white/10 shrink-0">
                 <h2 className="text-xl md:text-2xl font-heading font-bold text-white">
                   {orderPlaced ? "Order Confirmed" : "Checkout"}
                 </h2>
@@ -259,7 +259,7 @@ const Shop = () => {
               </div>
 
               {orderPlaced ? (
-                <div className="text-center py-10">
+                <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-10 md:px-8 text-center">
                   <p className="text-white text-lg">
                     Your order has been placed! The <span className="text-gold font-semibold">SSLG</span> will contact you shortly.
                   </p>
@@ -268,131 +268,136 @@ const Shop = () => {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={placeOrder} className="space-y-5">
-                  {/* Order summary */}
-                  <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                    <h3 className="text-white font-semibold mb-2">Order Summary</h3>
-                    <ul className="space-y-1 text-sm">
-                      {cart.length === 0 && <li className="text-white/60">No items.</li>}
-                      {cart.map((i) => (
-                        <li key={i.id} className="flex justify-between text-white/80">
-                          <span>{i.name} × {i.qty}</span>
-                          <span>₱{i.price * i.qty}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex justify-between mt-3 pt-3 border-t border-white/10 text-white font-bold">
-                      <span className="text-white/80 font-medium">Subtotal</span>
-                      <span className="text-white">₱{subtotal}</span>
-                    </div>
-                    <div className="flex justify-between text-white/80 text-sm mt-1">
-                      <span>Delivery Fee</span>
-                      <span>{deliveryFee > 0 ? `₱${deliveryFee}` : "Free"}</span>
-                    </div>
-                    <div className="flex justify-between mt-2 pt-2 border-t border-white/10 font-bold">
-                      <span className="text-white">Total</span>
-                      <span className="text-gold">₱{total}</span>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Field label="Full Name" value={name} onChange={setName} required />
-                    <Field label="Contact Number" value={contact} onChange={setContact} required type="tel" />
-                    <div>
-                      <label className="block text-sm text-white/80 mb-1">Grade Level *</label>
-                      <select
-                        required
-                        value={grade}
-                        onChange={(e) => { setGrade(e.target.value); setSection(""); }}
-                        style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
-                        className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none"
-                      >
-                        <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select grade...</option>
-                        {Object.keys(SECTIONS_BY_GRADE).map((g) => (
-                          <option key={g} value={g} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{g}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm text-white/80 mb-1">Section *</label>
-                      <select
-                        required
-                        disabled={!grade}
-                        value={section}
-                        onChange={(e) => setSection(e.target.value)}
-                        style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
-                        className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select section...</option>
-                        {grade && SECTIONS_BY_GRADE[grade].map((s) => (
-                          <option key={s} value={s} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{s}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm text-white/80 mb-1">Delivery Option</label>
-                      <select
-                        value={delivery}
-                        onChange={(e) => setDelivery(e.target.value as typeof delivery)}
-                        className="w-full px-3 py-2 rounded-md bg-white/5 border border-white/15 text-white focus:border-gold outline-none"
-                      >
-                        <option className="text-black">Pickup at School</option>
-                        <option className="text-black">Delivery</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {delivery === "Delivery" && (
-                    <div className="space-y-3">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Main Building" />
-                        <Field label="Room Number" value={room} onChange={setRoom} required placeholder="e.g. Room 201" />
+                <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
+                  <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-5 py-5 md:px-8 md:py-6">
+                    <div className="space-y-5 pb-4">
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                        <h3 className="text-white font-semibold mb-2">Order Summary</h3>
+                        <ul className="space-y-1 text-sm">
+                          {cart.length === 0 && <li className="text-white/60">No items.</li>}
+                          {cart.map((i) => (
+                            <li key={i.id} className="flex justify-between gap-3 text-white/80">
+                              <span className="min-w-0 break-words">{i.name} × {i.qty}</span>
+                              <span className="shrink-0">₱{i.price * i.qty}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex justify-between mt-3 pt-3 border-t border-white/10 text-white font-bold">
+                          <span className="text-white/80 font-medium">Subtotal</span>
+                          <span className="text-white">₱{subtotal}</span>
+                        </div>
+                        <div className="flex justify-between text-white/80 text-sm mt-1">
+                          <span>Delivery Fee</span>
+                          <span>{deliveryFee > 0 ? `₱${deliveryFee}` : "Free"}</span>
+                        </div>
+                        <div className="flex justify-between mt-2 pt-2 border-t border-white/10 font-bold">
+                          <span className="text-white">Total</span>
+                          <span className="text-gold">₱{total}</span>
+                        </div>
                       </div>
-                      <p className="text-xs text-white/60">
-                        Delivery is within school premises only — ₱25 fee applies
-                      </p>
-                    </div>
-                  )}
 
-                  <div>
-                    <label className="block text-sm text-white/80 mb-2">Payment Method</label>
-                    <div className="grid grid-cols-2 gap-3">
-                      {(["GCash", "Cash on Pickup/Delivery"] as const).map((m) => (
-                        <button
-                          type="button"
-                          key={m}
-                          onClick={() => setPayment(m)}
-                          className={`px-4 py-3 rounded-md border transition-all ${
-                            payment === m
-                              ? "border-gold bg-gold/10 text-gold"
-                              : "border-white/15 text-white/80 hover:border-gold/60"
-                          }`}
-                        >
-                          {m}
-                        </button>
-                      ))}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <Field label="Full Name" value={name} onChange={setName} required />
+                        <Field label="Contact Number" value={contact} onChange={setContact} required type="tel" />
+                        <div>
+                          <label className="block text-sm text-white/80 mb-1">Grade Level *</label>
+                          <select
+                            required
+                            value={grade}
+                            onChange={(e) => { setGrade(e.target.value); setSection(""); }}
+                            style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
+                            className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none"
+                          >
+                            <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select grade...</option>
+                            {Object.keys(SECTIONS_BY_GRADE).map((g) => (
+                              <option key={g} value={g} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{g}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm text-white/80 mb-1">Section *</label>
+                          <select
+                            required
+                            disabled={!grade}
+                            value={section}
+                            onChange={(e) => setSection(e.target.value)}
+                            style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.08)" }}
+                            className="w-full px-3 py-2 rounded-md border border-white/15 focus:border-gold focus:ring-1 focus:ring-gold outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            <option value="" style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>Select section...</option>
+                            {grade && SECTIONS_BY_GRADE[grade].map((s) => (
+                              <option key={s} value={s} style={{ color: "#0a1628", backgroundColor: "#ffffff" }}>{s}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm text-white/80 mb-1">Delivery Option</label>
+                          <select
+                            value={delivery}
+                            onChange={(e) => setDelivery(e.target.value as typeof delivery)}
+                            className="w-full px-3 py-2 rounded-md bg-white/5 border border-white/15 text-white focus:border-gold outline-none"
+                          >
+                            <option className="text-black">Pickup at School</option>
+                            <option className="text-black">Delivery</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {delivery === "Delivery" && (
+                        <div className="space-y-3">
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <Field label="Building" value={building} onChange={setBuilding} required placeholder="e.g. Main Building" />
+                            <Field label="Room Number" value={room} onChange={setRoom} required placeholder="e.g. Room 201" />
+                          </div>
+                          <p className="text-xs text-white/60">
+                            Delivery is within school premises only — ₱25 fee applies
+                          </p>
+                        </div>
+                      )}
+
+                      <div>
+                        <label className="block text-sm text-white/80 mb-2">Payment Method</label>
+                        <div className="grid grid-cols-2 gap-3">
+                          {(["GCash", "Cash on Pickup/Delivery"] as const).map((m) => (
+                            <button
+                              type="button"
+                              key={m}
+                              onClick={() => setPayment(m)}
+                              className={`px-4 py-3 rounded-md border transition-all ${
+                                payment === m
+                                  ? "border-gold bg-gold/10 text-gold"
+                                  : "border-white/15 text-white/80 hover:border-gold/60"
+                              }`}
+                            >
+                              {m}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {payment === "GCash" && (
+                        <div className="text-center bg-white/5 border border-white/10 rounded-lg p-4">
+                          <p className="text-white font-semibold mb-2">Scan to Pay via GCash</p>
+                          <img src="https://placehold.co/200x200/ffffff/1a3a6b?text=GCash+QR" alt="GCash QR" className="mx-auto rounded" />
+                          <p className="text-gold text-3xl font-heading font-bold mt-3">₱{total}</p>
+                          <p className="text-white/80 text-sm mt-2">
+                            Send exactly <span className="text-gold font-semibold">₱{total}</span> — screenshot your payment as proof
+                          </p>
+                          <p className="text-white/70 text-sm mt-1">GCash name: <span className="text-white font-semibold">SSLG CCNSHS</span></p>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {payment === "GCash" && (
-                    <div className="text-center bg-white/5 border border-white/10 rounded-lg p-4">
-                      <p className="text-white font-semibold mb-2">Scan to Pay via GCash</p>
-                      <img src="https://placehold.co/200x200/ffffff/1a3a6b?text=GCash+QR" alt="GCash QR" className="mx-auto rounded" />
-                      <p className="text-gold text-3xl font-heading font-bold mt-3">₱{total}</p>
-                      <p className="text-white/80 text-sm mt-2">
-                        Send exactly <span className="text-gold font-semibold">₱{total}</span> — screenshot your payment as proof
-                      </p>
-                      <p className="text-white/70 text-sm mt-1">GCash name: <span className="text-white font-semibold">SSLG CCNSHS</span></p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={!payment || cart.length === 0}
-                    className="w-full py-3 rounded-full bg-gold text-[#0a1628] font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
-                  >
-                    Place Order
-                  </button>
+                  <div className="shrink-0 border-t border-white/10 bg-[#0a1628]/95 px-5 py-4 md:px-8 sticky bottom-0">
+                    <button
+                      type="submit"
+                      disabled={!payment || cart.length === 0}
+                      className="w-full py-3 rounded-full bg-gold text-[#0a1628] font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
+                    >
+                      Place Order
+                    </button>
+                  </div>
                 </form>
               )}
             </motion.div>
