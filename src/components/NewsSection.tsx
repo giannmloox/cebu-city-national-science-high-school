@@ -71,14 +71,14 @@ const scholarsVoice: NewsItem[] = [
 ];
 
 const tinigIskolar: NewsItem[] = [
-    {
+      {
     id: 1,
     date: "MAY 18, 2026",
-    title: "EDITORIAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
-    excerpt: "Hindi maaaring dito na lamang hihinto ang laban ng sambayanan. Hangga't may natitirang pag-asa, nananatiling buhay ang paninindigan na huwag talikuran ang bayan.",
-    image: "/Tinig-51626.jpg",
-    link: "https://www.facebook.com/share/p/17P7HqnCjG/",
-  },
+    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
+    excerpt: "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
+    image: "/Tinig-51826.jpg",
+    link: "https://www.facebook.com/share/p/18phdVgDCF/",
+  }},
 {
     id: 2,
     date: "MAY 3, 2026",
