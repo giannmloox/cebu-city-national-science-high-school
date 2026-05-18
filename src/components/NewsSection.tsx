@@ -12,93 +12,90 @@ type NewsItem = {
 };
 
 const schoolNews: NewsItem[] = [
+[
   {
-    id: 1,
-    date: "APRIL 28, 2026",
-    title: "Education Calendar Sees Major Shift",
-    excerpt:
-      "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
-    image: "/news-calendar.jpg",
-    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
+    "id": "1427206786098019",
+    "date": "Unknown Date",
+    "title": "No excerpt",
+    "excerpt": "No excerpt",
+    "image": "",
+    "link": "https://www.facebook.com/ccnshs303141/posts/pfbid02etK1539KLzSEubDQkzbGCjftRbeSTB1no42KKk8V3jZxWiVszc43HAmjUFCtKSgol"
   },
   {
-    id: 2,
-    date: "APRIL 22, 2026",
-    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
-    excerpt:
-      "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
-    image: "/news-upcat.jpg",
-    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+    "id": "1415042013981163",
+    "date": "Unknown Date",
+    "title": "\ud835\uddd8\ud835\uddd7\ud835\udde8\ud835\uddd6\ud835\uddd4\ud835\udde7\ud835\udddc\ud835\udde2\ud835\udde1 \ud835\uddd6\ud835\uddd4\ud835\udddf\ud835\uddd8\ud835\udde1\ud835\uddd7\ud835\uddd4\ud835\udde5 \ud835\udde6\ud835\uddd8\ud835\uddd8\ud835\udde6 \ud835\udde0\ud835\uddd4\ud835\udddd\ud835\udde2\ud835\udde5 \ud835\udde6\ud835\udddb\ud835\udddc\ud835\uddd9\ud835\udde7\n\ud835\udde3\ud835\ude02\ud835\uddef\ud835\uddf9\ud835\uddf6\ud835\uddf0 \ud835\ude00\ud835\uddf0\ud835\uddf5\ud835\uddfc\ud835\uddfc\ud835\uddf9\ud835\ude00...",
+    "excerpt": "\ud835\uddd8\ud835\uddd7\ud835\udde8\ud835\uddd6\ud835\uddd4\ud835\udde7\ud835\udddc\ud835\udde2\ud835\udde1 \ud835\uddd6\ud835\uddd4\ud835\udddf\ud835\uddd8\ud835\udde1\ud835\uddd7\ud835\uddd4\ud835\udde5 \ud835\udde6\ud835\uddd8\ud835\uddd8\ud835\udde6 \ud835\udde0\ud835\uddd4\ud835\udddd\ud835\udde2\ud835\udde5 \ud835\udde6\ud835\udddb\ud835\udddc\ud835\uddd9\ud835\udde7\n\ud835\udde3\ud835\ude02\ud835\uddef\ud835\uddf9\ud835\uddf6\ud835\uddf0 \ud835\ude00\ud835\uddf0\ud835\uddf5\ud835\uddfc\ud835\uddfc\ud835\uddf9\ud835\ude00 \ud835\ude01\ud835\uddfc \ud835\uddff\ud835\uddfc\ud835\uddf9\ud835\uddf9 \ud835\uddfc\ud835\ude02\ud835\ude01 \ud835\ude01\ud835\uddf5\ud835\uddff\ud835\uddf2\ud835\uddf2-\ud835\ude01\ud835\uddf2\ud835\uddff\ud835\uddfa \ud835\uddee\ud835\uddf0\ud835\uddee\ud835\uddf1\ud835\uddf2\ud835\uddfa\ud835\uddf6\ud835\uddf0 \ud835\ude00\ud835\ude06\ud835\ude00\ud835\ude01\ud835\uddf2\ud835\uddfa \ud835\uddef\ud835\ude06 \ud835\udde6\ud835\uddec \ud835\udfee\ud835\udfec\ud835\udfee\ud835\udff2\u2013\ud835\udfee\ud835\udfec\ud835\udfee\ud835\udff3 \n\nThe Department of Education (DepEd) has ma",
+    "image": "",
+    "link": "https://www.facebook.com/ccnshs303141/posts/pfbid028m4MaZ94Mxb16JoJ4kXeQyAqBDK6vfuC1paXeL5uDFTZ5Pq6injg4sKBcvXmUKp9l"
   },
   {
-    id: 3,
-    date: "APRIL 18, 2026",
-    title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
-    excerpt:
-      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
-    image: "/news-tinig.jpg",
-    link: "https://www.facebook.com/share/p/1CPKQjM7xh/",
-  },
+    "id": "1409937951158236",
+    "date": "Unknown Date",
+    "title": "Congratulations, SciHigh Graduates- UPCAT PASSERS!...",
+    "excerpt": "Congratulations, SciHigh Graduates- UPCAT PASSERS!\n\nYour hard work, sleepless nights, and unwavering determination have paid off\u2014you did it! \nPassing",
+    "image": "",
+    "link": "https://www.facebook.com/ccnshs303141/posts/pfbid02miJnZ9TDTEKwrq6Knfh3irxksLJM6cbwC2enZ63JhLygWEvb9vKYqNXvqVWBngByl"
+  }
+]
 ];
 
 const scholarsVoice: NewsItem[] = [
+[
   {
-    id: 1,
-    date: "MAY 12, 2026",
-    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
-    excerpt:
-      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
-    image: "/sv-andes.jpg",
-    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
+    "id": "964951329757863",
+    "date": "Unknown Date",
+    "title": "\ud835\uddd8\ud835\uddd7\ud835\udddc\ud835\udde7\ud835\udde2\ud835\udde5\ud835\udddc\ud835\uddd4\ud835\udddf | \ud835\udde7\ud835\uddfc \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud835\uddea\ud835\uddf6\ud835\ude01\ud835\uddf5\ud835\uddfc\ud835\ude02\ud835\ude01 \ud835\uddd9\ud835\uddf2\ud835\uddee\ud835\uddff\n\nArticle III, S...",
+    "excerpt": "\ud835\uddd8\ud835\uddd7\ud835\udddc\ud835\udde7\ud835\udde2\ud835\udde5\ud835\udddc\ud835\uddd4\ud835\udddf | \ud835\udde7\ud835\uddfc \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud835\uddea\ud835\uddf6\ud835\ude01\ud835\uddf5\ud835\uddfc\ud835\ude02\ud835\ude01 \ud835\uddd9\ud835\uddf2\ud835\uddee\ud835\uddff\n\nArticle III, Section 4 of the 1987 Philippine Constitution states: \u201cNo law shall be passed abridging the freedom o",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid02JUh6EXKug9FvQVzJngSNyQu1ntxQzfYqUAy9KSJRPxmDMFgQm8dXdHr9MojW9svPl&id=100087290154105"
   },
   {
-    id: 2,
-    date: "MAY 12, 2026",
-    title: "Happy Birthday, Ma'am Allyssa!",
-    excerpt:
-      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "/sv-birthday.jpg",
-    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
+    "id": "960798013506528",
+    "date": "Unknown Date",
+    "title": "\ud835\udde6\ud835\uddd6\ud835\udddc\ud835\udde7\ud835\uddd8\ud835\uddd6\ud835\udddb | \ud835\uddd9\ud835\uddd4\ud835\uddd6\ud835\udde7\ud835\udde6 \ud835\udde2\ud835\udde9\ud835\uddd8\ud835\udde5 \ud835\uddd9\ud835\uddd8\ud835\uddd4\ud835\udde5\n\ud835\uddd4\ud835\uddfb\ud835\uddf1\ud835\uddf2\ud835\ude00 \ud835\ude03\ud835\uddf6\ud835\uddff\ud835\ude02\ud835\ude00 \ud835\uddf0\ud835\uddff\ud835\ude02\ud835\uddf6\ud835\ude00\ud835\uddf2 \ud835\uddf0\ud835\uddff\ud835\uddf6\ud835\ude00\ud835\uddf6...",
+    "excerpt": "\ud835\udde6\ud835\uddd6\ud835\udddc\ud835\udde7\ud835\uddd8\ud835\uddd6\ud835\udddb | \ud835\uddd9\ud835\uddd4\ud835\uddd6\ud835\udde7\ud835\udde6 \ud835\udde2\ud835\udde9\ud835\uddd8\ud835\udde5 \ud835\uddd9\ud835\uddd8\ud835\uddd4\ud835\udde5\n\ud835\uddd4\ud835\uddfb\ud835\uddf1\ud835\uddf2\ud835\ude00 \ud835\ude03\ud835\uddf6\ud835\uddff\ud835\ude02\ud835\ude00 \ud835\uddf0\ud835\uddff\ud835\ude02\ud835\uddf6\ud835\ude00\ud835\uddf2 \ud835\uddf0\ud835\uddff\ud835\uddf6\ud835\ude00\ud835\uddf6\ud835\ude00 \ud835\uddf0\ud835\uddfc\ud835\uddfb\ud835\ude01\ud835\uddee\ud835\uddf6\ud835\uddfb\ud835\uddf2\ud835\uddf1\n\nAmid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfaces\u2014",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid07DQ3mPQFbnFRmWSYShzQpeRL3Dsfg2W9RfYZ64UJAwyEqXch4PSYfj5W72tfcrozl&id=100087290154105"
   },
   {
-    id: 3,
-    date: "MAY 11, 2026",
-    title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
-    excerpt:
-      "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
-    image: "/sv-broadcasting.jpg",
-    link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
-  },
+    "id": "960549520198044",
+    "date": "Unknown Date",
+    "title": "\ud835\udddb\ud835\uddee\ud835\uddfd\ud835\uddfd\ud835\ude06 \ud835\uddef\ud835\uddf6\ud835\uddff\ud835\ude01\ud835\uddf5\ud835\uddf1\ud835\uddee\ud835\ude06, \ud835\udde0\ud835\uddee\u2019\ud835\uddee\ud835\uddfa \ud835\uddd4\ud835\uddf9\ud835\uddf9\ud835\ude06\ud835\ude00\ud835\ude00\ud835\uddee! \ud83e\udd73\n\nThank you for be...",
+    "excerpt": "\ud835\udddb\ud835\uddee\ud835\uddfd\ud835\uddfd\ud835\ude06 \ud835\uddef\ud835\uddf6\ud835\uddff\ud835\ude01\ud835\uddf5\ud835\uddf1\ud835\uddee\ud835\ude06, \ud835\udde0\ud835\uddee\u2019\ud835\uddee\ud835\uddfa \ud835\uddd4\ud835\uddf9\ud835\uddf9\ud835\ude06\ud835\ude00\ud835\ude00\ud835\uddee! \ud83e\udd73\n\nThank you for being more than just our school paper adviser\u2014you guide us with patience, inspire us to always do our",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid024co9Qgisx2o1EQGvfNUwxjN1zfG8RVoVSuZSY7VfVvgMEDun9KfHSY3Mzp42GDwrl&id=100087290154105"
+  }
+]
 ];
 
 const tinigIskolar: NewsItem[] = [
+[
   {
-    id: 1,
-    date: "MAY 3, 2026",
-    title: "LATHALAHIN | World Press Freedom Day",
-    excerpt:
-      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "/Tinig-5326.jpg",
-    link: "https://www.facebook.com/share/p/18XAVKEkWS/",
+    "id": "122239870124043988",
+    "date": "Unknown Date",
+    "title": "\ud835\uddde\ud835\udde2\ud835\udddf\ud835\udde8\ud835\udde0 | \ud835\udc0f\ud835\udc1a\ud835\udc20-\ud835\udc1a\ud835\udc2c\ud835\udc1a \ud835\udc1a\ud835\udc27\ud835\udc20 \ud835\udc08\ud835\udc2d\ud835\udc22\ud835\udc27\ud835\udc1a\ud835\udc27\ud835\udc22\ud835\udc26, \ud835\udc0a\ud835\udc1a\ud835\udc2d\ud835\udc1a\ud835\udc21\ud835\udc22\ud835\udc26\ud835\udc22\ud835\udc24\ud835\udc1a\ud835\udc27 \ud835\udc1a\ud835\udc27\ud835\udc20 \ud835\udc08\ud835\udc27\ud835\udc1a\ud835\udc27...",
+    "excerpt": "\ud835\uddde\ud835\udde2\ud835\udddf\ud835\udde8\ud835\udde0 | \ud835\udc0f\ud835\udc1a\ud835\udc20-\ud835\udc1a\ud835\udc2c\ud835\udc1a \ud835\udc1a\ud835\udc27\ud835\udc20 \ud835\udc08\ud835\udc2d\ud835\udc22\ud835\udc27\ud835\udc1a\ud835\udc27\ud835\udc22\ud835\udc26, \ud835\udc0a\ud835\udc1a\ud835\udc2d\ud835\udc1a\ud835\udc21\ud835\udc22\ud835\udc26\ud835\udc22\ud835\udc24\ud835\udc1a\ud835\udc27 \ud835\udc1a\ud835\udc27\ud835\udc20 \ud835\udc08\ud835\udc27\ud835\udc1a\ud835\udc27\ud835\udc22\n\nDala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid08RwxVYbmAhmkmDuSE7nAUTFtoNn9KJ1gaFN5JBCssFged3FuDiTgDBMoz7q7XiQYl&id=61551319650573"
   },
   {
-    id: 2,
-    date: "APRIL 18, 2026",
-    title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
-    excerpt:
-      "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII and 4th place in Radio Broadcasting.",
-    image: "/Tinig-41826.jpg",
-    link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
+    "id": "122239545608043988",
+    "date": "Unknown Date",
+    "title": "\ud835\uddd8\ud835\uddd7\ud835\udddc\ud835\udde7\ud835\udde2\ud835\udde5\ud835\uddec\ud835\uddd4\ud835\udddf | \ud835\udc0f\ud835\udc22\ud835\udc25\ud835\udc22\ud835\udc29\ud835\udc22\ud835\udc27\ud835\udc1a\ud835\udc2c, \ud835\udc0c\ud835\udc2e\ud835\udc25\ud835\udc22\ud835\udc27\ud835\udc20 \ud835\udc0c\ud835\udc1a\ud835\udc27\ud835\udc20\ud835\udc1a\ud835\udc27\ud835\udc20\ud835\udc1a\ud835\udc2b\ud835\udc1a\ud835\udc29 \ud835\udc27\ud835\udc20 \ud835\udc03\ud835\udc1a\ud835\udc2d\ud835\udc22\ud835\udc27...",
+    "excerpt": "\ud835\uddd8\ud835\uddd7\ud835\udddc\ud835\udde7\ud835\udde2\ud835\udde5\ud835\uddec\ud835\uddd4\ud835\udddf | \ud835\udc0f\ud835\udc22\ud835\udc25\ud835\udc22\ud835\udc29\ud835\udc22\ud835\udc27\ud835\udc1a\ud835\udc2c, \ud835\udc0c\ud835\udc2e\ud835\udc25\ud835\udc22\ud835\udc27\ud835\udc20 \ud835\udc0c\ud835\udc1a\ud835\udc27\ud835\udc20\ud835\udc1a\ud835\udc27\ud835\udc20\ud835\udc1a\ud835\udc2b\ud835\udc1a\ud835\udc29 \ud835\udc27\ud835\udc20 \ud835\udc03\ud835\udc1a\ud835\udc2d\ud835\udc22\ud835\udc27\ud835\udc20 \ud835\udc0f\ud835\udc22\ud835\udc27\ud835\udc1a\ud835\udc27\ud835\udc20\ud835\udc1a\ud835\udc2b\ud835\udc1a\ud835\udc29\n\n\u201cPilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na r",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid023q9UqCtBjHRYTC7Nn8USWuREcvfUfna4daP9F3swqBW1yYcb4nHJyDDfzvWXd7AYl&id=61551319650573"
   },
   {
-    id: 3,
-    date: "APRIL 12, 2026",
-    title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
-    excerpt:
-      "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "/Tinig-41226.jpg",
-    link: "https://www.facebook.com/share/p/18VDaU92zj/",
-  },
+    "id": "122237611406043988",
+    "date": "Unknown Date",
+    "title": "\ud835\udddf\ud835\uddd4\ud835\udde7\ud835\udddb\ud835\uddd4\ud835\udddf\ud835\uddd4\ud835\udddc\ud835\udde1 | \ud835\udc16\ud835\udc28\ud835\udc2b\ud835\udc25\ud835\udc1d \ud835\udc0f\ud835\udc2b\ud835\udc1e\ud835\udc2c\ud835\udc2c \ud835\udc05\ud835\udc2b\ud835\udc1e\ud835\udc1e\ud835\udc1d\ud835\udc28\ud835\udc26 \ud835\udc03\ud835\udc1a\ud835\udc32\n\nAng kalayaan ...",
+    "excerpt": "\ud835\udddf\ud835\uddd4\ud835\udde7\ud835\udddb\ud835\uddd4\ud835\udddf\ud835\uddd4\ud835\udddc\ud835\udde1 | \ud835\udc16\ud835\udc28\ud835\udc2b\ud835\udc25\ud835\udc1d \ud835\udc0f\ud835\udc2b\ud835\udc1e\ud835\udc2c\ud835\udc2c \ud835\udc05\ud835\udc2b\ud835\udc1e\ud835\udc1e\ud835\udc1d\ud835\udc28\ud835\udc26 \ud835\udc03\ud835\udc1a\ud835\udc32\n\nAng kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya.\n\nSa kasalukuyang panahon, ang pinaka-mapangan",
+    "image": "",
+    "link": "https://www.facebook.com/permalink.php?story_fbid=pfbid068PFKgZPmi2LC6iEJBGUpqRrJNe54Md2yoZeiEqtA2wEKod4wAH1qAbEzYiBKGcYl&id=61551319650573"
+  }
+]
 ];
 
 type TabKey = "school" | "scholars" | "tinig";
