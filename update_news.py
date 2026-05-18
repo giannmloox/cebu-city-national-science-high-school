@@ -1,5 +1,6 @@
 import os
-import json
+import re
+import unicodedata
 from apify_client import ApifyClient
 from datetime import datetime
 
@@ -13,69 +14,77 @@ PAGES = {
     "tinigIskolar": "https://www.facebook.com/profile.php?id=61551319650573"
 }
 
-def sanitize_text(text):
-    if not text: return "No excerpt"
+def strip_unicode_bold(text):
+    if not text: return ""
+    # NFKD normalizes characters, but bold/serif variants are distinct. 
+    # A simple way to handle many is to map them or just keep ASCII.
+    # This regex approach removes non-ascii characters or you can map specific bold ones.
+    text = unicodedata.normalize('NFKD', text)
+    return "".join([c for c in text if ord(c) < 128])
+
+def sanitize_text(text, is_title=False):
+    text = strip_unicode_bold(text)
     text = text.replace('\\', '/').replace('`', "'").replace('"', "'")
+    if is_title:
+        return text.split('\n')[0][:50].strip()
     return text[:150].strip()
 
 def fetch_posts(page_url):
     client = ApifyClient(APIFY_TOKEN)
     run = client.actor(ACTOR_ID).call(run_input={"startUrls": [{"url": page_url}], "maxPosts": 3})
+    
     posts_data = []
+    idx = 1
     for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-        text = item.get("message") or item.get("text") or "No excerpt"
+        raw_text = item.get("message") or item.get("text") or "No excerpt"
+        
         raw_date = item.get("createdTime")
         try:
-            formatted_date = datetime.fromisoformat(raw_date.replace("Z", "")).strftime("%B %d, %Y")
+            formatted_date = datetime.fromisoformat(raw_date.replace("Z", "")).strftime("%B %d, %Y").upper()
         except:
-            formatted_date = "Unknown Date"
+            formatted_date = "MAY 18, 2026"
+            
         posts_data.append({
-            "id": str(item.get("postId", "")),
+            "id": idx,
             "date": formatted_date,
-            "title": (text[:50] + '...') if len(text) > 50 else text,
-            "excerpt": sanitize_text(text),
-            "image": item.get("fullPicture") or item.get("images", [{}])[0].get("url", ""),
-            "link": item.get("url", "")
+            "title": sanitize_text(raw_text, is_title=True),
+            "excerpt": sanitize_text(raw_text),
+            "image": item.get("fullPicture") or "/news-placeholder.jpg",
+            "link": item.get("url")
         })
-    print(f"Scraped {len(posts_data)} posts for {page_url}")
-    for p in posts_data: print(f" - {p['title']}")
+        idx += 1
     return posts_data
+
+def format_ts_array(posts):
+    lines = ["  {"]
+    for p in posts:
+        lines.append(f"    id: {p['id']},")
+        lines.append(f"    date: \"{p['date']}\",")
+        lines.append(f"    title: \"{p['title']}\",")
+        lines.append(f"    excerpt: \"{p['excerpt']}\",")
+        lines.append(f"    image: \"{p['image']}\",")
+        lines.append(f"    link: \"{p['link']}\",")
+        lines.append("  },")
+    lines.append("];")
+    return "\n".join(lines)
 
 def update_tsx():
     file_path = 'src/components/NewsSection.tsx'
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-    
-    print("First 500 chars of file:")
-    print(content[:500])
 
     for key, url in PAGES.items():
         posts = fetch_posts(url)
         if not posts: continue
         
-        new_data_str = json.dumps(posts, indent=2)
+        new_array_content = format_ts_array(posts)
         
-        # Searching for the specific array definition
-        start_pattern = f"const {key}: NewsItem[] = ["
-        start_idx = content.find(start_pattern)
-        
-        if start_idx == -1:
-            print(f"ERROR: Pattern '{start_pattern}' not found in file")
-            continue
-            
-        # Find matching closing bracket
-        end_idx = content.find("];", start_idx)
-        if end_idx == -1:
-            print(f"ERROR: Closing sequence '];' not found for {key}")
-            continue
-        
-        # Build new file content
-        content = content[:start_idx + len(start_pattern)] + "\n" + new_data_str + "\n" + content[end_idx:]
-        print(f"SUCCESS: {key} array updated")
+        # Exact match pattern to replace from const ... = [ to ];
+        pattern = rf"(const {key}: NewsItem\[\] = )\[.*?\];"
+        content = re.sub(pattern, lambda m: m.group(1) + " [" + new_array_content, content, flags=re.DOTALL)
 
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
-    print("File write complete.")
 
 if __name__ == "__main__":
     update_tsx()
