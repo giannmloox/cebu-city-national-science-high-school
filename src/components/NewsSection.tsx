@@ -42,7 +42,7 @@ const schoolNews: NewsItem[] = [
 ];
 
 const scholarsVoice: NewsItem[] = [
-  {
+{
     id: "1",
     date: "",
     title: "EDITORIAL | To Report Without Fear",
@@ -61,15 +61,6 @@ const scholarsVoice: NewsItem[] = [
   },
 {
     id: 3,
-    date: "MAY 12, 2026",
-    title: "Happy Birthday, Ma'am Allyssa!",
-    excerpt:
-      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "/sv-birthday.jpg",
-    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
-  },
-{
-    id: 4,
     date: "MAY 11, 2026",
     title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
     excerpt:
