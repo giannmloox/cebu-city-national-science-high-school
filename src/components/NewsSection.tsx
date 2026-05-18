@@ -19,7 +19,7 @@ const schoolNews: NewsItem[] = [
     excerpt:
       "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
     image: "/news-calendar.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid028m4MaZ94Mxb16JoJ4kXeQyAqBDK6vfuC1paXeL5uDFTZ5Pq6injg4sKBcvXmUKp9l",
+    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
     id: 2,
@@ -28,46 +28,47 @@ const schoolNews: NewsItem[] = [
     excerpt:
       "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
     image: "/news-upcat.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid02miJnZ9TDTEKwrq6Knfh3irxksLJM6cbwC2enZ63JhLygWEvb9vKYqNXvqVWBngByl",
+    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
   {
     id: 3,
     date: "APRIL 18, 2026",
     title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
     excerpt:
-      "The school celebrates Tinig Iskolar remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
+      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
     image: "/news-tinig.jpg",
     link: "https://www.facebook.com/share/p/1CPKQjM7xh/",
   },
 ];
 
 const scholarsVoice: NewsItem[] = [
-[
   {
     id: 1,
-    date: "MAY 18, 2026",
-    title: "EDITORIAL | To Report Without Fear",
-    excerpt: "Article III, Section 4 of the 1987 Philippine Constitution states: No law shall be passed abridging the freedom of speech, of expression, or of the press.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/share/p/17v831DtxM/"
+    date: "MAY 12, 2026",
+    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
+    excerpt:
+      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
+    image: "/sv-andes.jpg",
+    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
   {
     id: 2,
-    date: "MARCH 15, 2026",
-    title: "The Importance of Student Journalism",
-    excerpt: "Student journalists play a crucial role in shaping discourse within the campus and beyond, upholding the principles of press freedom.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/profile.php?id=100087290154105"
+    date: "MAY 12, 2026",
+    title: "Happy Birthday, Ma'am Allyssa!",
+    excerpt:
+      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
+    image: "/sv-birthday.jpg",
+    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
   {
     id: 3,
-    date: "FEBRUARY 10, 2026",
-    title: "Scholars Voice Highlights Academic Excellence",
-    excerpt: "A look back at the academic achievements of our scholars in the past quarter, celebrating their dedication to excellence.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/profile.php?id=100087290154105"
-  }
-]
+    date: "MAY 11, 2026",
+    title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
+    excerpt:
+      "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
+    image: "/sv-broadcasting.jpg",
+    link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
+  },
 ];
 
 const tinigIskolar: NewsItem[] = [
@@ -77,7 +78,7 @@ const tinigIskolar: NewsItem[] = [
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
       "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "/41226.jpg",
+    image: "/Tinig-5326.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
   {
@@ -85,8 +86,8 @@ const tinigIskolar: NewsItem[] = [
     date: "APRIL 18, 2026",
     title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
     excerpt:
-      "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII.",
-    image: "/41826.jpg",
+      "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII and 4th place in Radio Broadcasting.",
+    image: "/Tinig-41826.jpg",
     link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
   },
   {
@@ -95,7 +96,7 @@ const tinigIskolar: NewsItem[] = [
     title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
     excerpt:
       "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "/5326.jpg",
+    image: "/Tinig-41226.jpg",
     link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
 ];
