@@ -73,6 +73,14 @@ const scholarsVoice: NewsItem[] = [
 const tinigIskolar: NewsItem[] = [
   {
     id: 1,
+    date: "",
+    title: "",
+    excerpt: "",
+    image: "/Tinig-51626.jpg",
+    link: "",
+  },
+{
+    id: 2,
     date: "MAY 3, 2026",
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
@@ -80,23 +88,14 @@ const tinigIskolar: NewsItem[] = [
     image: "/Tinig-5326.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
-  {
-    id: 2,
+{
+    id: 3,
     date: "APRIL 18, 2026",
     title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
     excerpt:
       "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII and 4th place in Radio Broadcasting.",
     image: "/Tinig-41826.jpg",
     link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
-  },
-  {
-    id: 3,
-    date: "APRIL 12, 2026",
-    title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
-    excerpt:
-      "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "/Tinig-41226.jpg",
-    link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
 ];
 
