@@ -81,6 +81,14 @@ const tinigIskolar: NewsItem[] = [
   },
 {
     id: 2,
+    date: "MAY 16, 2026",
+    title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
+    excerpt: "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
+    image: "/Tinig-51626.jpg",
+    link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
+  },
+{
+    id: 3,
     date: "MAY 3, 2026",
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
