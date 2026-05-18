@@ -1,65 +1,46 @@
+import os
 import json
 import re
-import requests
-import os
+from apify_client import ApifyClient
 
-# Configuration: Apify Actor ID and your API Token
-# You must set APIFY_TOKEN as a repository secret on GitHub
+# Configuration
 APIFY_TOKEN = os.getenv('APIFY_TOKEN')
-# Facebook Scraper Actor URL
-ACTOR_ID = "apify/facebook-scraper"
+ACTOR_ID = "apify/facebook-pages-scraper"
 
 PAGES = {
-    "schoolNews": "ccnshs303141",
-    "scholarsVoice": "100087290154105",
-    "tinigIskolar": "61551319650573"
+    "schoolNews": "https://www.facebook.com/ccnshs303141",
+    "scholarsVoice": "https://www.facebook.com/profile.php?id=100087290154105",
+    "tinigIskolar": "https://www.facebook.com/profile.php?id=61551319650573"
 }
 
-def fetch_posts_from_apify(page_id):
-    if not APIFY_TOKEN:
-        print("Error: APIFY_TOKEN not set.")
-        return []
-    
-    url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={APIFY_TOKEN}"
-    payload = {
-        "facebookUrls": [f"https://www.facebook.com/{page_id}"],
-        "resultsLimit": 3
+def fetch_posts(page_url):
+    client = ApifyClient(APIFY_TOKEN)
+    run_input = {
+        "startUrls": [{"url": page_url}],
+        "resultsLimit": 3,
     }
+    run = client.actor(ACTOR_ID).call(run_input=run_input)
     
-    try:
-        # Trigger the actor
-        run = requests.post(url, json=payload).json()
-        run_id = run['data']['id']
-        
-        # Poll for results (simple version)
-        import time
-        time.sleep(10) # Wait for scraping
-        
-        results_url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs/{run_id}/dataset/items?token={APIFY_TOKEN}"
-        posts = requests.get(results_url).json()
-        
-        formatted_posts = []
-        for post in posts:
-            formatted_posts.append({
-                "id": post.get('postId', ''),
-                "date": post.get('date', '')[:10],
-                "title": (post.get('text', '')[:50] + '...') if len(post.get('text', '')) > 50 else post.get('text', ''),
-                "excerpt": (post.get('text', '')[:150] + '...') if len(post.get('text', '')) > 150 else post.get('text', ''),
-                "image": post.get('images', [{}])[0].get('url', '') if post.get('images') else '',
-                "link": post.get('url', '')
-            })
-        return formatted_posts
-    except Exception as e:
-        print(f"Error fetching from Apify for {page_id}: {e}")
-        return []
+    posts_data = []
+    for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+        text = item.get("message") or item.get("text") or ""
+        posts_data.append({
+            "id": item.get("postId", ""),
+            "date": item.get("date", "")[:10],
+            "title": (text[:50] + '...') if len(text) > 50 else text,
+            "excerpt": (text[:150] + '...') if len(text) > 150 else text,
+            "image": item.get("fullPicture") or item.get("images", [{}])[0].get("url", ""),
+            "link": item.get("url", "")
+        })
+    return posts_data
 
 def update_tsx():
     file_path = 'src/components/NewsSection.tsx'
     with open(file_path, 'r') as f:
         content = f.read()
 
-    for key, page_id in PAGES.items():
-        posts = fetch_posts_from_apify(page_id)
+    for key, url in PAGES.items():
+        posts = fetch_posts(url)
         if not posts: continue
         
         new_data = json.dumps(posts, indent=2)
@@ -68,7 +49,6 @@ def update_tsx():
 
     with open(file_path, 'w') as f:
         f.write(content)
-    print("NewsSection.tsx updated successfully.")
 
 if __name__ == "__main__":
     update_tsx()
