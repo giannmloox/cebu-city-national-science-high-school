@@ -43,7 +43,15 @@ const schoolNews: NewsItem[] = [
 
 const scholarsVoice: NewsItem[] = [
   {
-    id: 1,
+    id: "1",
+    date: "",
+    title: "EDITORIAL | To Report Without Fear",
+    excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
+    image: "",
+    link: "",
+  },
+{
+    id: 2,
     date: "MAY 12, 2026",
     title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
     excerpt:
@@ -51,8 +59,8 @@ const scholarsVoice: NewsItem[] = [
     image: "/sv-andes.jpg",
     link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
-  {
-    id: 2,
+{
+    id: 3,
     date: "MAY 12, 2026",
     title: "Happy Birthday, Ma'am Allyssa!",
     excerpt:
@@ -60,8 +68,8 @@ const scholarsVoice: NewsItem[] = [
     image: "/sv-birthday.jpg",
     link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
-  {
-    id: 3,
+{
+    id: 4,
     date: "MAY 11, 2026",
     title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
     excerpt:
