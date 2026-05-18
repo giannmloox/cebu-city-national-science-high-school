@@ -96,15 +96,6 @@ const tinigIskolar: NewsItem[] = [
     image: "/Tinig-5326.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
-{
-    id: 3,
-    date: "APRIL 18, 2026",
-    title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
-    excerpt:
-      "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII and 4th place in Radio Broadcasting.",
-    image: "/Tinig-41826.jpg",
-    link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
-  },
 ];
 
 type TabKey = "school" | "scholars" | "tinig";
