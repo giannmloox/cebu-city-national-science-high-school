@@ -42,13 +42,13 @@ const schoolNews: NewsItem[] = [
 ];
 
 const scholarsVoice: NewsItem[] = [
-{
+  {
     id: "1",
-    date: "MAY 17, 2026",
+    date: "",
     title: "EDITORIAL | To Report Without Fear",
     excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
-    image: "/sv-editorial.jpg",
-    link: "https://www.facebook.com/share/p/17v831DtxM/",
+    image: "",
+    link: "",
   },
 {
     id: 2,
@@ -61,11 +61,20 @@ const scholarsVoice: NewsItem[] = [
   },
 {
     id: 3,
+    date: "MAY 12, 2026",
+    title: "Happy Birthday, Ma'am Allyssa!",
+    excerpt:
+      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
+    image: "/sv-birthday.jpg",
+    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
+  },
+{
+    id: 4,
     date: "MAY 11, 2026",
     title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
     excerpt:
       "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
-    image: "/sv-editorial.jpg",
+    image: "/sv-broadcasting.jpg",
     link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
   },
 ];
