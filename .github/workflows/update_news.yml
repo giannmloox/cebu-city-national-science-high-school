@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   update-news:
     runs-on: ubuntu-latest
@@ -15,7 +17,7 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install dependencies
-        run: pip install apify-client
+        run: pip install apify-client requests
       - name: Run scraper
         run: python update_news.py
       - name: Commit and push
