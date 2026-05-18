@@ -77,7 +77,7 @@ const tinigIskolar: NewsItem[] = [
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
       "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "/ti-pressday.jpg",
+    image: "/41226.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
   {
@@ -86,7 +86,7 @@ const tinigIskolar: NewsItem[] = [
     title: "Tinig Iskolar Celebrates NSPC 2026 Wins",
     excerpt:
       "Tinig Iskolar proudly celebrates its campus journalists achievements at the 2026 National Schools Press Conference, including 3rd Best School Publication in Region VII.",
-    image: "/ti-nspc.jpg",
+    image: "/41826.jpg",
     link: "https://www.facebook.com/share/p/1CXwSbuKYP/",
   },
   {
@@ -95,7 +95,7 @@ const tinigIskolar: NewsItem[] = [
     title: "SciHi Filipino RB, Haharurot na sa NSPC 2026!",
     excerpt:
       "Pinatatag ng bawat ensayo, pagkakamali, at pagbangon - tatapak ang SciHi Filipino Radio Scriptwriting and Broadcasting sa pambansang entablado bilang kinatawan ng Rehiyon VII.",
-    image: "/ti-nspc2.jpg",
+    image: "/5326.jpg",
     link: "https://www.facebook.com/share/p/18VDaU92zj/",
   },
 ];
