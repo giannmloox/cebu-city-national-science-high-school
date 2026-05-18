@@ -2,10 +2,11 @@ import os
 import json
 import re
 from apify_client import ApifyClient
+from datetime import datetime
 
 # Configuration
 APIFY_TOKEN = os.getenv('APIFY_TOKEN')
-ACTOR_ID = "apify/facebook-pages-scraper"
+ACTOR_ID = "apify/facebook-posts-scraper"
 
 PAGES = {
     "schoolNews": "https://www.facebook.com/ccnshs303141",
@@ -16,17 +17,26 @@ PAGES = {
 def fetch_posts(page_url):
     client = ApifyClient(APIFY_TOKEN)
     run_input = {
-        "startUrls": [{"url": page_url}],
+        "facebookUrls": [page_url],
         "resultsLimit": 3,
+        "scrapeComments": False
     }
     run = client.actor(ACTOR_ID).call(run_input=run_input)
     
     posts_data = []
     for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-        text = item.get("message") or item.get("text") or ""
+        text = item.get("message") or item.get("text") or "No excerpt"
+        # Date formatting: MONTH DD, YYYY
+        raw_date = item.get("createdTime")
+        formatted_date = ""
+        try:
+            formatted_date = datetime.fromisoformat(raw_date.replace("Z", "")).strftime("%B %d, %Y")
+        except:
+            formatted_date = "Unknown Date"
+            
         posts_data.append({
             "id": item.get("postId", ""),
-            "date": item.get("date", "")[:10],
+            "date": formatted_date,
             "title": (text[:50] + '...') if len(text) > 50 else text,
             "excerpt": (text[:150] + '...') if len(text) > 150 else text,
             "image": item.get("fullPicture") or item.get("images", [{}])[0].get("url", ""),
@@ -43,6 +53,7 @@ def update_tsx():
         posts = fetch_posts(url)
         if not posts: continue
         
+        # Replace the array content in NewsSection.tsx
         new_data = json.dumps(posts, indent=2)
         pattern = rf"(const {key} = )\[.*?\];"
         content = re.sub(pattern, rf"\1{new_data};", content, flags=re.DOTALL)
