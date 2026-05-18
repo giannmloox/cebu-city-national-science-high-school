@@ -65,7 +65,7 @@ const scholarsVoice: NewsItem[] = [
     title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
     excerpt:
       "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
-    image: "/sv-broadcasting.jpg",
+    image: "/sv-editorial.jpg",
     link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
   },
 ];
