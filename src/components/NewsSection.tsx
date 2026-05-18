@@ -78,7 +78,7 @@ const tinigIskolar: NewsItem[] = [
     excerpt: "Hindi maaaring dito na lamang hihinto ang laban ng sambayanan. Hangga't may natitirang pag-asa, nananatiling buhay ang paninindigan na huwag talikuran ang bayan.",
     image: "/Tinig-51626.jpg",
     link: "https://www.facebook.com/share/p/17P7HqnCjG/",
-  }},
+  },
 {
     id: 2,
     date: "MAY 3, 2026",
