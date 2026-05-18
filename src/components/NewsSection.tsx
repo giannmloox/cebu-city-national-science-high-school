@@ -44,30 +44,11 @@ const schoolNews: NewsItem[] = [
 const scholarsVoice: NewsItem[] = [
   {
     id: 1,
-    date: "MAY 12, 2026",
-    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
-    excerpt:
-      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
-    image: "/sv-andes.jpg",
-    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
-  },
-  {
-    id: 2,
-    date: "MAY 12, 2026",
-    title: "Happy Birthday, Ma'am Allyssa!",
-    excerpt:
-      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "/sv-birthday.jpg",
-    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
-  },
-  {
-    id: 3,
-    date: "MAY 11, 2026",
-    title: "Take a Step Forward - Final Broadcasting Tryouts Announced",
-    excerpt:
-      "Aspiring broadcasters advance to finals! TV Broadcasting tryouts on May 13, Radio Broadcasting on May 19, 2026, both from 8:00-11:00 AM at the Globe Room.",
-    image: "/sv-tryouts.jpg",
-    link: "https://www.facebook.com/share/p/18Pq7Yj5xZ/",
+    date: "MAY 18, 2026",
+    title: "EDITORIAL | To Report Without Fear",
+    excerpt: "Article III, Section 4 of the 1987 Philippine Constitution states: No law shall be passed abridging the freedom of speech, of expression, or of the press.",
+    image: "/news-placeholder.jpg",
+    link: "https://www.facebook.com/share/p/17v831DtxM/",
   },
 ];
 
