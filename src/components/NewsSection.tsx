@@ -47,7 +47,7 @@ const scholarsVoice: NewsItem[] = [
     date: "MAY 17, 2026",
     title: "EDITORIAL | To Report Without Fear",
     excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
-    image: "",
+    image: "/sv-editorial.jpg",
     link: "https://www.facebook.com/share/p/17v831DtxM/",
   },
 {
