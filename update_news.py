@@ -17,9 +17,8 @@ PAGES = {
 def fetch_posts(page_url):
     client = ApifyClient(APIFY_TOKEN)
     run_input = {
-        "facebookUrls": [page_url],
-        "resultsLimit": 3,
-        "scrapeComments": False
+        "startUrls": [{"url": page_url}],
+        "maxPosts": 3,
     }
     run = client.actor(ACTOR_ID).call(run_input=run_input)
     
