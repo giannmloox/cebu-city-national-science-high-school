@@ -42,14 +42,32 @@ const schoolNews: NewsItem[] = [
 ];
 
 const scholarsVoice: NewsItem[] = [
+[
   {
     id: 1,
     date: "MAY 18, 2026",
     title: "EDITORIAL | To Report Without Fear",
     excerpt: "Article III, Section 4 of the 1987 Philippine Constitution states: No law shall be passed abridging the freedom of speech, of expression, or of the press.",
     image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/share/p/17v831DtxM/",
+    link: "https://www.facebook.com/share/p/17v831DtxM/"
   },
+  {
+    id: 2,
+    date: "MARCH 15, 2026",
+    title: "The Importance of Student Journalism",
+    excerpt: "Student journalists play a crucial role in shaping discourse within the campus and beyond, upholding the principles of press freedom.",
+    image: "/news-placeholder.jpg",
+    link: "https://www.facebook.com/profile.php?id=100087290154105"
+  },
+  {
+    id: 3,
+    date: "FEBRUARY 10, 2026",
+    title: "Scholars Voice Highlights Academic Excellence",
+    excerpt: "A look back at the academic achievements of our scholars in the past quarter, celebrating their dedication to excellence.",
+    image: "/news-placeholder.jpg",
+    link: "https://www.facebook.com/profile.php?id=100087290154105"
+  }
+]
 ];
 
 const tinigIskolar: NewsItem[] = [
