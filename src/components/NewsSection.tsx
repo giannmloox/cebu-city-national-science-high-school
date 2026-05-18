@@ -78,7 +78,7 @@ const tinigIskolar: NewsItem[] = [
     excerpt: "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
     image: "/Tinig-51826.jpg",
     link: "https://www.facebook.com/share/p/18phdVgDCF/",
-  }},
+  },
 {
     id: 2,
     date: "MAY 3, 2026",
