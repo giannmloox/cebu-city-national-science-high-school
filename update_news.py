@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import unicodedata
 from apify_client import ApifyClient
 from datetime import datetime
 
@@ -14,17 +15,30 @@ PAGES = {
     "tinigIskolar": "https://www.facebook.com/profile.php?id=61551319650573"
 }
 
+def sanitize_text(text):
+    if not text: return "No excerpt"
+    # Remove unicode special characters (like bold text) by normalizing
+    text = unicodedata.normalize('NFKD', text)
+    # Replace backslashes and backticks
+    text = text.replace('\\', '/').replace('`', "'")
+    # Replace double quotes with single quotes
+    text = text.replace('"', "'")
+    # Limit to 150 characters and strip whitespace
+    text = text[:150].strip()
+    return text
+
 def fetch_posts(page_url):
     client = ApifyClient(APIFY_TOKEN)
     run_input = {
         "startUrls": [{"url": page_url}],
-        "maxPosts": 3,
+        "resultsLimit": 3,
     }
     run = client.actor(ACTOR_ID).call(run_input=run_input)
     
     posts_data = []
     for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-        text = item.get("message") or item.get("text") or "No excerpt"
+        raw_text = item.get("message") or item.get("text") or "No excerpt"
+        
         # Date formatting: MONTH DD, YYYY
         raw_date = item.get("createdTime")
         formatted_date = ""
@@ -36,8 +50,8 @@ def fetch_posts(page_url):
         posts_data.append({
             "id": item.get("postId", ""),
             "date": formatted_date,
-            "title": (text[:50] + '...') if len(text) > 50 else text,
-            "excerpt": (text[:150] + '...') if len(text) > 150 else text,
+            "title": sanitize_text(raw_text)[:50] + '...',
+            "excerpt": sanitize_text(raw_text),
             "image": item.get("fullPicture") or item.get("images", [{}])[0].get("url", ""),
             "link": item.get("url", "")
         })
@@ -45,7 +59,7 @@ def fetch_posts(page_url):
 
 def update_tsx():
     file_path = 'src/components/NewsSection.tsx'
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
     for key, url in PAGES.items():
@@ -54,10 +68,11 @@ def update_tsx():
         
         # Replace the array content in NewsSection.tsx
         new_data = json.dumps(posts, indent=2)
+        # Using lambda in re.sub to avoid escape issues
         pattern = rf"(const {key} = )\[.*?\];"
-        content = re.sub(pattern, rf"\1{new_data};", content, flags=re.DOTALL)
+        content = re.sub(pattern, lambda m: m.group(1) + new_data + ";", content, flags=re.DOTALL)
 
-    with open(file_path, 'w') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
 if __name__ == "__main__":
