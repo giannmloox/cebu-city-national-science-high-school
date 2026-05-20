@@ -14,6 +14,14 @@ type NewsItem = {
 const schoolNews: NewsItem[] = [
   {
     id: 1,
+    date: "May 20, 2026",
+    title: "𝐏𝐫𝐨𝐩𝐞𝐫 𝐒𝐜𝐡𝐨𝐨𝐥 𝐔𝐧𝐢𝐟𝐨𝐫𝐦 𝐆𝐮𝐢𝐝𝐞 𝐟𝐨𝐫 𝐒𝐜𝐢𝐇𝐢𝐲𝐢𝐬𝐭𝐚𝐬",
+    excerpt: "A new school year at Cebu City National Science High School is fast approaching, so get ready to step into the campus with confidence in your proper school attire!",
+    image: "/news-uniform.jpg",
+    link: "https://www.facebook.com/share/p/18u4N35ZuN/",
+  },
+  {
+    id: 2,
     date: "APRIL 28, 2026",
     title: "Education Calendar Sees Major Shift",
     excerpt:
@@ -22,7 +30,7 @@ const schoolNews: NewsItem[] = [
     link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
-    id: 2,
+    id: 3,
     date: "APRIL 22, 2026",
     title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
     excerpt:
@@ -30,27 +38,19 @@ const schoolNews: NewsItem[] = [
     image: "/news-upcat.jpg",
     link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
-  {
-    id: 3,
-    date: "APRIL 18, 2026",
-    title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
-    excerpt:
-      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
-    image: "/news-tinig.jpg",
-    link: "https://www.facebook.com/share/p/1CPKQjM7xh/",
-  },
 ];
 
 const scholarsVoice: NewsItem[] = [
-{
-    id: "1",
+  {
+    id: 1,
     date: "MAY 17, 2026",
     title: "EDITORIAL | To Report Without Fear",
-    excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
+    excerpt:
+      "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
     image: "/sv-editorial.jpg",
     link: "https://www.facebook.com/share/p/17v831DtxM/",
   },
-{
+  {
     id: 2,
     date: "MAY 12, 2026",
     title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
@@ -59,7 +59,7 @@ const scholarsVoice: NewsItem[] = [
     image: "/sv-andes.jpg",
     link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
-{
+  {
     id: 3,
     date: "MAY 12, 2026",
     title: "Happy Birthday, Ma'am Allyssa!",
@@ -71,23 +71,25 @@ const scholarsVoice: NewsItem[] = [
 ];
 
 const tinigIskolar: NewsItem[] = [
-      {
+  {
     id: 1,
     date: "MAY 18, 2026",
     title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
-    excerpt: "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
+    excerpt:
+      "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
     image: "/Tinig-51826.jpg",
     link: "https://www.facebook.com/share/p/18phdVgDCF/",
   },
-{
+  {
     id: 2,
     date: "MAY 16, 2026",
     title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
-    excerpt: "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
+    excerpt:
+      "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
     image: "/Tinig-51626.jpg",
     link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
   },
-{
+  {
     id: 3,
     date: "MAY 3, 2026",
     title: "LATHALAHIN | World Press Freedom Day",
@@ -123,7 +125,7 @@ const tabMeta: Record<
 
 const NewsCard = ({ item, i }: { item: NewsItem; i: number }) => (
   <motion.a
-    href={item.link}
+    href={item.link || "#"}
     target="_blank"
     rel="noopener noreferrer"
     initial={{ opacity: 0, y: 20 }}
@@ -131,26 +133,38 @@ const NewsCard = ({ item, i }: { item: NewsItem; i: number }) => (
     transition={{ duration: 0.4, delay: 0.08 * i }}
     className="group block overflow-hidden glass-card hover-lift cursor-pointer"
   >
-    <div className="relative h-52 overflow-hidden">
-      <img
-        src={item.image}
-        alt={item.title}
-        loading="lazy"
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-      />
-      <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-        <ExternalLink size={16} />
-      </div>
+    <div className="relative h-52 overflow-hidden bg-muted">
+      {item.image ? (
+        <img
+          src={item.image}
+          alt={item.title}
+          loading="lazy"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+          Add Image Here
+        </div>
+      )}
+
+      {item.link && (
+        <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+          <ExternalLink size={16} />
+        </div>
+      )}
     </div>
+
     <div className="p-5">
       <span className="text-xs text-gold font-heading font-semibold tracking-wider uppercase">
-        {item.date}
+        {item.date || "DATE"}
       </span>
+
       <h3 className="mt-2 text-lg font-heading font-bold text-foreground group-hover:text-gold transition-colors">
-        {item.title}
+        {item.title || "Your Title Here"}
       </h3>
+
       <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
-        {item.excerpt}
+        {item.excerpt || "Your excerpt/description here."}
       </p>
     </div>
   </motion.a>
@@ -181,6 +195,7 @@ const NewsSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-heading font-semibold tracking-widest uppercase text-gold border border-gold/30 rounded-full bg-gold/5">
             Stay Updated
           </span>
+
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Latest <span className="text-gradient-gold">News</span>
           </h2>
@@ -189,6 +204,7 @@ const NewsSection = () => {
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {tabs.map((t) => {
             const isActive = t.key === active;
+
             return (
               <button
                 key={t.key}
@@ -216,7 +232,10 @@ const NewsSection = () => {
           >
             {meta && (
               <div className="flex flex-col items-center text-center mb-8 gap-3">
-                <p className="italic text-gold max-w-2xl">{meta.tagline}</p>
+                <p className="italic text-gold max-w-2xl">
+                  {meta.tagline}
+                </p>
+
                 <a
                   href={meta.fb}
                   target="_blank"
