@@ -11,96 +11,90 @@ type NewsItem = {
   link: string;
 };
 
-const schoolNews: NewsItem[] =  [  {
+const schoolNews: NewsItem[] = [
+  {
     id: 1,
-    date: "MAY 18, 2026",
-    title: "No excerpt",
-    excerpt: "No excerpt",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid0ariHbDwkg8oDYiT4P41wvgPzVfbd7qgL4cab4gipCziFChqQAwmAfFzZqCCp8Rkul",
+    date: "APRIL 28, 2026",
+    title: "Education Calendar Sees Major Shift",
+    excerpt:
+      "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
+    image: "/news-calendar.jpg",
+    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
+  {
     id: 2,
-    date: "MAY 18, 2026",
-    title: "EDUCATION CALENDAR SEES MAJOR SHIFT",
-    excerpt: "EDUCATION CALENDAR SEES MAJOR SHIFT
-Public schools to roll out three-term academic system by SY 20262027 
-
-The Department of Education (DepEd) has man",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid028auMHQsKYK3B9m9k26isyxZfdVJSzovwZ4sg4U8mAwosWgSe6epMRTHdT3aGEaL8l",
+    date: "APRIL 22, 2026",
+    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
+    excerpt:
+      "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
+    image: "/news-upcat.jpg",
+    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
+  {
     id: 3,
-    date: "MAY 18, 2026",
-    title: "Congratulations, SciHigh Graduates- UPCAT PASSERS!",
-    excerpt: "Congratulations, SciHigh Graduates- UPCAT PASSERS!
-
-Your hard work, sleepless nights, and unwavering determination have paid offyou did it! 
-Passing t",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid0iAfbdyprc7g277dDW5C6oWTHAmguWQDBGzkErArVyqL5dVNpFmA8TTYeL7od21LUl",
+    date: "APRIL 18, 2026",
+    title: "Tinig Iskolar Wins 4th Place in Radio Broadcasting at NSRC Ormoc",
+    excerpt:
+      "The school celebrates Tinig Iskolar's remarkable achievements in Secondary Filipino Radio Broadcasting at the NSRC 2026 held in Ormoc City.",
+    image: "/news-tinig.jpg",
+    link: "https://www.facebook.com/share/p/1CPKQjM7xh/",
   },
 ];
 
-const scholarsVoice: NewsItem[] =  [  {
-    id: 1,
-    date: "MAY 18, 2026",
+const scholarsVoice: NewsItem[] = [
+{
+    id: "1",
+    date: "MAY 17, 2026",
     title: "EDITORIAL | To Report Without Fear",
-    excerpt: "EDITORIAL | To Report Without Fear
-
-Article III, Section 4 of the 1987 Philippine Constitution states: No law shall be passed abridging the freedom of",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02JJY5wP4AretZsSYSd5UA7iiEsPwF4AboLeSUNYKuZgctnDNfiRhBetaxzEgsHDDul&id=100087290154105",
+    excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
+    image: "/sv-editorial.jpg",
+    link: "https://www.facebook.com/share/p/17v831DtxM/",
   },
+{
     id: 2,
-    date: "MAY 18, 2026",
-    title: "SCITECH | FACTS OVER FEAR",
-    excerpt: "SCITECH | FACTS OVER FEAR
-Andes virus cruise crisis contained
-
-Amid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfacesk",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02AatEPQksdRtHD9t2edGWuaHd8Zv9L5LTKvmp2uvM2YaMmHvTB6Eh2Jq5en7XFcrrl&id=100087290154105",
+    date: "MAY 12, 2026",
+    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
+    excerpt:
+      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
+    image: "/sv-andes.jpg",
+    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
+{
     id: 3,
-    date: "MAY 18, 2026",
-    title: "Happy birthday, Maam Allyssa!",
-    excerpt: "Happy birthday, Maam Allyssa! 
-
-Thank you for being more than just our school paper adviseryou guide us with patience, inspire us to always do our bes",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid037zHL2i5VydU8Br4A2Jwr9ycsrpMYc6U2hjEFNGLmjPvyFXVWVMyBTwu7ribUMT7Ul&id=100087290154105",
+    date: "MAY 12, 2026",
+    title: "Happy Birthday, Ma'am Allyssa!",
+    excerpt:
+      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
+    image: "/sv-birthday.jpg",
+    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
 ];
 
-const tinigIskolar: NewsItem[] =  [  {
+const tinigIskolar: NewsItem[] = [
+      {
     id: 1,
     date: "MAY 18, 2026",
     title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
-    excerpt: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inani
-
-Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02CHPfgDXb23YRztu5L2gcGvosXh2iibBptwSqnZpqNVFMjoKhaeafJge35nUoMndPl&id=61551319650573",
+    excerpt: "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
+    image: "/Tinig-51826.jpg",
+    link: "https://www.facebook.com/share/p/18phdVgDCF/",
   },
+{
     id: 2,
-    date: "MAY 18, 2026",
-    title: "EDITORYAL | Pilipinas, Muling Mangangarap ng Datin",
-    excerpt: "EDITORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap
-
-Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ri",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid037gbC1sp1aieauZGQwakju7M2924n4EydDHwBJMApDqezSRQw91HhGFAG2Ah5eZeMl&id=61551319650573",
+    date: "MAY 16, 2026",
+    title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
+    excerpt: "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
+    image: "/Tinig-51626.jpg",
+    link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
   },
+{
     id: 3,
-    date: "MAY 18, 2026",
-    title: "LATHALAIN | World Press Freedom Day",
-    excerpt: "LATHALAIN | World Press Freedom Day
-
-Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya.
-
-Sa kasalukuyang panahon, ang pinaka-mapangan",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid029ypxWMVDdFNEun3sh75zyRF3Q7G4cepcBuEgf5zEE8LUnbQYGwo9N8MGoxMP6hERl&id=61551319650573",
+    date: "MAY 3, 2026",
+    title: "LATHALAHIN | World Press Freedom Day",
+    excerpt:
+      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
+    image: "/Tinig-5326.jpg",
+    link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
 ];
 
