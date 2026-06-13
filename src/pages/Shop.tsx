@@ -41,6 +41,9 @@ const Shop = () => {
   const [room, setRoom] = useState("");
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
+  const promoItems = shopItems.filter(item => item.category === "promo");
+  const regularItems = shopItems.filter(item => item.category !== "promo");
+
   const filtered = useMemo(
     () => (filter === "All" ? shopItems : shopItems.filter((p) => p.category === filter)),
     [filter],
@@ -140,8 +143,24 @@ const Shop = () => {
             </button>
           ))}
         </div>
+        {promoItems.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-white mb-6">Promos & Bundles</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {promoItems.map((p) => (
+                <div key={p.id} className="glass-card overflow-hidden flex flex-col p-5">
+                  <img src={p.image} alt={p.name} className="w-full aspect-square object-cover mb-4 rounded" />
+                  <h3 className="text-white font-bold text-lg mb-2">{p.name}</h3>
+                  <p className="text-gold text-2xl font-heading font-bold mb-2">P{p.price}</p>
+                  <p className="text-white/70 text-sm mb-4">{p.description}</p>
+                  <p className="text-white/50 text-xs mt-auto italic">After checkout, send your selected items via message or order notes.</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filtered.map((p) => (
+          {regularItems.map((p) => (
             <motion.div
               key={p.id}
               layout
