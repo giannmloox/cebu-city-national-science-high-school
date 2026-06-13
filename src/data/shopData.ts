@@ -37,7 +37,7 @@ export const shopItems: ShopItem[] = [
     id: 4,
     name: "SciHi Band Shirt",
     price: 290,
-    image: "/sslg-items/Band.jpg",
+    image: "/sslg-items/Mix.jpg",
     category: "shirts",
     description: "Official SciHi band shirt."
   },
@@ -61,7 +61,7 @@ export const shopItems: ShopItem[] = [
     id: 7,
     name: "Y2K Shirt",
     price: 300,
-    image: "/sslg-items/Y2K.jpg",
+    image: "/sslg-items/Y2KxSci.jpg",
     category: "shirts",
     description: "Trendy Y2K style shirt."
   },
@@ -78,7 +78,7 @@ export const shopItems: ShopItem[] = [
     name: "Mix & Match Promo",
     price: 555,
     category: "bundle",
-    image: "/sslg-items/Band.jpg",
+    image: "/sslg-items/Mix.jpg",
     description: "Get any TWO shirt designs for ₱555",
     options: [
       "Stranger Things Shirt",
@@ -94,7 +94,7 @@ export const shopItems: ShopItem[] = [
     name: "Y2K + SciHi Lanyard Bundle",
     price: 410,
     category: "bundle",
-    image: "/sslg-items/Y2K.jpg",
+    image: "/sslg-items/Y2KxSci.jpg",
     description: "Get the Y2K shirt + SciHi Lanyard bundle for ₱410.",
     options: ["Y2K Shirt", "SciHi Lanyard"]
   }
