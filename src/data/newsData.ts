@@ -49,7 +49,7 @@ export const scholarsVoice: NewsItem[] = [
     date: "JUNE 12, 2026",
     title: "BROADCAST | Grand Detail, plans for upcoming school year",
     excerpt: "CCNSHS formally opened SY 2026-2027 on June 8, featuring the annual Grand Detail and welcoming new students into the SciHiyista community.",
-    image: "/scholars/sv-3.jpg",
+    image: "/scholars/sv-3.png",
     link: "https://www.facebook.com/share/v/1DsxbdobU8/",
   },
 ];
