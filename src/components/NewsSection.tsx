@@ -11,94 +11,61 @@ type NewsItem = {
   link: string;
 };
 
-const schoolNews: NewsItem[] = [
+const scholarsVoice: NewsItem[] = [
   {
-    id: 1,
-    date: "JUNE 12, 2026",
-    title: "CCNSHS Faculty and Staff Ready to Serve for School Year 2026–2027",
-    excerpt:
-      "United in purpose and passion, the CCNSHS community embarks on a new academic year dedicated to nurturing excellence and meaningful learning experiences.",
-    image: "/news-1.jpg",
-    link: "https://www.facebook.com/share/p/1BrsyRqjvn/",
-  },
-  {
-    id: 2,
-    date: "JUNE 11, 2026",
-    title:
-      "𝗝𝗨𝗦𝗧 𝗜𝗡 | 𝗖𝗖𝗡𝗦𝗛𝗦 𝗰𝗼𝗻𝗱𝘂𝗰𝘁𝘀 𝗲𝗮𝗿𝘁𝗵𝗾𝘂𝗮𝗸𝗲 𝗱𝗿𝗶𝗹𝗹 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴 𝟳.𝟴-𝗺𝗮𝗴𝗻𝗶𝘁𝘂𝗱𝗲 𝗠𝗶𝗻𝗱𝗮𝗻𝗮𝗼 𝗾𝘂𝗮𝗸𝗲",
-    excerpt:
-      "Students, teachers, and school personnel of Cebu City National Science High School (CCNSHS) participated in an earthquake drill on June 11, reinforcing the school's commitment to disaster preparedness and campus safety.",
-    image: "/news-2.jpg",
-    link: "https://www.facebook.com/share/p/18WWW7rXa8/",
-  },
-  {
-    id: 3,
-    date: "JUNE 9, 2026",
-    title:
-      "𝗡𝗘𝗪𝗦 | 𝗦𝗰𝗶𝗛𝗶 𝗺𝗮𝗿𝗸𝘀 𝘀𝘁𝗮𝗿𝘁 𝗼𝗳 𝗻𝗲𝘄 𝘀𝗰𝗵𝗼𝗼𝗹 𝘆𝗲𝗮𝗿 𝘄𝗶𝘁𝗵 𝗳𝗶𝗿𝘀𝘁 𝗳𝗹𝗮𝗴 𝗰𝗲𝗿𝗲𝗺𝗼𝗻𝘆",
-    excerpt:
-      "Cebu City National Science High School (CCNSHS) officially began School Year 2026–2027 on June 8, marking the return of students to campus and the start of new opportunities for growth and learning.",
-    image: "/news-3.jpg",
-    link: "https://www.facebook.com/share/p/1PPFmaXxzN/",
-  },
-];
-
-const scholarsVoice: NewsItem[] =  [  {
     id: 1,
     date: "MAY 18, 2026",
     title: "Proper School Uniform Guide for SciHiyistas",
-    excerpt: "Proper School Uniform Guide for SciHiyistas 
- 
-A new school year at Cebu City National Science High School is fast approaching, so get ready to step i",
+    excerpt:
+      "A new school year at Cebu City National Science High School is fast approaching, so get ready to step into the academic year with the proper school uniform.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid0xrqKy6waCBAEdXuzLswif1P92eYRrCXWQqrC7HFfxkNeiG7nrVpEMp2f4rgBcDDrl&id=100087290154105",
   },
+  {
     id: 2,
     date: "MAY 18, 2026",
     title: "EDITORIAL | To Report Without Fear",
-    excerpt: "EDITORIAL | To Report Without Fear
-
-Article III, Section 4 of the 1987 Philippine Constitution states: No law shall be passed abridging the freedom of",
+    excerpt:
+      "Article III, Section 4 of the 1987 Philippine Constitution states that no law shall abridge the freedom of speech, expression, or of the press.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02JcLcCtMdrsvfQ9ktZakB2X2iKwbvShcinXqyQuq6tnXWppEoHzvnJQPANnvN77xEl&id=100087290154105",
   },
+  {
     id: 3,
     date: "MAY 18, 2026",
     title: "SCITECH | FACTS OVER FEAR",
-    excerpt: "SCITECH | FACTS OVER FEAR
-Andes virus cruise crisis contained
-
-Amid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfacesk",
+    excerpt:
+      "Amid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfaces, sparking concern while experts work to contain the situation.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Atgkev4LdmmQsPX14EAUYe8KuC9oFGShVSWCXB1McYuwAnqFPfqdArmFpuCJYF1Cl&id=100087290154105",
   },
 ];
 
-const tinigIskolar: NewsItem[] =  [  {
+const tinigIskolar: NewsItem[] = [
+  {
     id: 1,
     date: "MAY 18, 2026",
     title: "AGHAM-TEK | Advance Studying: Susi sa Pag-unawa",
-    excerpt: "AGHAM-TEK | Advance Studying: Susi sa Pag-unawa
-
-Hindi maikakaila na karamihan sa mga estudyante ngayon ay nagsisimula lamang mag-aral kapag malapit n",
+    excerpt:
+      "Hindi maikakaila na karamihan sa mga estudyante ngayon ay nagsisimula lamang mag-aral kapag malapit na ang pagsusulit.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid0bBPUvMHR72i9JyygvdYn1sK2w9oxVCfUCytZ9rWBj91zJ2C1GGQCAHS5PiK4Quenl&id=61551319650573",
   },
+  {
     id: 2,
     date: "MAY 18, 2026",
-    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
-    excerpt: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inani
-
-Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas",
+    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inani",
+    excerpt:
+      "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang marinig ang kanilang hinaing.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02C7EfP5FrCe4tRZMz4HBvwXSUWLuhTYgU2CWrw7BYMqdnyaf5chgYCxkQWxjDbrpcl&id=61551319650573",
   },
+  {
     id: 3,
     date: "MAY 18, 2026",
-    title: "EDITORYAL | Pilipinas, Muling Mangangarap ng Datin",
-    excerpt: "EDITORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap
-
-Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ri",
+    title: "EDITORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
+    excerpt:
+      "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring muling mangarap para sa bayan.",
     image: "/news-placeholder.jpg",
     link: "https://www.facebook.com/permalink.php?story_fbid=pfbid037WSBijYGmCh9ssJzZTqwMGdWLZWkTSgmt4FHa1DcaJZFwKozpMDFyVwMkcL5FeYdl&id=61551319650573",
   },
