@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Facebook } from "lucide-react";
+import { schoolNews, scholarsVoice, tinigIskolar } from "../data/newsData";
 
 type NewsItem = {
   id: number;
@@ -10,95 +11,6 @@ type NewsItem = {
   image: string;
   link: string;
 };
-
-const schoolNews: NewsItem[] = [
-  {
-    id: 1,
-    date: "May 20, 2026",
-    title: "𝐏𝐫𝐨𝐩𝐞𝐫 𝐒𝐜𝐡𝐨𝐨𝐥 𝐔𝐧𝐢𝐟𝐨𝐫𝐦 𝐆𝐮𝐢𝐝𝐞 𝐟𝐨𝐫 𝐒𝐜𝐢𝐇𝐢𝐲𝐢𝐬𝐭𝐚𝐬",
-    excerpt: "A new school year at Cebu City National Science High School is fast approaching, so get ready to step into the campus with confidence in your proper school attire!",
-    image: "/news-uniform.jpg",
-    link: "https://www.facebook.com/share/p/18u4N35ZuN/",
-  },
-  {
-    id: 2,
-    date: "APRIL 28, 2026",
-    title: "Education Calendar Sees Major Shift",
-    excerpt:
-      "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
-    image: "/news-calendar.jpg",
-    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
-  },
-  {
-    id: 3,
-    date: "APRIL 22, 2026",
-    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
-    excerpt:
-      "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
-    image: "/news-upcat.jpg",
-    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
-  },
-];
-
-const scholarsVoice: NewsItem[] = [
-  {
-    id: 1,
-    date: "MAY 17, 2026",
-    title: "EDITORIAL | To Report Without Fear",
-    excerpt:
-      "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
-    image: "/sv-editorial.jpg",
-    link: "https://www.facebook.com/share/p/17v831DtxM/",
-  },
-  {
-    id: 2,
-    date: "MAY 12, 2026",
-    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
-    excerpt:
-      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
-    image: "/sv-andes.jpg",
-    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
-  },
-  {
-    id: 3,
-    date: "MAY 12, 2026",
-    title: "Happy Birthday, Ma'am Allyssa!",
-    excerpt:
-      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "/sv-birthday.jpg",
-    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
-  },
-];
-
-const tinigIskolar: NewsItem[] = [
-  {
-    id: 1,
-    date: "MAY 18, 2026",
-    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
-    excerpt:
-      "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
-    image: "/Tinig-51826.jpg",
-    link: "https://www.facebook.com/share/p/18phdVgDCF/",
-  },
-  {
-    id: 2,
-    date: "MAY 16, 2026",
-    title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
-    excerpt:
-      "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
-    image: "/Tinig-51626.jpg",
-    link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
-  },
-  {
-    id: 3,
-    date: "MAY 3, 2026",
-    title: "LATHALAHIN | World Press Freedom Day",
-    excerpt:
-      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "/Tinig-5326.jpg",
-    link: "https://www.facebook.com/share/p/18XAVKEkWS/",
-  },
-];
 
 type TabKey = "school" | "scholars" | "tinig";
 
@@ -125,7 +37,7 @@ const tabMeta: Record<
 
 const NewsCard = ({ item, i }: { item: NewsItem; i: number }) => (
   <motion.a
-    href={item.link || "#"}
+    href={item.link}
     target="_blank"
     rel="noopener noreferrer"
     initial={{ opacity: 0, y: 20 }}
@@ -133,38 +45,26 @@ const NewsCard = ({ item, i }: { item: NewsItem; i: number }) => (
     transition={{ duration: 0.4, delay: 0.08 * i }}
     className="group block overflow-hidden glass-card hover-lift cursor-pointer"
   >
-    <div className="relative h-52 overflow-hidden bg-muted">
-      {item.image ? (
-        <img
-          src={item.image}
-          alt={item.title}
-          loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
-          Add Image Here
-        </div>
-      )}
-
-      {item.link && (
-        <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-          <ExternalLink size={16} />
-        </div>
-      )}
+    <div className="relative h-52 overflow-hidden">
+      <img
+        src={item.image}
+        alt={item.title}
+        loading="lazy"
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm text-primary-foreground p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+        <ExternalLink size={16} />
+      </div>
     </div>
-
     <div className="p-5">
       <span className="text-xs text-gold font-heading font-semibold tracking-wider uppercase">
-        {item.date || "DATE"}
+        {item.date}
       </span>
-
       <h3 className="mt-2 text-lg font-heading font-bold text-foreground group-hover:text-gold transition-colors">
-        {item.title || "Your Title Here"}
+        {item.title}
       </h3>
-
       <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
-        {item.excerpt || "Your excerpt/description here."}
+        {item.excerpt}
       </p>
     </div>
   </motion.a>
@@ -195,7 +95,6 @@ const NewsSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-heading font-semibold tracking-widest uppercase text-gold border border-gold/30 rounded-full bg-gold/5">
             Stay Updated
           </span>
-
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Latest <span className="text-gradient-gold">News</span>
           </h2>
@@ -204,7 +103,6 @@ const NewsSection = () => {
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {tabs.map((t) => {
             const isActive = t.key === active;
-
             return (
               <button
                 key={t.key}
@@ -232,10 +130,7 @@ const NewsSection = () => {
           >
             {meta && (
               <div className="flex flex-col items-center text-center mb-8 gap-3">
-                <p className="italic text-gold max-w-2xl">
-                  {meta.tagline}
-                </p>
-
+                <p className="italic text-gold max-w-2xl">{meta.tagline}</p>
                 <a
                   href={meta.fb}
                   target="_blank"
@@ -250,7 +145,7 @@ const NewsSection = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {items.map((item, i) => (
-                <NewsCard key={item.id} item={item} i={i} />
+                <NewsCard key={item.id} item={item as any} i={i} />
               ))}
             </div>
           </motion.div>
