@@ -13,29 +13,26 @@ type NewsItem = {
 
 const schoolNews: NewsItem[] =  [  {
     id: 1,
-    date: "MAY 18, 2026",
-    title: "No excerpt",
-    excerpt: "No excerpt",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid02hdm397FmxoJZweobj5QDRLSq66Gd8sm8DQFYcCRjwMJRRVQywqgEujHiMCUXVMA1l",
+    date: "JUNE 12, 2026",
+    title: "CCNSHS Faculty and Staff Ready to Serve for School Year 2026–2027",
+    excerpt: "United in purpose and passion, the CCNSHS community embarks on a new academic year dedicated to nurturing excellence and meaningful learning experiences.",
+    image: "/news-1.jpg",
+    link: "https://www.facebook.com/share/p/1BrsyRqjvn/",
   },
     id: 2,
-    date: "MAY 18, 2026",
-    title: "No excerpt",
-    excerpt: "No excerpt",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid0bAWorjFDgCGTkDhATRCf3epJgyN7ZPRNMPndY1QwVzhLDcz3tdcpH8sePHLHrb5Yl",
+    date: "JUNE 11, 2026",
+    title: "𝗝𝗨𝗦𝗧 𝗜𝗡 | 𝗖𝗖𝗡𝗦𝗛𝗦 𝗰𝗼𝗻𝗱𝘂𝗰𝘁𝘀 𝗲𝗮𝗿𝘁𝗵𝗾𝘂𝗮𝗸𝗲 𝗱𝗿𝗶𝗹𝗹 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴 𝟳.𝟴-𝗺𝗮𝗴𝗻𝗶𝘁𝘂𝗱𝗲 𝗠𝗶𝗻𝗱𝗮𝗻𝗮𝗼 𝗾𝘂𝗮𝗸𝗲",
+    excerpt: "Students, teachers, and school personnel of Cebu City National Science High School (CCNSHS) participated in an earthquake drill on June 11, reinforcing the school's commitment to disaster preparedness and campus safety. ",
+    image: "/news-2.jpg",
+    link: "https://www.facebook.com/share/p/18WWW7rXa8/",
   },
     id: 3,
-    date: "MAY 18, 2026",
-    title: "EDUCATION CALENDAR SEES MAJOR SHIFT",
-    excerpt: "EDUCATION CALENDAR SEES MAJOR SHIFT
-Public schools to roll out three-term academic system by SY 20262027 
-
-The Department of Education (DepEd) has man",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/ccnshs303141/posts/pfbid028thsYvAnYWVNo2JSrrMsstDqnwMKN7YvoByNy4YjqkpvfsENo9dowmaQH4KNwvWnl",
-  },
+    date: "JUNE 9, 2026",
+    title: "𝗡𝗘𝗪𝗦 | 𝗦𝗰𝗶𝗛𝗶 𝗺𝗮𝗿𝗸𝘀 𝘀𝘁𝗮𝗿𝘁 𝗼𝗳 𝗻𝗲𝘄 𝘀𝗰𝗵𝗼𝗼𝗹 𝘆𝗲𝗮𝗿 𝘄𝗶𝘁𝗵 𝗳𝗶𝗿𝘀𝘁 𝗳𝗹𝗮𝗴 𝗰𝗲𝗿𝗲𝗺𝗼𝗻𝘆",
+    excerpt: "Cebu City National Science High School (CCNSHS) officially began school year 2026-2027 on June 8, marking the return of students to campus and the start of new opportunities for growth and learning.",
+    image: "news-3.jpg",
+    link: "https://www.facebook.com/share/p/1PPFmaXxzN/",
+  },            
 ];
 
 const scholarsVoice: NewsItem[] =  [  {
