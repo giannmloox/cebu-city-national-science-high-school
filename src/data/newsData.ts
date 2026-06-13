@@ -11,19 +11,19 @@ export const schoolNews: NewsItem[] = [
   },
   {
     id: 2,
-    date: "APRIL 28, 2026",
-    title: "Education Calendar Sees Major Shift",
-    excerpt: "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
+    date: "JUNE 11, 2026",
+    title: "JUST IN | CCNSHS conducts earthquake drill",
+    excerpt: "Students and personnel participated in an earthquake drill on June 11 to reinforce disaster preparedness following the recent 7.8-magnitude earthquake in Mindanao.",
     image: "/news/news-2.jpg",
-    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
+    link: "https://www.facebook.com/share/p/18WWW7rXa8/",
   },
   {
     id: 3,
-    date: "APRIL 22, 2026",
-    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
-    excerpt: "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
+    date: "JUNE 9, 2026",
+    title: "NEWS | SciHi marks start of new school year",
+    excerpt: "Cebu City National Science High School officially began SY 2026-2027 on June 8, marked by a flag ceremony led by the SSLG and a formal welcome for Grade 7 students.",
     image: "/news/news-3.jpg",
-    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+    link: "https://www.facebook.com/share/p/1PPFmaXxzN/",
   },
 ];
 
