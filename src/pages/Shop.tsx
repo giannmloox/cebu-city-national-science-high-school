@@ -3,23 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, X, Plus, Minus, Trash2, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
+import { shopItems } from "../data/shopData";
 
-type Category = "T-shirt" | "Accesories";
+type Category = "shirts" | "accessories";
 interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   category: Category;
+  description: string;
+  image: string;
 }
-const PRODUCTS: Product[] = [
-  { id: "p1", name: "TShirt 1", price: 350, category: "T-shirt" },
-  { id: "p2", name: "TShirt 2", price: 250, category: "T-shirt" },
-  { id: "p3", name: "Keychain", price: 120, category: "Accesories" },
-  { id: "p4", name: "SciHi Lanyard", price: 120, category: "Accesories" },
-  { id: "p5", name: "SciHi Tote Bag", price: 270, category: "Accesories" },
-  { id: "p6", name: "SciHi Pin Set", price: 70, category: "Accesories" },
-];
-const FILTERS = ["All", "T-shirt", "Accesories"] as const;
+
+const FILTERS = ["All", "shirts", "accessories"] as const;
 const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
   "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
@@ -28,8 +24,7 @@ const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 11": ["Pioneer", "Voyager", "Spitzer", "Cassini", "Apollo"],
   "Grade 12": ["STEM", "ABM"],
 };
-const productImg = (name: string) =>
-  `https://placehold.co/400x400/1a3a6b/f5c518?text=${encodeURIComponent(name)}`;
+
 interface CartItem extends Product {
   qty: number;
 }
@@ -57,7 +52,7 @@ const Shop = () => {
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const filtered = useMemo(
-    () => (filter === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === filter)),
+    () => (filter === "All" ? shopItems : shopItems.filter((p) => p.category === filter)),
     [filter],
   );
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
@@ -73,12 +68,12 @@ const Shop = () => {
     });
     setDrawerOpen(true);
   };
-  const updateQty = (id: string, delta: number) => {
+  const updateQty = (id: number, delta: number) => {
     setCart((c) =>
       c.map((i) => (i.id === id ? { ...i, qty: i.qty + delta } : i)).filter((i) => i.qty > 0),
     );
   };
-  const removeItem = (id: string) => setCart((c) => c.filter((i) => i.id !== id));
+  const removeItem = (id: number) => setCart((c) => c.filter((i) => i.id !== id));
 
   const placeOrder = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -165,7 +160,7 @@ const Shop = () => {
               whileHover={{ y: -4 }}
               className="glass-card overflow-hidden flex flex-col"
             >
-              <img src={productImg(p.name)} alt={p.name} className="w-full aspect-square object-cover" />
+              <img src={p.image} alt={p.name} className="w-full aspect-square object-cover" />
               <div className="p-5 flex flex-col gap-3 flex-1">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-white font-bold text-lg">{p.name}</h3>
@@ -185,7 +180,6 @@ const Shop = () => {
           ))}
         </div>
       </main>
-
       <button
         onClick={() => setDrawerOpen(true)}
         className="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-gold text-[#0a1628] shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
@@ -222,7 +216,7 @@ const Shop = () => {
                 {cart.length === 0 && <p className="text-white/60 text-center mt-10">Your cart is empty.</p>}
                 {cart.map((i) => (
                   <div key={i.id} className="glass-card p-4 flex gap-3 items-center">
-                    <img src={productImg(i.name)} alt={i.name} className="w-16 h-16 rounded object-cover" />
+                    <img src={i.image} alt={i.name} className="w-16 h-16 rounded object-cover" />
                     <div className="flex-1 min-w-0">
                       <p className="text-white font-semibold truncate">{i.name}</p>
                       <p className="text-gold font-bold">P{i.price}</p>
