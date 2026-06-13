@@ -3,8 +3,9 @@ export type ShopItem = {
   name: string;
   price: number;
   image: string;
-  category: "accessories" | "shirts" | "promo";
+  category: "accessories" | "shirts" | "bundle";
   description?: string;
+  options?: string[];
 };
 
 export const shopItems: ShopItem[] = [
@@ -73,19 +74,28 @@ export const shopItems: ShopItem[] = [
     description: "Official Brigada Sale event shirt."
   },
   {
-    id: "promo-1",
+    id: "b1",
     name: "Mix & Match Promo",
     price: 555,
-    category: "promo",
-    image: "/sslg-items/Mix.jpg",
-    description: "Get any 2 shirt designs for ₱555. After ordering, type your selected items in the order notes or message us directly."
+    category: "bundle",
+    image: "/sslg-items/Band.jpg",
+    description: "Get any TWO shirt designs for ₱555",
+    options: [
+      "Stranger Things Shirt",
+      "Day in a Life Shirt",
+      "SciHi Band Shirt",
+      "Beige 1970 Shirt",
+      "Good Morning SciHi Shirt",
+      "Y2K Shirt"
+    ]
   },
   {
-    id: "promo-2",
+    id: "b2",
     name: "Y2K + SciHi Lanyard Bundle",
     price: 410,
-    category: "promo",
-    image: "/sslg-items/Y2KxSci.jpg",
-    description: "Get the Y2K shirt + SciHi Lanyard bundle for ₱410. After ordering, confirm your selection in the order notes or message us."
+    category: "bundle",
+    image: "/sslg-items/Y2K.jpg",
+    description: "Get the Y2K shirt + SciHi Lanyard bundle for ₱410.",
+    options: ["Y2K Shirt", "SciHi Lanyard"]
   }
 ];
