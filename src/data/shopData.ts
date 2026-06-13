@@ -77,7 +77,7 @@ export const shopItems: ShopItem[] = [
     name: "Mix & Match Promo",
     price: 555,
     category: "promo",
-    image: "/sslg-items/promo.jpg",
+    image: "/sslg-items/Mix.jpg",
     description: "Get any 2 shirt designs for ₱555. After ordering, type your selected items in the order notes or message us directly."
   },
   {
@@ -85,7 +85,7 @@ export const shopItems: ShopItem[] = [
     name: "Y2K + SciHi Lanyard Bundle",
     price: 410,
     category: "promo",
-    image: "/sslg-items/promo-bundle.jpg",
+    image: "/sslg-items/Y2KxSci.jpg",
     description: "Get the Y2K shirt + SciHi Lanyard bundle for ₱410. After ordering, confirm your selection in the order notes or message us."
   }
 ];
