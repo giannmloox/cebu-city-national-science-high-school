@@ -6,7 +6,7 @@ export const schoolNews: NewsItem[] = [
     date: "JUNE 12, 2026",
     title: "READY TO SERVE | CCNSHS Family Prepared for SY 2026-2027",
     excerpt: "With renewed commitment, passion, and dedication, the CCNSHS family stands united and ready to serve for the upcoming school year, nurturing excellence and inspiring young minds.",
-    image: "/news-1.jpg",
+    image: "/news/news-1.jpg",
     link: "https://www.facebook.com/share/p/1BrsyRqjvn/",
   },
   {
@@ -14,7 +14,7 @@ export const schoolNews: NewsItem[] = [
     date: "APRIL 28, 2026",
     title: "Education Calendar Sees Major Shift",
     excerpt: "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
-    image: "/news-2.jpg",
+    image: "/news/news-2.jpg",
     link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
@@ -22,7 +22,7 @@ export const schoolNews: NewsItem[] = [
     date: "APRIL 22, 2026",
     title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
     excerpt: "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
-    image: "/news-3.jpg",
+    image: "/news/news-3.jpg",
     link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
   },
 ];
@@ -33,7 +33,7 @@ export const scholarsVoice: NewsItem[] = [
     date: "MAY 17, 2026",
     title: "EDITORIAL | To Report Without Fear",
     excerpt: "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
-    image: "/sv-1.jpg",
+    image: "/scholars/sv-1.jpg",
     link: "https://www.facebook.com/share/p/17v831DtxM/",
   },
   {
@@ -41,7 +41,7 @@ export const scholarsVoice: NewsItem[] = [
     date: "MAY 12, 2026",
     title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
     excerpt: "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
-    image: "/sv-2.jpg",
+    image: "/scholars/sv-2.jpg",
     link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
   },
   {
@@ -49,7 +49,7 @@ export const scholarsVoice: NewsItem[] = [
     date: "MAY 12, 2026",
     title: "Happy Birthday, Ma'am Allyssa!",
     excerpt: "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
-    image: "/sv-3.jpg",
+    image: "/scholars/sv-3.jpg",
     link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
 ];
@@ -60,7 +60,7 @@ export const tinigIskolar: NewsItem[] = [
     date: "MAY 18, 2026",
     title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
     excerpt: "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
-    image: "/tinig-1.jpg",
+    image: "/tinig/tinig-1.jpg",
     link: "https://www.facebook.com/share/p/18phdVgDCF/",
   },
   {
@@ -68,7 +68,7 @@ export const tinigIskolar: NewsItem[] = [
     date: "MAY 16, 2026",
     title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
     excerpt: "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
-    image: "/tinig-2.jpg",
+    image: "/tinig/tinig-2.jpg",
     link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
   },
   {
@@ -76,7 +76,7 @@ export const tinigIskolar: NewsItem[] = [
     date: "MAY 3, 2026",
     title: "LATHALAHIN | World Press Freedom Day",
     excerpt: "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
-    image: "/tinig-3.jpg",
+    image: "/tinig/tinig-3.jpg",
     link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
 ];
