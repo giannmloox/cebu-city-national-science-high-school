@@ -11,33 +11,62 @@ type NewsItem = {
   link: string;
 };
 
-const scholarsVoice: NewsItem[] = [
+const schoolNews: NewsItem[] = [
   {
     id: 1,
-    date: "MAY 18, 2026",
-    title: "Proper School Uniform Guide for SciHiyistas",
-    excerpt:
-      "A new school year at Cebu City National Science High School is fast approaching, so get ready to step into the academic year with the proper school uniform.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid0xrqKy6waCBAEdXuzLswif1P92eYRrCXWQqrC7HFfxkNeiG7nrVpEMp2f4rgBcDDrl&id=100087290154105",
+    date: "May 20, 2026",
+    title: "𝐏𝐫𝐨𝐩𝐞𝐫 𝐒𝐜𝐡𝐨𝐨𝐥 𝐔𝐧𝐢𝐟𝐨𝐫𝐦 𝐆𝐮𝐢𝐝𝐞 𝐟𝐨𝐫 𝐒𝐜𝐢𝐇𝐢𝐲𝐢𝐬𝐭𝐚𝐬",
+    excerpt: "A new school year at Cebu City National Science High School is fast approaching, so get ready to step into the campus with confidence in your proper school attire!",
+    image: "/news-uniform.jpg",
+    link: "https://www.facebook.com/share/p/18u4N35ZuN/",
   },
   {
     id: 2,
-    date: "MAY 18, 2026",
-    title: "EDITORIAL | To Report Without Fear",
+    date: "APRIL 28, 2026",
+    title: "Education Calendar Sees Major Shift",
     excerpt:
-      "Article III, Section 4 of the 1987 Philippine Constitution states that no law shall abridge the freedom of speech, expression, or of the press.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02JcLcCtMdrsvfQ9ktZakB2X2iKwbvShcinXqyQuq6tnXWppEoHzvnJQPANnvN77xEl&id=100087290154105",
+      "Public schools are set to roll out a three-term academic system by School Year 2026-2027 under DepEd Order No. 009, s. 2026, marking a significant change in the national education calendar.",
+    image: "/news-calendar.jpg",
+    link: "https://www.facebook.com/share/p/1Cn9zBFX49/",
   },
   {
     id: 3,
-    date: "MAY 18, 2026",
-    title: "SCITECH | FACTS OVER FEAR",
+    date: "APRIL 22, 2026",
+    title: "Congratulations, SciHigh Graduates - UPCAT Passers!",
     excerpt:
-      "Amid the Atlantic waters aboard the MV Hondius cruise ship, the Andes virus resurfaces, sparking concern while experts work to contain the situation.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Atgkev4LdmmQsPX14EAUYe8KuC9oFGShVSWCXB1McYuwAnqFPfqdArmFpuCJYF1Cl&id=100087290154105",
+      "SciHigh proudly celebrates its Grade 12 graduates who passed the UPCAT 2026, with passers from Diliman, Manila, Los Banos, and Cebu campuses. Padayon, Iskolar ng Bayan!",
+    image: "/news-upcat.jpg",
+    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
+  },
+];
+
+const scholarsVoice: NewsItem[] = [
+  {
+    id: 1,
+    date: "MAY 17, 2026",
+    title: "EDITORIAL | To Report Without Fear",
+    excerpt:
+      "Article III, Section 4 of the 1987 Philippine Constitution affirms that no law shall be passed abridging the freedom of speech, expression, or the press.",
+    image: "/sv-editorial.jpg",
+    link: "https://www.facebook.com/share/p/17v831DtxM/",
+  },
+  {
+    id: 2,
+    date: "MAY 12, 2026",
+    title: "SCITECH | Facts Over Fear: Andes Virus Cruise Crisis Contained",
+    excerpt:
+      "Amid fears of a next COVID, health officials emphasize the Andes virus outbreak aboard MV Hondius does not pose a widespread global threat. Eight cases confirmed as of May 8-9, 2026.",
+    image: "/sv-andes.jpg",
+    link: "https://www.facebook.com/share/p/18cHQcYBqQ/",
+  },
+  {
+    id: 3,
+    date: "MAY 12, 2026",
+    title: "Happy Birthday, Ma'am Allyssa!",
+    excerpt:
+      "Scholars Voice celebrates their school paper adviser Ma'am Allyssa, thanking her for guiding them with patience, wisdom, and genuine care beyond just journalism.",
+    image: "/sv-birthday.jpg",
+    link: "https://www.facebook.com/share/p/1B8LLUx7oa/",
   },
 ];
 
@@ -45,29 +74,29 @@ const tinigIskolar: NewsItem[] = [
   {
     id: 1,
     date: "MAY 18, 2026",
-    title: "AGHAM-TEK | Advance Studying: Susi sa Pag-unawa",
+    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inan",
     excerpt:
-      "Hindi maikakaila na karamihan sa mga estudyante ngayon ay nagsisimula lamang mag-aral kapag malapit na ang pagsusulit.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid0bBPUvMHR72i9JyygvdYn1sK2w9oxVCfUCytZ9rWBj91zJ2C1GGQCAHS5PiK4Quenl&id=61551319650573",
+      "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang sa wakas ay marinig ang kanilang hinaing sa Senado.",
+    image: "/Tinig-51826.jpg",
+    link: "https://www.facebook.com/share/p/18phdVgDCF/",
   },
   {
     id: 2,
-    date: "MAY 18, 2026",
-    title: "KOLUM | Pag-asa ang Itinanim, Katahimikan ang Inani",
+    date: "MAY 16, 2026",
+    title: "EDITYORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
     excerpt:
-      "Dala ang pagod, pamasahe, at pag-asa, bumiyahe ang mga magsasaka patungong Maynila upang marinig ang kanilang hinaing.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid02C7EfP5FrCe4tRZMz4HBvwXSUWLuhTYgU2CWrw7BYMqdnyaf5chgYCxkQWxjDbrpcl&id=61551319650573",
+      "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring itigil ko ang aking mga pinapangarap para sa iyo at sa aking sarili.",
+    image: "/Tinig-51626.jpg",
+    link: "https://www.facebook.com/share/p/M6a370gah4muf9/",
   },
   {
     id: 3,
-    date: "MAY 18, 2026",
-    title: "EDITORYAL | Pilipinas, Muling Mangangarap ng Dating Pinangarap",
+    date: "MAY 3, 2026",
+    title: "LATHALAHIN | World Press Freedom Day",
     excerpt:
-      "Pilipinas, hindi na ikaw ang bayang noon ay aking pinapangarap. Marahil, panahon na ring muling mangarap para sa bayan.",
-    image: "/news-placeholder.jpg",
-    link: "https://www.facebook.com/permalink.php?story_fbid=pfbid037WSBijYGmCh9ssJzZTqwMGdWLZWkTSgmt4FHa1DcaJZFwKozpMDFyVwMkcL5FeYdl&id=61551319650573",
+      "Ang kalayaan sa pamamahayag ay hindi lamang mahalaga sa demokrasya - ito ay pagganap sa tungkulin ng tunay na pamamahayag na maghatid ng katotohanan bilang haligi ng demokrasya.",
+    image: "/Tinig-5326.jpg",
+    link: "https://www.facebook.com/share/p/18XAVKEkWS/",
   },
 ];
 
