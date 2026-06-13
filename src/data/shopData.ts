@@ -1,68 +1,69 @@
-import { Product } from "../types";
+export type ShopItem = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: "accessories" | "shirts";
+  description?: string;
+};
 
-export const shopData: Product[] = [
+export const shopItems: ShopItem[] = [
   {
     id: 1,
-    name: "Band",
-    price: 290,
-    image: "/sslg-items/Band.jpg",
-    category: "shirts",
-    description: "High-quality band shirt featuring unique designs."
+    name: "SciHi Patch",
+    price: 100,
+    image: "/sslg-items/patch.jpg",
+    category: "accessories",
+    description: "Official SciHi embroidered patch."
   },
   {
     id: 2,
-    name: "Beige",
-    price: 300,
-    image: "/sslg-items/Beige.jpg",
-    category: "shirts",
-    description: "Stylish and comfortable beige shirt."
+    name: "SciHi Lanyard",
+    price: 145,
+    image: "/sslg-items/lanyard.jpg",
+    category: "accessories",
+    description: "Official school lanyard."
   },
   {
     id: 3,
-    name: "Brigada Sale",
+    name: "Stranger Things Shirt (Black or White)",
     price: 300,
-    image: "/sslg-items/Brigada Sale.jpg",
-    category: "shirts",
-    description: "Limited edition Brigada sale shirt."
+    image: "/sslg-items/stranger-things.jpg",
+    category: "shirts"
   },
   {
     id: 4,
-    name: "Goodmorning",
-    price: 300,
-    image: "/sslg-items/Goodmorning.jpg",
-    category: "shirts",
-    description: "Start your day right with this comfortable shirt."
+    name: "Day in a Life Shirt",
+    price: 290,
+    image: "/sslg-items/day-in-life.jpg",
+    category: "shirts"
   },
   {
     id: 5,
-    name: "Lanyard",
-    price: 145,
-    image: "/sslg-items/Lanyard.jpg",
-    category: "accessories",
-    description: "Durable and stylish school lanyard."
+    name: "SciHi Band Shirt",
+    price: 290,
+    image: "/sslg-items/band-shirt.jpg",
+    category: "shirts"
   },
   {
     id: 6,
-    name: "Life",
-    price: 290,
-    image: "/sslg-items/Life.jpg",
-    category: "shirts",
-    description: "Comfortable shirt with 'Day in a Life' inspired theme."
+    name: "Beige 1970 Shirt",
+    price: 300,
+    image: "/sslg-items/beige-1970.jpg",
+    category: "shirts"
   },
   {
     id: 7,
-    name: "St Shirt",
+    name: "Good Morning SciHi Shirt",
     price: 300,
-    image: "/sslg-items/ST-shirt.jpg",
-    category: "shirts",
-    description: "Classic school ST shirt."
+    image: "/sslg-items/good-morning.jpg",
+    category: "shirts"
   },
   {
     id: 8,
-    name: "Y2k",
+    name: "Y2K Shirt",
     price: 300,
-    image: "/sslg-items/Y2K.jpg",
-    category: "shirts",
-    description: "Trendy Y2K style shirt."
+    image: "/sslg-items/y2k.jpg",
+    category: "shirts"
   }
 ];

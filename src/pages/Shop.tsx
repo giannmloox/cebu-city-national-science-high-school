@@ -3,17 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, X, Plus, Minus, Trash2, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
-import { shopItems } from "../data/shopData";
-
-type Category = "shirts" | "accessories";
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  category: Category;
-  description: string;
-  image: string;
-}
+import { shopItems, ShopItem } from "../data/shopData";
 
 const FILTERS = ["All", "shirts", "accessories"] as const;
 const SECTIONS_BY_GRADE: Record<string, string[]> = {
@@ -25,7 +15,7 @@ const SECTIONS_BY_GRADE: Record<string, string[]> = {
   "Grade 12": ["STEM", "ABM"],
 };
 
-interface CartItem extends Product {
+interface CartItem extends ShopItem {
   qty: number;
 }
 
@@ -60,7 +50,7 @@ const Shop = () => {
   const deliveryFee = delivery === "Delivery" ? 25 : 0;
   const total = subtotal + deliveryFee;
 
-  const addToCart = (p: Product) => {
+  const addToCart = (p: ShopItem) => {
     setCart((c) => {
       const found = c.find((i) => i.id === p.id);
       if (found) return c.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i));
