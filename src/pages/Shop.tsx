@@ -20,17 +20,16 @@ const Shop = () => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const addToCart = (p: any, details?: string) => {
+  const addToCart = (p: any) => {
     setCart((c) => {
-      const existingItemIndex = c.findIndex(
-        (i) => i.id === p.id && i.details === details
-      );
-      if (existingItemIndex > -1) {
-        const newCart = [...c];
-        newCart[existingItemIndex].qty = (newCart[existingItemIndex].qty || 1) + 1;
-        return newCart;
-      }
-      return [...c, { ...p, qty: 1, details }];
+      const found = c.find((i: any) => i.id === p.id);
+      if (found)
+        return c.map((i: any) =>
+          i.id === p.id
+            ? { ...i, qty: (i.qty || 1) + 1 }
+            : i
+        );
+      return [...c, { ...p, qty: 1 }];
     });
     setDrawerOpen(true);
   };
@@ -45,7 +44,11 @@ const Shop = () => {
 
   const confirmPromo = () => {
     if (promoSelection.length === 2) {
-      addToCart(promoItems.find(p => p.id === "b1"), `Shirt 1: ${promoSelection[0]}, Shirt 2: ${promoSelection[1]}`);
+      const promoItem = promoItems.find(p => p.id === "b1");
+      if (promoItem) {
+        setCart((c) => [...c, { ...promoItem, qty: 1, details: `Shirt 1: ${promoSelection[0]}, Shirt 2: ${promoSelection[1]}` }]);
+        setDrawerOpen(true);
+      }
       setPromoSelection([]);
       setShowConfig(false);
     }
