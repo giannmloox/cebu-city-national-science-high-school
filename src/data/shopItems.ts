@@ -68,6 +68,13 @@ export const shopItems: Product[] = [
     image: "/sslg-items/Brigada Sale.jpg"
   },
   {
+    id: 103,
+    name: "SciHi Patch",
+    price: 100,
+    category: "accessories",
+    image: "/sslg-items/Patch.jpg"
+  },
+  {
     id: 101,
     name: "Mix & Match Promo",
     price: 555,
