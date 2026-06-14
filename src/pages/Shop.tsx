@@ -76,6 +76,10 @@ const Shop = () => {
     setSendError(false);
 
     const orderItems = cart.map((i) => `${i.name} x${i.qty} = ₱${i.price * i.qty}`).join("\n");
+    const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+    const deliveryFee = delivery === "Delivery" ? 20 : 0;
+    const total = subtotal + deliveryFee;
+
     const templateParams = {
       customer_name: name,
       grade_section: `${grade} - ${section}`,
@@ -84,6 +88,8 @@ const Shop = () => {
       location: delivery === "Delivery" ? `${building}, ${room}` : "Pickup",
       payment_method: payment,
       order_items: orderItems,
+      subtotal: `₱${subtotal}`,
+      delivery_fee: `₱${deliveryFee}`,
       total: `₱${total}`,
     };
 
