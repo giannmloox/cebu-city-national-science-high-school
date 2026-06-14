@@ -1,10 +1,15 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
+import { ShoppingCart, X, Plus, Minus, Trash2, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import emailjs from "@emailjs/browser";
 import { shopItems, Product } from "@/data/shopItems";
 
 const FILTERS = ["All", "shirts", "accessories"] as const;
+
+const EMAILJS_SERVICE_ID = "service_bni5zql";
+const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
+const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt";
 
 const Shop = () => {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
@@ -12,19 +17,19 @@ const Shop = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
-  // checkout form
+  // Checkout form state
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
   const [section, setSection] = useState("");
   const [contact, setContact] = useState("");
   const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
-  const [address, setAddress] = useState("");
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const promoItems = useMemo(() => shopItems.filter(p => p.isPromo), []);
   const regularItems = useMemo(() => shopItems.filter(p => !p.isPromo), []);
-  
   const filtered = useMemo(() => {
     if (filter === "All") return regularItems;
     return regularItems.filter(item => item.category === filter);
@@ -32,6 +37,8 @@ const Shop = () => {
 
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+  const deliveryFee = delivery === "Delivery" ? 25 : 0;
+  const total = subtotal + deliveryFee;
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -56,14 +63,40 @@ const Shop = () => {
 
   const placeOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    // EmailJS logic would go here
-    setOrderPlaced(true);
-    setCart([]);
+    setSending(true);
+    setSendError(false);
+
+    const orderItems = cart.map((i) => `${i.name} x${i.qty} = ₱${i.price * i.qty}`).join("\n");
+    const templateParams = {
+      customer_name: name,
+      grade_section: `${grade} - ${section}`,
+      contact_number: contact,
+      delivery_option: delivery,
+      payment_method: payment,
+      order_items: orderItems,
+      subtotal: `₱${subtotal}`,
+      delivery_fee: `₱${deliveryFee}`,
+      total: `₱${total}`,
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
+      setOrderPlaced(true);
+      setCart([]);
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   const closeCheckout = () => {
     setCheckoutOpen(false);
     setOrderPlaced(false);
+    setSendError(false);
+    setName(""); setGrade(""); setSection(""); setContact("");
+    setDelivery("Pickup at School");
+    setPayment("");
   };
 
   return (
@@ -145,13 +178,34 @@ const Shop = () => {
              <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-8 bg-[#0a1628]/95" onClick={(e) => e.stopPropagation()}>
                 <h2 className="text-2xl font-bold mb-4">{orderPlaced ? "Order Confirmed" : "Checkout"}</h2>
                 {orderPlaced ? (
-                  <p>Your order has been placed. SSLG will contact you shortly.</p>
+                  <div className="text-center py-10">
+                      <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
+                      <p>Your order has been placed. SSLG will contact you shortly.</p>
+                      <button onClick={closeCheckout} className="mt-6 w-full py-2 bg-gold text-[#0a1628] font-bold rounded">Close</button>
+                  </div>
                 ) : (
                   <form onSubmit={placeOrder} className="space-y-4">
-                    <input type="text" placeholder="Full Name" required className="w-full p-2 bg-white/5 rounded" onChange={(e) => setName(e.target.value)} />
-                    <input type="tel" placeholder="Contact" required className="w-full p-2 bg-white/5 rounded" onChange={(e) => setContact(e.target.value)} />
-                    <button type="submit" className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">Place Order</button>
-                    <button type="button" onClick={closeCheckout} className="w-full py-2 border border-white/20 rounded mt-2">Cancel</button>
+                    <input type="text" placeholder="Full Name" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setName(e.target.value)} />
+                    <input type="tel" placeholder="Contact" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setContact(e.target.value)} />
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Grade" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setGrade(e.target.value)} />
+                        <input type="text" placeholder="Section" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setSection(e.target.value)} />
+                    </div>
+
+                    <div className="p-4 bg-white/5 rounded border border-white/10">
+                        <label className="block mb-2 font-semibold">Payment Method</label>
+                        <div className="flex gap-4">
+                            {["GCash", "Cash on Pickup/Delivery"].map(m => (
+                                <button key={m} type="button" onClick={() => setPayment(m as any)} className={`px-4 py-2 rounded border ${payment === m ? "bg-gold text-[#0a1628]" : "border-white/20"}`}>{m}</button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button type="submit" disabled={!payment || sending || cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">
+                        {sending ? "Sending..." : "Place Order"}
+                    </button>
+                    <button type="button" onClick={closeCheckout} className="w-full py-2 border border-white/20 rounded">Cancel</button>
                   </form>
                 )}
              </motion.div>
