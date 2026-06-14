@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { shopItems, Product } from "@/data/shopItems";
-import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
 
 const FILTERS = ["All", "shirts", "accessories"] as const;
 
@@ -10,6 +11,16 @@ const Shop = () => {
   const [cart, setCart] = useState<(Product & { qty: number })[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  // checkout form
+  const [name, setName] = useState("");
+  const [grade, setGrade] = useState("");
+  const [section, setSection] = useState("");
+  const [contact, setContact] = useState("");
+  const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
+  const [address, setAddress] = useState("");
+  const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const promoItems = useMemo(() => shopItems.filter(p => p.isPromo), []);
   const regularItems = useMemo(() => shopItems.filter(p => !p.isPromo), []);
@@ -18,6 +29,9 @@ const Shop = () => {
     if (filter === "All") return regularItems;
     return regularItems.filter(item => item.category === filter);
   }, [filter, regularItems]);
+
+  const itemCount = cart.reduce((s, i) => s + i.qty, 0);
+  const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -30,11 +44,26 @@ const Shop = () => {
 
   const buyNow = (p: Product) => {
     setCart([{ ...p, qty: 1 }]);
+    setDrawerOpen(false);
     setCheckoutOpen(true);
   };
 
   const updateQty = (id: number, delta: number) => {
     setCart((c) => c.map(i => i.id === id ? { ...i, qty: Math.max(0, i.qty + delta) } : i).filter(i => i.qty > 0));
+  };
+
+  const removeItem = (id: number) => setCart((c) => c.filter((i) => i.id !== id));
+
+  const placeOrder = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // EmailJS logic would go here
+    setOrderPlaced(true);
+    setCart([]);
+  };
+
+  const closeCheckout = () => {
+    setCheckoutOpen(false);
+    setOrderPlaced(false);
   };
 
   return (
@@ -86,7 +115,49 @@ const Shop = () => {
         </section>
       </main>
 
-      {/* Cart Drawer & Checkout modal logic omitted for brevity as existing structure is preserved */}
+      <button onClick={() => setDrawerOpen(true)} className="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-gold text-[#0a1628] shadow-lg flex items-center justify-center">
+        <ShoppingCart size={22} />
+        {itemCount > 0 && <span className="absolute -top-1 -right-1 bg-[#0a1628] text-gold text-xs w-6 h-6 rounded-full flex items-center justify-center border border-gold font-bold">{itemCount}</span>}
+      </button>
+
+      <AnimatePresence>
+        {drawerOpen && (
+          <motion.aside initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-[#0a1628] border-l border-white/10 z-50 p-6 flex flex-col">
+            <div className="flex items-center justify-between mb-6"><h2 className="text-xl font-bold">Your Cart</h2><button onClick={() => setDrawerOpen(false)}><X size={22} /></button></div>
+            <div className="flex-1 overflow-y-auto space-y-4">
+              {cart.map(i => (
+                <div key={i.id} className="flex gap-3 items-center border-b border-white/10 pb-4">
+                  <img src={i.image} alt={i.name} className="w-16 h-16 rounded object-cover" />
+                  <div className="flex-1 font-semibold">{i.name}<div className="text-gold">₱{i.price}</div></div>
+                  <div className="flex items-center gap-2"><button onClick={() => updateQty(i.id, -1)}><Minus size={14}/></button><span>{i.qty}</span><button onClick={() => updateQty(i.id, 1)}><Plus size={14}/></button></div>
+                  <button onClick={() => removeItem(i.id)} className="text-white/60"><Trash2 size={18} /></button>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => { setDrawerOpen(false); setCheckoutOpen(true); }} disabled={cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded-full mt-4">Checkout</button>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {checkoutOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4">
+             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-8 bg-[#0a1628]/95" onClick={(e) => e.stopPropagation()}>
+                <h2 className="text-2xl font-bold mb-4">{orderPlaced ? "Order Confirmed" : "Checkout"}</h2>
+                {orderPlaced ? (
+                  <p>Your order has been placed. SSLG will contact you shortly.</p>
+                ) : (
+                  <form onSubmit={placeOrder} className="space-y-4">
+                    <input type="text" placeholder="Full Name" required className="w-full p-2 bg-white/5 rounded" onChange={(e) => setName(e.target.value)} />
+                    <input type="tel" placeholder="Contact" required className="w-full p-2 bg-white/5 rounded" onChange={(e) => setContact(e.target.value)} />
+                    <button type="submit" className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">Place Order</button>
+                    <button type="button" onClick={closeCheckout} className="w-full py-2 border border-white/20 rounded mt-2">Cancel</button>
+                  </form>
+                )}
+             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
