@@ -1,101 +1,72 @@
-export type ShopItem = {
-  id: string | number;
+export type ProductCategory = "T-shirt" | "Accesories" | "Bundle";
+
+export interface Product {
+  id: string;
   name: string;
   price: number;
+  category: ProductCategory;
   image: string;
-  category: "accessories" | "shirts" | "bundle";
-  description?: string;
-  options?: string[];
-};
+  isPromo?: boolean;
+  options?: {
+    label: string;
+    price?: number;
+    image?: string;
+  }[];
+}
 
-export const shopItems: ShopItem[] = [
+export const shopItems: Product[] = [
   {
-    id: 1,
+    id: "patch",
+    name: "SciHi Patch",
+    price: 100,
+    category: "Accesories",
+    image: "/sslg-items/Patch.jpg"
+  },
+  {
+    id: "lanyard",
     name: "SciHi Lanyard",
     price: 145,
-    image: "/sslg-items/Lanyard.jpg",
-    category: "accessories",
-    description: "Official school lanyard."
+    category: "Accesories",
+    image: "/sslg-items/Lanyard.jpg"
   },
   {
-    id: 2,
+    id: "stranger",
     name: "Stranger Things Shirt",
     price: 300,
-    image: "/sslg-items/ST-shirt.jpg",
-    category: "shirts",
-    description: "Stranger Things inspired school shirt."
+    category: "T-shirt",
+    image: "/sslg-items/Band.jpg"
   },
   {
-    id: 3,
+    id: "daylife",
     name: "Day in a Life Shirt",
     price: 290,
-    image: "/sslg-items/Life.jpg",
-    category: "shirts",
-    description: "Inspired by a day in the life at SciHi."
+    category: "T-shirt",
+    image: "/sslg-items/Daylife.jpg"
   },
   {
-    id: 4,
-    name: "SciHi Band Shirt",
-    price: 290,
-    image: "/sslg-items/Band.jpg",
-    category: "shirts",
-    description: "Official SciHi band shirt."
-  },
-  {
-    id: 5,
-    name: "Beige 1970 Shirt",
-    price: 300,
-    image: "/sslg-items/Beige.jpg",
-    category: "shirts",
-    description: "Classic beige 1970 style shirt."
-  },
-  {
-    id: 6,
-    name: "Good Morning SciHi Shirt",
-    price: 300,
-    image: "/sslg-items/Goodmorning.jpg",
-    category: "shirts",
-    description: "Good morning SciHi graphic shirt."
-  },
-  {
-    id: 7,
+    id: "y2k",
     name: "Y2K Shirt",
     price: 300,
-    image: "/sslg-items/Y2K.jpg",
-    category: "shirts",
-    description: "Trendy Y2K style shirt."
+    category: "T-shirt",
+    image: "/sslg-items/Y2K.jpg"
   },
   {
-    id: 8,
-    name: "Brigada Sale Shirt",
-    price: 300,
-    image: "/sslg-items/Brigada%20Sale.jpg",
-    category: "shirts",
-    description: "Official Brigada Sale event shirt."
-  },
-  {
-    id: "b1",
+    id: "promo_mix",
     name: "Mix & Match Promo",
     price: 555,
-    category: "bundle",
+    category: "Bundle",
     image: "/sslg-items/Mix.jpg",
-    description: "Get any TWO shirt designs for ₱555",
+    isPromo: true,
     options: [
-      "Stranger Things Shirt",
-      "Day in a Life Shirt",
-      "SciHi Band Shirt",
-      "Beige 1970 Shirt",
-      "Good Morning SciHi Shirt",
-      "Y2K Shirt"
+      { label: "2 Shirts of your choice" }
     ]
   },
   {
-    id: "b2",
-    name: "Y2K + SciHi Lanyard Bundle",
+    id: "promo_bundle",
+    name: "Y2K x Lanyard Bundle",
     price: 410,
-    category: "bundle",
+    category: "Bundle",
     image: "/sslg-items/Y2KxSci.jpg",
-    description: "Get the Y2K shirt + SciHi Lanyard bundle for ₱410.",
-    options: ["Y2K Shirt", "SciHi Lanyard"]
+    isPromo: true
   }
 ];
