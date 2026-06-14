@@ -219,21 +219,29 @@ const Shop = () => {
                         </div>
                     )}
 
-                    <div className="p-4 bg-white/5 rounded border border-white/10">
-                        <label className="block mb-2 font-semibold">Payment Method</label>
-                        <div className="flex gap-4">
+                    <div className="space-y-4">
+                        <label className="block font-semibold">Payment Method</label>
+                        <div className="grid grid-cols-2 gap-4">
                             {["GCash", "Cash on Pickup/Delivery"].map(m => (
-                                <button key={m} type="button" onClick={() => setPayment(m as any)} className={`px-4 py-2 rounded border ${payment === m ? "bg-gold text-[#0a1628]" : "border-white/20"}`}>{m}</button>
+                                <button 
+                                  key={m} 
+                                  type="button" 
+                                  onClick={() => setPayment(m as any)} 
+                                  className={`py-3 px-2 rounded border transition-colors ${payment === m ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"}`}
+                                >
+                                    {m}
+                                </button>
                             ))}
                         </div>
+                        
+                        {payment === "GCash" && (
+                            <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center animate-in fade-in duration-300">
+                                <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
+                                <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
+                                <p className="text-white/80 text-xs mt-3">Please upload your payment screenshot to the SSLG Facebook page.</p>
+                            </div>
+                        )}
                     </div>
-
-                    {payment === "GCash" && (
-                        <div className="text-center bg-white/5 rounded p-4">
-                            <p className="text-white mb-2">Scan to Pay via GCash</p>
-                            <img src="/sslg-items/gcash.jpg" alt="GCash" className="mx-auto w-32 rounded" />
-                        </div>
-                    )}
 
                     <button type="submit" disabled={!payment || sending || cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">
                         {sending ? "Sending..." : "Place Order"}
