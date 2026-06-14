@@ -7,6 +7,15 @@ import { shopItems, Product } from "@/data/shopItems";
 
 const FILTERS = ["All", "shirts", "accessories"] as const;
 
+const SECTIONS_BY_GRADE: Record<string, string[]> = {
+  "Grade 7": ["Mercury", "Venus", "Earth", "Saturn", "Neptune"],
+  "Grade 8": ["Averrhoa", "Hibiscus", "Ixora", "Oryza", "Zea"],
+  "Grade 9": ["Argon", "Krypton", "Helium", "Xenon", "Neon"],
+  "Grade 10": ["Copernicus", "Galileo", "Einstein", "Newton", "Kepler"],
+  "Grade 11": ["Pioneer", "Voyager", "Spitzer", "Cassini", "Apollo"],
+  "Grade 12": ["STEM", "ABM"],
+};
+
 const EMAILJS_SERVICE_ID = "service_bni5zql";
 const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
 const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt";
@@ -20,7 +29,6 @@ const Shop = () => {
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
 
-  // Checkout form state
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
   const [section, setSection] = useState("");
@@ -37,8 +45,7 @@ const Shop = () => {
 
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
-  const deliveryFee = delivery === "Delivery" ? 25 : 0;
-  const total = subtotal + deliveryFee;
+  const total = subtotal; // Delivery fee logic as per existing state
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -74,8 +81,6 @@ const Shop = () => {
       delivery_option: delivery,
       payment_method: payment,
       order_items: orderItems,
-      subtotal: `₱${subtotal}`,
-      delivery_fee: `₱${deliveryFee}`,
       total: `₱${total}`,
     };
 
@@ -175,7 +180,7 @@ const Shop = () => {
       <AnimatePresence>
         {checkoutOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4">
-             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-8 bg-[#0a1628]/95" onClick={(e) => e.stopPropagation()}>
+             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-8 bg-[#0a1628]/95 rounded-2xl" onClick={(e) => e.stopPropagation()}>
                 <h2 className="text-2xl font-bold mb-4">{orderPlaced ? "Order Confirmed" : "Checkout"}</h2>
                 {orderPlaced ? (
                   <div className="text-center py-10">
@@ -189,9 +194,20 @@ const Shop = () => {
                     <input type="tel" placeholder="Contact" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setContact(e.target.value)} />
                     
                     <div className="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Grade" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setGrade(e.target.value)} />
-                        <input type="text" placeholder="Section" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setSection(e.target.value)} />
+                        <select required value={grade} onChange={(e) => { setGrade(e.target.value); setSection(""); }} className="w-full p-2 bg-white/5 rounded border border-white/10">
+                            <option value="">Select Grade</option>
+                            {Object.keys(SECTIONS_BY_GRADE).map(g => <option key={g} value={g}>{g}</option>)}
+                        </select>
+                        <select required disabled={!grade} value={section} onChange={(e) => setSection(e.target.value)} className="w-full p-2 bg-white/5 rounded border border-white/10 disabled:opacity-50">
+                            <option value="">Select Section</option>
+                            {grade && SECTIONS_BY_GRADE[grade].map(s => <option key={s} value={s}>{s}</option>)}
+                        </select>
                     </div>
+
+                    <select value={delivery} onChange={(e) => setDelivery(e.target.value as any)} className="w-full p-2 bg-white/5 rounded border border-white/10">
+                        <option>Pickup at School</option>
+                        <option>Delivery</option>
+                    </select>
 
                     <div className="p-4 bg-white/5 rounded border border-white/10">
                         <label className="block mb-2 font-semibold">Payment Method</label>
@@ -201,6 +217,13 @@ const Shop = () => {
                             ))}
                         </div>
                     </div>
+
+                    {payment === "GCash" && (
+                        <div className="text-center bg-white/5 rounded p-4">
+                            <p className="text-white mb-2">Scan to Pay via GCash</p>
+                            <img src="/sslg-items/gcash.jpg" alt="GCash" className="mx-auto w-32 rounded" />
+                        </div>
+                    )}
 
                     <button type="submit" disabled={!payment || sending || cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">
                         {sending ? "Sending..." : "Place Order"}
