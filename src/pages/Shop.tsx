@@ -20,10 +20,19 @@ const Shop = () => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const addToCart = (item: any, details?: string) => {
-    setCart([...cart, { ...item, details }]);
+  const addToCart = (p: any, details?: string) => {
+    setCart((c) => {
+      const existingItemIndex = c.findIndex(
+        (i) => i.id === p.id && i.details === details
+      );
+      if (existingItemIndex > -1) {
+        const newCart = [...c];
+        newCart[existingItemIndex].qty = (newCart[existingItemIndex].qty || 1) + 1;
+        return newCart;
+      }
+      return [...c, { ...p, qty: 1, details }];
+    });
     setDrawerOpen(true);
-    alert(`${item.name} added to cart!`);
   };
 
   const handlePromoConfig = (item: any) => {
@@ -128,12 +137,12 @@ const Shop = () => {
               <div className="space-y-4">
                 {cart.map((item, idx) => (
                   <div key={idx} className="flex justify-between">
-                    <span>{item.name} {item.details && `(${item.details})`}</span>
-                    <span>P{item.price}</span>
+                    <span>{item.name} {item.details && `(${item.details})`} x {item.qty}</span>
+                    <span>P{item.price * item.qty}</span>
                   </div>
                 ))}
                 <div className="border-t pt-4 font-bold">
-                  Total: P{cart.reduce((sum, item) => sum + item.price, 0)}
+                  Total: P{cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0)}
                 </div>
               </div>
             )}
