@@ -72,7 +72,8 @@ export const shopItems: Product[] = [
     name: "SciHi Patch",
     price: 100,
     category: "accessories",
-    image: "/sslg-items/Patch.jpg"
+    image: "/sslg-items/Patch.jpg",
+    isPromo: true
   },
   {
     id: 101,
