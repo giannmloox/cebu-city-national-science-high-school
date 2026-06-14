@@ -34,6 +34,8 @@ const Shop = () => {
   const [section, setSection] = useState("");
   const [contact, setContact] = useState("");
   const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
+  const [building, setBuilding] = useState("");
+  const [room, setRoom] = useState("");
   const [payment, setPayment] = useState<"GCash" | "Cash on Pickup/Delivery" | "">("");
 
   const promoItems = useMemo(() => shopItems.filter(p => p.isPromo), []);
@@ -45,7 +47,7 @@ const Shop = () => {
 
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
   const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
-  const total = subtotal; // Delivery fee logic as per existing state
+  const total = subtotal;
 
   const addToCart = (p: Product) => {
     setCart((c) => {
@@ -79,6 +81,7 @@ const Shop = () => {
       grade_section: `${grade} - ${section}`,
       contact_number: contact,
       delivery_option: delivery,
+      location: delivery === "Delivery" ? `${building}, ${room}` : "Pickup",
       payment_method: payment,
       order_items: orderItems,
       total: `₱${total}`,
@@ -208,6 +211,13 @@ const Shop = () => {
                         <option>Pickup at School</option>
                         <option>Delivery</option>
                     </select>
+
+                    {delivery === "Delivery" && (
+                        <div className="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="Building" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setBuilding(e.target.value)} />
+                            <input type="text" placeholder="Room" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setRoom(e.target.value)} />
+                        </div>
+                    )}
 
                     <div className="p-4 bg-white/5 rounded border border-white/10">
                         <label className="block mb-2 font-semibold">Payment Method</label>
