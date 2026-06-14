@@ -37,7 +37,7 @@ export const shopItems: ShopItem[] = [
     id: 4,
     name: "SciHi Band Shirt",
     price: 290,
-    image: "/sslg-items/Mix.jpg",
+    image: "/sslg-items/Band.jpg",
     category: "shirts",
     description: "Official SciHi band shirt."
   },
