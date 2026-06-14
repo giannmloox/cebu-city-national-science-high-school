@@ -124,13 +124,17 @@ const Shop = () => {
             <h2 className="text-2xl font-bold text-center mb-10">Promos & Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {promoItems.map((p) => (
-                <div key={p.id} className="bg-[#112240] p-6 rounded-lg flex flex-col items-start text-left">
-                  <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded mb-4" />
-                  <h3 className="text-xl font-bold text-white">{p.name}</h3>
-                  <p className="text-gold text-2xl font-bold my-2">₱{p.price}</p>
-                  <div className="flex gap-2 mt-4 w-full">
-                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded">Add to Cart</button>
-                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded">Buy Now</button>
+                <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[400px]">
+                  <img src={p.image} alt={p.name} className="w-full h-[85%] object-cover" />
+                  <div className="h-[15%] p-2 flex items-center justify-between gap-2 bg-[#112240]">
+                    <div className="flex flex-col truncate">
+                        <h3 className="text-sm font-bold text-white truncate">{p.name}</h3>
+                        <p className="text-gold text-xs font-bold">₱{p.price}</p>
+                    </div>
+                    <div className="flex gap-1">
+                        <button onClick={() => addToCart(p)} className="px-3 py-1 border border-gold text-gold text-[10px] font-bold rounded">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-3 py-1 bg-gold text-[#0a1628] text-[10px] font-bold rounded">Buy</button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -148,13 +152,17 @@ const Shop = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((p) => (
-              <div key={p.id} className="bg-[#112240] p-6 rounded-lg flex flex-col items-start text-left">
-                <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded mb-4" />
-                <h3 className="text-xl font-bold text-white">{p.name}</h3>
-                <p className="text-gold text-2xl font-bold my-2">₱{p.price}</p>
-                <div className="flex gap-2 mt-4 w-full">
-                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded">Add to Cart</button>
-                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded">Buy Now</button>
+              <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[400px]">
+                <img src={p.image} alt={p.name} className="w-full h-[85%] object-cover" />
+                <div className="h-[15%] p-2 flex items-center justify-between gap-2 bg-[#112240]">
+                    <div className="flex flex-col truncate">
+                        <h3 className="text-sm font-bold text-white truncate">{p.name}</h3>
+                        <p className="text-gold text-xs font-bold">₱{p.price}</p>
+                    </div>
+                    <div className="flex gap-1">
+                        <button onClick={() => addToCart(p)} className="px-3 py-1 border border-gold text-gold text-[10px] font-bold rounded">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-3 py-1 bg-gold text-[#0a1628] text-[10px] font-bold rounded">Buy</button>
+                    </div>
                 </div>
               </div>
             ))}
