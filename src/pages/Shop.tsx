@@ -193,8 +193,13 @@ const Shop = () => {
                   </div>
                 ) : (
                   <form onSubmit={placeOrder} className="space-y-4">
+                    <div className="bg-white/5 p-4 rounded-lg border border-white/10 text-sm">
+                        <h4 className="font-bold mb-2">Order Summary</h4>
+                        {cart.map(i => <div key={i.id} className="flex justify-between"><span>{i.name} x{i.qty}</span><span>₱{i.price * i.qty}</span></div>)}
+                        <div className="border-t mt-2 pt-2 font-bold flex justify-between"><span>Total</span><span>₱{total}</span></div>
+                    </div>
                     <input type="text" placeholder="Full Name" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setName(e.target.value)} />
-                    <input type="tel" placeholder="Contact" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setContact(e.target.value)} />
+                    <input type="tel" placeholder="Contact Number" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setContact(e.target.value)} />
                     
                     <div className="grid grid-cols-2 gap-4">
                         <select required value={grade} onChange={(e) => { setGrade(e.target.value); setSection(""); }} className="w-full p-2 bg-white/5 rounded border border-white/10">
@@ -214,8 +219,8 @@ const Shop = () => {
 
                     {delivery === "Delivery" && (
                         <div className="grid grid-cols-2 gap-4">
-                            <input type="text" placeholder="Building" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setBuilding(e.target.value)} />
-                            <input type="text" placeholder="Room" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setRoom(e.target.value)} />
+                            <input type="text" placeholder="Building (e.g. SB2)" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setBuilding(e.target.value)} />
+                            <input type="text" placeholder="Room (e.g. 201)" required className="w-full p-2 bg-white/5 rounded border border-white/10" onChange={(e) => setRoom(e.target.value)} />
                         </div>
                     )}
 
