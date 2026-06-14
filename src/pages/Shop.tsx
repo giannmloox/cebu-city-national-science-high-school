@@ -119,6 +119,28 @@ const Shop = () => {
           </div>
         </section>
       </main>
+
+      {drawerOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex justify-end" onClick={() => setDrawerOpen(false)}>
+          <div className="w-full max-w-sm bg-[#0a1628] p-6 text-white border-l border-white/10" onClick={(e) => e.stopPropagation()}>
+            <h2 className="text-xl font-bold mb-4">Your Cart</h2>
+            {cart.length === 0 ? <p>Cart is empty</p> : (
+              <div className="space-y-4">
+                {cart.map((item, idx) => (
+                  <div key={idx} className="flex justify-between">
+                    <span>{item.name} {item.details && `(${item.details})`}</span>
+                    <span>P{item.price}</span>
+                  </div>
+                ))}
+                <div className="border-t pt-4 font-bold">
+                  Total: P{cart.reduce((sum, item) => sum + item.price, 0)}
+                </div>
+              </div>
+            )}
+            <button onClick={() => setDrawerOpen(false)} className="mt-6 w-full py-2 bg-gold text-[#0a1628] font-bold rounded">Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
