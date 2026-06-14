@@ -124,16 +124,16 @@ const Shop = () => {
             <h2 className="text-2xl font-bold text-center mb-10">Promos & Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {promoItems.map((p) => (
-                <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[400px]">
-                  <img src={p.image} alt={p.name} className="w-full h-[85%] object-cover" />
-                  <div className="h-[15%] p-2 flex items-center justify-between gap-2 bg-[#112240]">
-                    <div className="flex flex-col truncate">
-                        <h3 className="text-sm font-bold text-white truncate">{p.name}</h3>
-                        <p className="text-gold text-xs font-bold">₱{p.price}</p>
+                <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[480px]">
+                  <img src={p.image} alt={p.name} className="w-full h-[90%] object-cover" />
+                  <div className="h-[10%] px-3 flex items-center justify-between gap-2 bg-[#112240]">
+                    <div className="flex flex-col truncate w-[60%]">
+                        <h3 className="text-[10px] font-bold text-white truncate leading-tight">{p.name}</h3>
+                        <p className="text-gold text-[9px] font-bold leading-tight">₱{p.price}</p>
                     </div>
-                    <div className="flex gap-1">
-                        <button onClick={() => addToCart(p)} className="px-3 py-1 border border-gold text-gold text-[10px] font-bold rounded">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-3 py-1 bg-gold text-[#0a1628] text-[10px] font-bold rounded">Buy</button>
+                    <div className="flex gap-1 shrink-0">
+                        <button onClick={() => addToCart(p)} className="px-2 py-1 border border-gold text-gold text-[9px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-2 py-1 bg-gold text-[#0a1628] text-[9px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                   </div>
                 </div>
@@ -152,16 +152,16 @@ const Shop = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((p) => (
-              <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[400px]">
-                <img src={p.image} alt={p.name} className="w-full h-[85%] object-cover" />
-                <div className="h-[15%] p-2 flex items-center justify-between gap-2 bg-[#112240]">
-                    <div className="flex flex-col truncate">
-                        <h3 className="text-sm font-bold text-white truncate">{p.name}</h3>
-                        <p className="text-gold text-xs font-bold">₱{p.price}</p>
+              <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[480px]">
+                <img src={p.image} alt={p.name} className="w-full h-[90%] object-cover" />
+                <div className="h-[10%] px-3 flex items-center justify-between gap-2 bg-[#112240]">
+                    <div className="flex flex-col truncate w-[60%]">
+                        <h3 className="text-[10px] font-bold text-white truncate leading-tight">{p.name}</h3>
+                        <p className="text-gold text-[9px] font-bold leading-tight">₱{p.price}</p>
                     </div>
-                    <div className="flex gap-1">
-                        <button onClick={() => addToCart(p)} className="px-3 py-1 border border-gold text-gold text-[10px] font-bold rounded">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-3 py-1 bg-gold text-[#0a1628] text-[10px] font-bold rounded">Buy</button>
+                    <div className="flex gap-1 shrink-0">
+                        <button onClick={() => addToCart(p)} className="px-2 py-1 border border-gold text-gold text-[9px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-2 py-1 bg-gold text-[#0a1628] text-[9px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                 </div>
               </div>
