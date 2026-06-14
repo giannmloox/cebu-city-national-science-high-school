@@ -124,13 +124,13 @@ const Shop = () => {
             <h2 className="text-2xl font-bold text-center mb-10">Promos & Bundles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {promoItems.map((p) => (
-                <div key={p.id} className="glass-card p-6 rounded-xl flex flex-col">
-                  <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded-lg mb-4" />
-                  <h3 className="text-xl font-bold">{p.name}</h3>
+                <div key={p.id} className="bg-[#112240] p-6 rounded-lg flex flex-col items-start text-left">
+                  <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded mb-4" />
+                  <h3 className="text-xl font-bold text-white">{p.name}</h3>
                   <p className="text-gold text-2xl font-bold my-2">₱{p.price}</p>
-                  <div className="flex gap-2 mt-auto">
-                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded-full">Add to Cart</button>
-                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded-full">Buy Now</button>
+                  <div className="flex gap-2 mt-4 w-full">
+                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded">Add to Cart</button>
+                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded">Buy Now</button>
                   </div>
                 </div>
               ))}
@@ -148,13 +148,13 @@ const Shop = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((p) => (
-              <div key={p.id} className="glass-card p-6 rounded-xl flex flex-col">
-                <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded-lg mb-4" />
-                <h3 className="text-xl font-bold">{p.name}</h3>
+              <div key={p.id} className="bg-[#112240] p-6 rounded-lg flex flex-col items-start text-left">
+                <img src={p.image} alt={p.name} className="w-full h-64 object-cover rounded mb-4" />
+                <h3 className="text-xl font-bold text-white">{p.name}</h3>
                 <p className="text-gold text-2xl font-bold my-2">₱{p.price}</p>
-                <div className="flex gap-2 mt-auto">
-                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded-full">Add to Cart</button>
-                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded-full">Buy Now</button>
+                <div className="flex gap-2 mt-4 w-full">
+                    <button onClick={() => addToCart(p)} className="flex-1 py-3 border border-gold text-gold font-bold rounded">Add to Cart</button>
+                    <button onClick={() => buyNow(p)} className="flex-1 py-3 bg-gold text-[#0a1628] font-bold rounded">Buy Now</button>
                 </div>
               </div>
             ))}
