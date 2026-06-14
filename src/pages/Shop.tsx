@@ -7,8 +7,8 @@ const FILTERS = ["All", "shirts", "accessories"] as const;
 const Shop = () => {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
 
-  const promoItems = useMemo(() => shopItems.filter(item => item.category === "promo"), []);
-  const regularItems = useMemo(() => shopItems.filter(item => item.category !== "promo"), []);
+  const promoItems = useMemo(() => shopItems.filter(item => item.category === "promo" || item.category === "bundle"), []);
+  const regularItems = useMemo(() => shopItems.filter(item => item.category !== "promo" && item.category !== "bundle"), []);
 
   const filteredItems = useMemo(
     () => (filter === "All" ? regularItems : regularItems.filter((p) => p.category === filter)),
