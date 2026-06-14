@@ -1,11 +1,14 @@
 import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
-import { shopItems } from "../data/shopData";
+import { shopItems, ShopItem } from "../data/shopData";
 
 const FILTERS = ["All", "shirts", "accessories"] as const;
 
 const Shop = () => {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
+  const [cart, setCart] = useState<any[]>([]);
+  const [showConfig, setShowConfig] = useState(false);
+  const [promoSelection, setPromoSelection] = useState<string[]>([]);
 
   const promoItems = useMemo(() => shopItems.filter(item => item.category === "promo" || item.category === "bundle"), []);
   const regularItems = useMemo(() => shopItems.filter(item => item.category !== "promo" && item.category !== "bundle"), []);
@@ -15,6 +18,27 @@ const Shop = () => {
     [filter, regularItems]
   );
 
+  const addToCart = (item: any, details?: string) => {
+    setCart([...cart, { ...item, details }]);
+    alert(`${item.name} added to cart!`);
+  };
+
+  const handlePromoConfig = (item: any) => {
+    if (item.id === "b1") {
+      setShowConfig(true);
+    } else {
+      addToCart(item);
+    }
+  };
+
+  const confirmPromo = () => {
+    if (promoSelection.length === 2) {
+      addToCart(promoItems.find(p => p.id === "b1"), `Shirt 1: ${promoSelection[0]}, Shirt 2: ${promoSelection[1]}`);
+      setPromoSelection([]);
+      setShowConfig(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0a1628]">
       <Navbar />
@@ -22,6 +46,33 @@ const Shop = () => {
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white">SSLG Shop</h1>
         </header>
+
+        {showConfig && (
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+            <div className="glass-card p-8 max-w-md w-full text-white">
+              <h2 className="text-2xl font-bold mb-4">Configure Mix & Match Promo</h2>
+              <p className="mb-4">Select 2 shirts:</p>
+              <div className="grid gap-2 mb-6">
+                {[
+                  "Stranger Things Shirt", "Day in a Life Shirt", "SciHi Band Shirt",
+                  "Beige 1970 Shirt", "Good Morning SciHi Shirt", "Y2K Shirt"
+                ].map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => setPromoSelection(s => s.includes(opt) ? s.filter(i => i !== opt) : s.length < 2 ? [...s, opt] : s)}
+                    className={`p-2 rounded border ${promoSelection.includes(opt) ? "bg-gold text-[#0a1628]" : "border-white/20"}`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+              <div className="flex gap-4">
+                <button onClick={() => setShowConfig(false)} className="flex-1 py-2 border border-white/20 rounded">Cancel</button>
+                <button onClick={confirmPromo} disabled={promoSelection.length < 2} className="flex-1 py-2 bg-gold text-[#0a1628] rounded font-bold disabled:opacity-50">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {promoItems.length > 0 && (
           <section className="mb-16">
@@ -33,13 +84,13 @@ const Shop = () => {
                   <h3 className="text-white font-bold text-lg">{p.name}</h3>
                   <p className="text-gold text-xl font-bold my-2">P{p.price}</p>
                   <p className="text-white/70 text-sm mb-4">{p.description}</p>
-                  <p className="text-white/50 text-xs mt-auto italic">After checkout, send your selected items via message or order notes.</p>
+                  <button onClick={() => handlePromoConfig(p)} className="mt-auto w-full py-2.5 bg-gold text-[#0a1628] font-semibold rounded-full">Add to Cart</button>
                 </div>
               ))}
             </div>
           </section>
         )}
-
+...
         <section>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {FILTERS.map((f) => (
