@@ -18,8 +18,11 @@ const Shop = () => {
     [filter, regularItems]
   );
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   const addToCart = (item: any, details?: string) => {
     setCart([...cart, { ...item, details }]);
+    setDrawerOpen(true);
     alert(`${item.name} added to cart!`);
   };
 
@@ -110,7 +113,7 @@ const Shop = () => {
                 <img src={p.image} alt={p.name} className="w-full aspect-square object-cover mb-4 rounded-lg" />
                 <h3 className="text-white font-bold text-lg">{p.name}</h3>
                 <p className="text-gold text-xl font-bold my-2">P{p.price}</p>
-                <button className="mt-auto w-full py-2.5 bg-gold text-[#0a1628] font-semibold rounded-full">Add to Cart</button>
+                <button onClick={() => addToCart(p)} className="mt-auto w-full py-2.5 bg-gold text-[#0a1628] font-semibold rounded-full">Add to Cart</button>
               </div>
             ))}
           </div>
