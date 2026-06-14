@@ -127,13 +127,13 @@ const Shop = () => {
                 <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[480px]">
                   <img src={p.image} alt={p.name} className="w-full h-[90%] object-cover" />
                   <div className="h-[10%] px-3 flex items-center justify-between gap-2 bg-[#112240]">
-                    <div className="flex flex-col truncate w-[60%]">
-                        <h3 className="text-xs font-bold text-white truncate leading-tight">{p.name}</h3>
-                        <p className="text-gold text-xs font-bold leading-tight">₱{p.price}</p>
+                    <div className="flex flex-col truncate w-[50%]">
+                        <h3 className="text-sm font-bold text-white truncate leading-tight">{p.name}</h3>
+                        <p className="text-gold text-sm font-bold leading-tight">₱{p.price}</p>
                     </div>
                     <div className="flex gap-2 shrink-0">
-                        <button onClick={() => addToCart(p)} className="px-5 py-2 border border-gold text-gold text-xs font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-5 py-2 bg-gold text-[#0a1628] text-xs font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
+                        <button onClick={() => addToCart(p)} className="px-6 py-2 border border-gold text-gold text-sm font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-6 py-2 bg-gold text-[#0a1628] text-sm font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                   </div>
                 </div>
@@ -155,13 +155,13 @@ const Shop = () => {
               <div key={p.id} className="bg-[#112240] rounded-lg overflow-hidden flex flex-col h-[480px]">
                 <img src={p.image} alt={p.name} className="w-full h-[90%] object-cover" />
                 <div className="h-[10%] px-3 flex items-center justify-between gap-2 bg-[#112240]">
-                    <div className="flex flex-col truncate w-[60%]">
-                        <h3 className="text-xs font-bold text-white truncate leading-tight">{p.name}</h3>
-                        <p className="text-gold text-xs font-bold leading-tight">₱{p.price}</p>
+                    <div className="flex flex-col truncate w-[50%]">
+                        <h3 className="text-sm font-bold text-white truncate leading-tight">{p.name}</h3>
+                        <p className="text-gold text-sm font-bold leading-tight">₱{p.price}</p>
                     </div>
                     <div className="flex gap-2 shrink-0">
-                        <button onClick={() => addToCart(p)} className="px-5 py-2 border border-gold text-gold text-xs font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-5 py-2 bg-gold text-[#0a1628] text-xs font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
+                        <button onClick={() => addToCart(p)} className="px-6 py-2 border border-gold text-gold text-sm font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-6 py-2 bg-gold text-[#0a1628] text-sm font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                 </div>
               </div>
