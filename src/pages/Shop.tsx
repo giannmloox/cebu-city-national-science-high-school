@@ -183,8 +183,13 @@ const Shop = () => {
       <AnimatePresence>
         {checkoutOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4">
-             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-8 bg-[#0a1628]/95 rounded-2xl" onClick={(e) => e.stopPropagation()}>
-                <h2 className="text-2xl font-bold mb-4">{orderPlaced ? "Order Confirmed" : "Checkout"}</h2>
+             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="glass-card max-w-2xl w-full p-0 bg-[#0a1628]/95 rounded-2xl flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+                <div className="p-8 pb-0 flex justify-between items-center">
+                    <h2 className="text-2xl font-bold">{orderPlaced ? "Order Confirmed" : "Checkout"}</h2>
+                    <button onClick={closeCheckout} className="p-2 hover:bg-white/10 rounded-full"><X /></button>
+                </div>
+                
+                <div className="p-8 overflow-y-auto flex-1">
                 {orderPlaced ? (
                   <div className="text-center py-10">
                       <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
@@ -247,12 +252,15 @@ const Shop = () => {
                             </div>
                         )}
                     </div>
-
-                    <button type="submit" disabled={!payment || sending || cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">
-                        {sending ? "Sending..." : "Place Order"}
-                    </button>
-                    <button type="button" onClick={closeCheckout} className="w-full py-2 border border-white/20 rounded">Cancel</button>
                   </form>
+                )}
+                </div>
+                {!orderPlaced && (
+                    <div className="p-8 pt-0 shrink-0">
+                        <button type="submit" onClick={placeOrder} disabled={!payment || sending || cart.length === 0} className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded">
+                            {sending ? "Sending..." : "Place Order"}
+                        </button>
+                    </div>
                 )}
              </motion.div>
           </motion.div>
