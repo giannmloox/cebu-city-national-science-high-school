@@ -131,9 +131,9 @@ const Shop = () => {
                         <h3 className="text-[10px] font-bold text-white truncate leading-tight">{p.name}</h3>
                         <p className="text-gold text-[9px] font-bold leading-tight">₱{p.price}</p>
                     </div>
-                    <div className="flex gap-1 shrink-0">
-                        <button onClick={() => addToCart(p)} className="px-2 py-1 border border-gold text-gold text-[9px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-2 py-1 bg-gold text-[#0a1628] text-[9px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
+                    <div className="flex gap-2 shrink-0">
+                        <button onClick={() => addToCart(p)} className="px-4 py-2 border border-gold text-gold text-[11px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-4 py-2 bg-gold text-[#0a1628] text-[11px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                   </div>
                 </div>
@@ -159,9 +159,9 @@ const Shop = () => {
                         <h3 className="text-[10px] font-bold text-white truncate leading-tight">{p.name}</h3>
                         <p className="text-gold text-[9px] font-bold leading-tight">₱{p.price}</p>
                     </div>
-                    <div className="flex gap-1 shrink-0">
-                        <button onClick={() => addToCart(p)} className="px-2 py-1 border border-gold text-gold text-[9px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
-                        <button onClick={() => buyNow(p)} className="px-2 py-1 bg-gold text-[#0a1628] text-[9px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
+                    <div className="flex gap-2 shrink-0">
+                        <button onClick={() => addToCart(p)} className="px-4 py-2 border border-gold text-gold text-[11px] font-bold rounded hover:bg-gold/10 transition-colors">Add</button>
+                        <button onClick={() => buyNow(p)} className="px-4 py-2 bg-gold text-[#0a1628] text-[11px] font-bold rounded hover:opacity-90 transition-opacity">Buy</button>
                     </div>
                 </div>
               </div>
