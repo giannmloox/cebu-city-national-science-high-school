@@ -61,7 +61,7 @@ export const shopItems: ShopItem[] = [
     id: 7,
     name: "Y2K Shirt",
     price: 300,
-    image: "/sslg-items/Y2KxSci.jpg",
+    image: "/sslg-items/Y2K.jpg",
     category: "shirts",
     description: "Trendy Y2K style shirt."
   },
