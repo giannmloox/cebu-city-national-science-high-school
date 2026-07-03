@@ -69,7 +69,7 @@ const Printing = () => {
   const { pages: selectedPageArray, error: rangeError } = printMode === "selected"
     ? parsePageRange(selectedPages, pdfPageCount)
     : { pages: [], error: undefined };
-  const effectivePages = printMode === "selected" ? selectedPageArray.length : pdfPageCount;
+  const effectivePages = printMode === "selected" ? selectedPageArray.length : (pdfPageCount > 0 ? pdfPageCount : 1);
 
   const pagesSubtotal = pricePerPage * effectivePages * copies;
   const bindingFee = binding === "Stapled" ? STAPLE_FEE : binding === "Bound" ? BIND_FEE : 0;
@@ -196,37 +196,10 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
     };
 
     try {
-      // Fetch the uploaded file and convert to base64 for email attachment
-      let attachmentBase64: string | undefined;
-      if (fileUrl && file) {
-        try {
-          const response = await fetch(fileUrl);
-          if (response.ok) {
-            const blob = await response.blob();
-            const base64 = await new Promise<string>((resolve, reject) => {
-              const reader = new FileReader();
-              reader.onload = () => resolve(reader.result as string);
-              reader.onerror = reject;
-              reader.readAsDataURL(blob);
-            });
-            // Extract just the base64 part (remove "data:mime/type;base64,")
-            attachmentBase64 = base64.split(",")[1];
-          }
-        } catch (fetchErr) {
-          console.warn("Could not fetch file for attachment, sending without:", fetchErr);
-        }
-      }
-
-      // Add attachment (if any) to template params under the variable name "file_attachment"
-      const finalParams = {
-        ...templateParams,
-        ...(attachmentBase64 ? { file_attachment: attachmentBase64 } : {}),
-      };
-
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        finalParams,
+        templateParams,
         EMAILJS_PUBLIC_KEY
       );
       setOrderPlaced(true);
