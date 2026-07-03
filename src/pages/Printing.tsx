@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
 import { parsePageRange } from "@/lib/printingUtils";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
-import mammoth from "mammoth";
+import * as mammoth from "mammoth";
 import JSZip from "jszip";
 
 /* ---------- CONFIGURATION ---------- */
