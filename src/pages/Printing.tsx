@@ -10,7 +10,7 @@ import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 // TODO: replace these placeholder values with real credentials / pricing
 const EMAILJS_SERVICE_ID = "service_bni5zql"; // same as shop
 const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt"; // same as shop
-const EMAILJS_TEMPLATE_ID = "YOUR_PRINTING_TEMPLATE_ID"; // <--- fill in
+const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
 
 const UPLOAD_IO_API_KEY = "public_G22njFq9x1f9KgqeoqHfTJUw1VdE";
 const UPLOAD_IO_ACCOUNT_ID = "G22njFq";
@@ -384,7 +384,7 @@ const Printing = () => {
             {/* Submit button */}
           <button
             type="submit"
-            disabled={submitting || !fileUrl || pdfPageCount===0 || (printMode==="selected" && (selectedPages.trim()==='' || effectivePages===0))}
+            disabled={submitting || !fileUrl || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
             className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded"
           >
             {submitting ? "Sending…" : "Place Order"}
