@@ -12,8 +12,8 @@ const EMAILJS_SERVICE_ID = "service_bni5zql"; // same as shop
 const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt"; // same as shop
 const EMAILJS_TEMPLATE_ID = "YOUR_PRINTING_TEMPLATE_ID"; // <--- fill in
 
-const UPLOAD_IO_API_KEY = "YOUR_UPLOAD_IO_API_KEY"; // <--- fill in
-const UPLOAD_IO_ACCOUNT_ID = "YOUR_UPLOAD_IO_ACCOUNT_ID"; // <--- fill in
+const UPLOAD_IO_API_KEY = "public_G22njFq9x1f9KgqeoqHfTJUw1VdE";
+const UPLOAD_IO_ACCOUNT_ID = "G22njFq";
 
 // Pricing placeholders – replace with actual rates (PHP)
 const B_W_PRICE_PER_PAGE = 5; // black & white price per page
@@ -116,8 +116,8 @@ const Printing = () => {
         }
       };
       xhr.onerror = () => {
-        setUploadError("Network error during upload.");
-        reject(new Error("Network error"));
+        setUploadError(`Upload failed (status ${xhr.status}). Check credentials or CORS.`);
+        reject(new Error(`Upload XHR error ${xhr.status}`));
       };
       xhr.timeout = 30000; // 30 seconds
       xhr.ontimeout = () => {
