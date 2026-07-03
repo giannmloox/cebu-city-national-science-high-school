@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -65,8 +65,11 @@ const Printing = () => {
   /* ---- price calculation ---- */
   const pricePerPage = color === "B&W" ? B_W_PRICE_PER_PAGE : COLOR_PRICE_PER_PAGE;
 
-  // Determine how many pages to print based on mode and PDF page count
-  // Parse selected pages (if any) and compute effective page count\n  const { pages: selectedPageArray, error: rangeError } = printMode === "selected"\n    ? parsePageRange(selectedPages, pdfPageCount)\n    : { pages: [], error: undefined };\n  const effectivePages = printMode === "selected" ? selectedPageArray.length : pdfPageCount;
+  // Parse selected pages (if any) and compute effective page count
+  const { pages: selectedPageArray, error: rangeError } = printMode === "selected"
+    ? parsePageRange(selectedPages, pdfPageCount)
+    : { pages: [], error: undefined };
+  const effectivePages = printMode === "selected" ? selectedPageArray.length : pdfPageCount;
 
   const pagesSubtotal = pricePerPage * effectivePages * copies;
   const bindingFee = binding === "Stapled" ? STAPLE_FEE : binding === "Bound" ? BIND_FEE : 0;
