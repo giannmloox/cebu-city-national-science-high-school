@@ -4,7 +4,7 @@ import { CheckCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
 import { parsePageRange } from "@/lib/printingUtils";
-import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
+import { PDFDocument } from "pdf-lib";
 import * as mammoth from "mammoth";
 import JSZip from "jszip";
 
@@ -155,9 +155,10 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
         reader.onload = async () => {
           const arrayBuffer = reader.result as ArrayBuffer;
           try {
-            // Use PDF.js with worker disabled to avoid loading issues in the Vite environment
-            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer, disableWorker: true }).promise;
-            setPdfPageCount(pdf.numPages);
+            // Use pdf-lib to load PDF and get page count
+            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            const pageCount = pdfDoc.getPageCount();
+            setPdfPageCount(pageCount);
             setPrintMode("entire");
           } catch (err) {
             console.error("PDF parse error", err);
