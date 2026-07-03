@@ -632,18 +632,19 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
                       {delivery === "Delivery" && (
                         <p><strong>Location:</strong> {address || `${building}, ${room}`}</p>
                       )}
-                      <p><strong>Payment:</strong> {payment}</p>
+<p><strong>Payment:</strong> {payment}</p>
                       {payment === "GCash" && (
                         <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
                           <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
                           <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
-<p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
+                          <p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
                         </div>
                       )}
-<button
-                         onClick={() => { resetForm(); setOrderPlaced(false); }}
-                         className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded"
-                       >
+                      <p className="mt-2"><strong>File URL:</strong>{' '}<a href={fileUrl} target="_blank" rel="noopener noreferrer" className="underline text-gold">View uploaded file</a></p>
+                      <button
+                        onClick={() => { resetForm(); setOrderPlaced(false); }}
+                        className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded"
+                      >
                         Close
                       </button>
                 </div>
