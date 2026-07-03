@@ -147,22 +147,23 @@ const Printing = () => {
       return;
     }
     // Determine PDF page count if file is a PDF
-    if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const arrayBuffer = reader.result as ArrayBuffer;
-        try {
-          const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-          setPdfPageCount(pdf.numPages);
-          setPrintMode("entire");
-        } catch (err) {
-          console.error("PDF parse error", err);
-          setUploadError("Failed to read PDF – it may be corrupted.");
-          setPdfPageCount(0);
-        }
-      };
-      reader.readAsArrayBuffer(selected);
-    } else {
+if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const arrayBuffer = reader.result as ArrayBuffer;
+          try {
+            // Use PDF.js with worker disabled to avoid loading issues in the Vite environment
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer, disableWorker: true }).promise;
+            setPdfPageCount(pdf.numPages);
+            setPrintMode("entire");
+          } catch (err) {
+            console.error("PDF parse error", err);
+            setUploadError("Failed to read PDF – it may be corrupted.");
+            setPdfPageCount(0);
+          }
+        };
+        reader.readAsArrayBuffer(selected);
+      } else {
       // Non‑PDF files: no page count information
       setPdfPageCount(0);
     }
