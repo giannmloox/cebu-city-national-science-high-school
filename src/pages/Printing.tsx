@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
 import { parsePageRange } from "@/lib/printingUtils";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
+import mammoth from "mammoth";
+import JSZip from "jszip";
 
 /* ---------- CONFIGURATION ---------- */
 // TODO: replace these placeholder values with real credentials / pricing
@@ -146,8 +148,9 @@ const Printing = () => {
       setUploadError("File exceeds maximum size of 32 MB.");
       return;
     }
-    // Determine PDF page count if file is a PDF
+// Determine page count based on file type (PDF, DOCX, PPTX)
 if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
+        // ---- PDF ----
         const reader = new FileReader();
         reader.onload = async () => {
           const arrayBuffer = reader.result as ArrayBuffer;
@@ -163,10 +166,52 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
           }
         };
         reader.readAsArrayBuffer(selected);
+      } else if (selected.name.toLowerCase().endsWith(".docx")) {
+        // ---- DOCX ----
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const arrayBuffer = reader.result as ArrayBuffer;
+          try {
+            const result = await mammoth.convertToHtml({ arrayBuffer });
+            const html = result.value;
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = html;
+            const paragraphCount = tempDiv.querySelectorAll("p").length;
+            // Estimate pages: assume ~30 paragraphs per printed page
+            const estimatedPages = Math.max(1, Math.ceil(paragraphCount / 30));
+            setPdfPageCount(estimatedPages);
+            setPrintMode("entire");
+          } catch (err) {
+            console.error("DOCX parse error", err);
+            setUploadError("Failed to read DOCX – it may be corrupted.");
+            setPdfPageCount(0);
+          }
+        };
+        reader.readAsArrayBuffer(selected);
+      } else if (selected.name.toLowerCase().endsWith(".pptx")) {
+        // ---- PPTX ----
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const arrayBuffer = reader.result as ArrayBuffer;
+          try {
+            const zip = await JSZip.loadAsync(arrayBuffer);
+            const slideCount = Object.keys(zip.files).filter(name =>
+              name.startsWith("ppt/slides/slide") && name.endsWith(".xml")
+            ).length;
+            const pages = slideCount > 0 ? slideCount : 1;
+            setPdfPageCount(pages);
+            setPrintMode("entire");
+          } catch (err) {
+            console.error("PPTX parse error", err);
+            setUploadError("Failed to read PPTX – it may be corrupted.");
+            setPdfPageCount(0);
+          }
+        };
+        reader.readAsArrayBuffer(selected);
       } else {
-      // Non‑PDF files: no page count information
-      setPdfPageCount(0);
-    }
+        // Non‑PDF/DOCX/PPTX files: treat as a single‑page document
+        setPdfPageCount(1);
+      }
     setFile(selected);
     // Start upload (errors will be captured inside uploadFile)
     uploadFile(selected).catch(() => {});
