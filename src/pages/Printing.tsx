@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -17,11 +17,13 @@ const EMAILJS_TEMPLATE_ID = "template_e6j3smf"; // using existing shop template 
 const UPLOAD_IO_API_KEY = "public_G22njFq9x1f9KgqeoqHfTJUw1VdE";
 const UPLOAD_IO_ACCOUNT_ID = "G22njFq";
 
-// Pricing placeholders – replace with actual rates (PHP)
-const B_W_PRICE_PER_PAGE = 5; // black & white price per page
-const COLOR_PRICE_PER_PAGE = 6; // color price per page
-const STAPLE_FEE = 2; // flat fee for stapling
-const BIND_FEE = 5; // flat fee for binding
+// Pricing will be loaded from /pricing.json at runtime (fallback values are provided)
+const DEFAULT_PRICING = {
+  bwPrice: 5,
+  colorPrice: 6,
+  stapleFee: 2,
+  bindFee: 5,
+};
 
 const PAPER_SIZES = ["A4", "Long (8.5x13)", "Short (8.5x11)"] as const;
 const BINDING_OPTIONS = ["None", "Stapled", "Bound"] as const;
@@ -59,13 +61,32 @@ const Printing = () => {
   const [fileUrl, setFileUrl] = useState<string>("");
   const [uploadError, setUploadError] = useState<string>("");
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [parsing, setParsing] = useState(false);
 
   const [submitting, setSubmitting] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [sendError, setSendError] = useState(false);
 
+  // Load dynamic pricing (fallback to defaults)
+  const [pricing, setPricing] = useState(DEFAULT_PRICING);
+  useEffect(() => {
+    fetch("/pricing.json")
+      .then((r) => (r.ok ? r.json() : Promise.reject("Pricing fetch failed")))
+      .then((data) => {
+        setPricing({
+          bwPrice: data.bwPrice ?? DEFAULT_PRICING.bwPrice,
+          colorPrice: data.colorPrice ?? DEFAULT_PRICING.colorPrice,
+          stapleFee: data.stapleFee ?? DEFAULT_PRICING.stapleFee,
+          bindFee: data.bindFee ?? DEFAULT_PRICING.bindFee,
+        });
+      })
+      .catch((err) => {
+        console.warn("Could not load pricing, using defaults:", err);
+      });
+  }, []);
+
   /* ---- price calculation ---- */
-  const pricePerPage = color === "B&W" ? B_W_PRICE_PER_PAGE : COLOR_PRICE_PER_PAGE;
+  const pricePerPage = color === "B&W" ? pricing.bwPrice : pricing.colorPrice;
 
   // Parse selected pages (if any) and compute effective page count
   const { pages: selectedPageArray, error: rangeError } = printMode === "selected"
@@ -74,7 +95,7 @@ const Printing = () => {
   const effectivePages = printMode === "selected" ? selectedPageArray.length : (pdfPageCount > 0 ? pdfPageCount : 1);
 
   const pagesSubtotal = pricePerPage * effectivePages * copies;
-  const bindingFee = binding === "Stapled" ? STAPLE_FEE : binding === "Bound" ? BIND_FEE : 0;
+  const bindingFee = binding === "Stapled" ? pricing.stapleFee : binding === "Bound" ? pricing.bindFee : 0;
   const total = pagesSubtotal + bindingFee;
 
   /* ---- file upload handling (Upload.io) ---- */
@@ -149,6 +170,7 @@ const Printing = () => {
       return;
     }
 // Determine page count based on file type (PDF, DOCX, PPTX)
+    setParsing(true);
 if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
         // ---- PDF ----
         const reader = new FileReader();
@@ -164,6 +186,8 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             console.error("PDF parse error", err);
             setUploadError("Failed to read PDF – it may be corrupted.");
             setPdfPageCount(0);
+          } finally {
+            setParsing(false);
           }
         };
         reader.readAsArrayBuffer(selected);
@@ -186,6 +210,8 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             console.error("DOCX parse error", err);
             setUploadError("Failed to read DOCX – it may be corrupted.");
             setPdfPageCount(0);
+          } finally {
+            setParsing(false);
           }
         };
         reader.readAsArrayBuffer(selected);
@@ -206,12 +232,15 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             console.error("PPTX parse error", err);
             setUploadError("Failed to read PPTX – it may be corrupted.");
             setPdfPageCount(0);
+          } finally {
+            setParsing(false);
           }
         };
         reader.readAsArrayBuffer(selected);
       } else {
         // Non‑PDF/DOCX/PPTX files: treat as a single‑page document
         setPdfPageCount(1);
+        setParsing(false);
       }
     setFile(selected);
     // Start upload (errors will be captured inside uploadFile)
@@ -270,6 +299,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             type="text"
             placeholder="Full Name"
             required
+            aria-label="Full Name"
             className="w-full p-2 bg-white/5 rounded border border-white/10"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -278,6 +308,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             type="tel"
             placeholder="Contact Number"
             required
+            aria-label="Contact Number"
             className="w-full p-2 bg-white/5 rounded border border-white/10"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
@@ -286,6 +317,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
           <div className="grid grid-cols-2 gap-4">
             <select
               required
+              aria-label="Select Grade"
               value={grade}
               onChange={(e) => {
                 setGrade(e.target.value);
@@ -302,6 +334,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             </select>
             <select
               required
+              aria-label="Select Section"
               disabled={!grade}
               value={section}
               onChange={(e) => setSection(e.target.value)}
@@ -350,6 +383,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
               type="number"
               min={1}
               required
+              aria-label="Number of Copies"
               placeholder="Copies"
               className="w-full p-2 bg-white/5 rounded border border-white/10"
               value={copies}
@@ -371,18 +405,16 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             ))}
           </div>
           {/* Live total */}
-          <div className="p-4 bg-white/5 rounded border border-white/10 text-sm">
+          <div className="sticky top-0 z-10 p-4 bg-[#0a1628]/95 backdrop-blur rounded border border-white/10 text-sm">
             <p>
               <strong>Price per page:</strong> ₱{pricePerPage}
             </p>
             <p>
               <strong>Pages × Copies × Rate:</strong> ₱{pagesSubtotal}
             </p>
-            {bindingFee > 0 && (
-              <p>
+            <p>
                 <strong>{binding} fee:</strong> ₱{bindingFee}
               </p>
-            )}
             <p className="font-bold text-gold mt-2">Total: ₱{total}</p>
           </div>
           {/* File upload */}
@@ -408,6 +440,9 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
               {uploadError && (
                 <p className="mt-2 text-red-400">{uploadError}</p>
               )}
+              {parsing && (
+                <p className="mt-2 text-blue-400 animate-pulse">Detecting pages…</p>
+              )}
             {fileUrl && (
               <p className="mt-2 text-gold">
                 Uploaded: <a href={fileUrl} target="_blank" rel="noopener noreferrer" className="underline">view file</a>
@@ -431,7 +466,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             {/* Submit button */}
           <button
             type="submit"
-            disabled={submitting || !fileUrl || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
+            disabled={submitting || parsing || !fileUrl || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
             className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded"
           >
             {submitting ? "Sending…" : "Place Order"}
