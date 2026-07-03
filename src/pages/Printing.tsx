@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
 /* ---------- CONFIGURATION ---------- */
 // TODO: replace these placeholder values with real credentials / pricing
@@ -44,7 +45,9 @@ const Printing = () => {
 
   const [paperSize, setPaperSize] = useState<typeof PAPER_SIZES[number]>(PAPER_SIZES[0]);
   const [color, setColor] = useState<"B&W" | "Color">("B&W");
-  const [pages, setPages] = useState(1);
+  const [pdfPageCount, setPdfPageCount] = useState(0);
+  const [printMode, setPrintMode] = useState<"entire" | "selected">("entire");
+  const [selectedPages, setSelectedPages] = useState("");
   const [copies, setCopies] = useState(1);
   const [binding, setBinding] = useState<typeof BINDING_OPTIONS[number]>(BINDING_OPTIONS[0]);
 
@@ -58,7 +61,34 @@ const Printing = () => {
 
   /* ---- price calculation ---- */
   const pricePerPage = color === "B&W" ? B_W_PRICE_PER_PAGE : COLOR_PRICE_PER_PAGE;
-  const pagesSubtotal = pricePerPage * pages * copies;
+
+  // Determine how many pages to print based on mode and PDF page count
+  const effectivePages = (() => {
+    if (printMode === "entire") {
+      return pdfPageCount;
+    }
+    // parse selectedPages like "1,3-5"
+    const parts = selectedPages.split(",").map(p => p.trim()).filter(Boolean);
+    let count = 0;
+    for (const part of parts) {
+      if (part.includes("-")) {
+        const [startStr, endStr] = part.split("-").map(s => s.trim());
+        const start = Number(startStr);
+        const end = Number(endStr);
+        if (!isNaN(start) && !isNaN(end) && start <= end && end <= pdfPageCount) {
+          count += end - start + 1;
+        }
+      } else {
+        const num = Number(part);
+        if (!isNaN(num) && num <= pdfPageCount) {
+          count += 1;
+        }
+      }
+    }
+    return count;
+  })();
+
+  const pagesSubtotal = pricePerPage * effectivePages * copies;
   const bindingFee = binding === "Stapled" ? STAPLE_FEE : binding === "Bound" ? BIND_FEE : 0;
   const total = pagesSubtotal + bindingFee;
 
@@ -94,6 +124,27 @@ const Printing = () => {
     const selected = e.target.files?.[0] ?? null;
     setFile(selected);
     if (selected) {
+      // Determine PDF page count if file is a PDF
+      if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const arrayBuffer = reader.result as ArrayBuffer;
+          try {
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            setPdfPageCount(pdf.numPages);
+            // Default to printing the entire document
+            setPrintMode("entire");
+          } catch (err) {
+            console.error("PDF parse error", err);
+            setPdfPageCount(0);
+          }
+        };
+        reader.readAsArrayBuffer(selected);
+      } else {
+        // Non-PDF files: we cannot determine page count
+        setPdfPageCount(0);
+      }
+      // Upload the file regardless of type
       uploadFile(selected);
     }
   };
@@ -109,11 +160,12 @@ const Printing = () => {
       contact_number: contact,
       paper_size: paperSize,
       color_type: color,
-      page_count: pages,
+      page_count: effectivePages,
       copy_count: copies,
       binding_type: binding,
       file_name: file?.name ?? "",
       file_link: fileUrl,
+      selected_pages: printMode === "selected" ? selectedPages : "",
       price_per_page: `₱${pricePerPage}`,
       subtotal: `₱${pagesSubtotal}`,
       binding_fee: `₱${bindingFee}`,
@@ -229,15 +281,6 @@ const Printing = () => {
               type="number"
               min={1}
               required
-              placeholder="Pages"
-              className="w-full p-2 bg-white/5 rounded border border-white/10"
-              value={pages}
-              onChange={(e) => setPages(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              min={1}
-              required
               placeholder="Copies"
               className="w-full p-2 bg-white/5 rounded border border-white/10"
               value={copies}
@@ -296,7 +339,20 @@ const Printing = () => {
               </p>
             )}
           </div>
-          {/* Submit button */}
+            {/* Page selection (after file upload) */}
+            {pdfPageCount > 0 && (
+              <div className="mt-4">
+                <p className="text-sm mb-2">Detected pages: {pdfPageCount}</p>
+                <div className="flex gap-2 mb-2">
+                  <label className="flex items-center"><input type="radio" name="printMode" value="entire" checked={printMode==="entire"} onChange={()=>setPrintMode("entire")} className="mr-1" /> Print entire file</label>
+                  <label className="flex items-center"><input type="radio" name="printMode" value="selected" checked={printMode==="selected"} onChange={()=>setPrintMode("selected")} className="mr-1" /> Select pages</label>
+                </div>
+                {printMode==="selected" && (
+                  <input type="text" placeholder="e.g. 1,3-5" value={selectedPages} onChange={e=>setSelectedPages(e.target.value)} className="w-full p-2 bg-white/5 rounded border border-white/10" />
+                )}
+              </div>
+            )}
+            {/* Submit button */}
           <button
             type="submit"
             disabled={submitting || !fileUrl}
