@@ -10,7 +10,7 @@ import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 // TODO: replace these placeholder values with real credentials / pricing
 const EMAILJS_SERVICE_ID = "service_bni5zql"; // same as shop
 const EMAILJS_PUBLIC_KEY = "AeJN83U2A_THgdEyt"; // same as shop
-const EMAILJS_TEMPLATE_ID = "template_e6j3smf";
+const EMAILJS_TEMPLATE_ID = "template_printing_receipt"; // create a separate template in EmailJS for printing
 
 const UPLOAD_IO_API_KEY = "public_G22njFq9x1f9KgqeoqHfTJUw1VdE";
 const UPLOAD_IO_ACCOUNT_ID = "G22njFq";
@@ -193,15 +193,44 @@ const Printing = () => {
       binding_fee: `₱${bindingFee}`,
       total: `₱${total}`,
     };
+
     try {
+      // Fetch the uploaded file and convert to base64 for email attachment
+      let attachment = undefined;
+      if (fileUrl && file) {
+        try {
+          const response = await fetch(fileUrl);
+          if (response.ok) {
+            const blob = await response.blob();
+            const base64 = await new Promise<string>((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result as string);
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            });
+            // Extract just the base64 part (remove "data:mime/type;base64,")
+            const base64Data = base64.split(",")[1];
+            attachment = {
+              name: file.name,
+              content: base64Data,
+              encoding: "base64",
+            };
+          }
+        } catch (fetchErr) {
+          console.warn("Could not fetch file for attachment, sending without:", fetchErr);
+        }
+      }
+
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
-        EMAILJS_PUBLIC_KEY
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+          ...(attachment ? { attachments: [attachment] } : {}),
+        }
       );
       setOrderPlaced(true);
-      // Reset form (optional)
     } catch (err) {
       console.error("EmailJS error", err);
       setSendError(true);
