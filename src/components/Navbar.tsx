@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Why Sci-Hi", href: "/#why" },
   { label: "Student Life", href: "/#life" },
   { label: "Shop", href: "/shop" },
+  { label: "Printing", href: "/printing" },
   { label: "Gallery", href: "/#gallery" },
   { label: "News", href: "/#news" },
   { label: "ScihiZine", href: "/scihizine" },

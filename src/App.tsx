@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScihiZine from "./pages/ScihiZine.tsx";
 import Shop from "./pages/Shop.tsx";
+import Printing from "./pages/Printing.tsx";
 import Apply from "./pages/Apply.tsx";
 import BackToTop from "./components/BackToTop";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/scihizine" element={<ScihiZine />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/printing" element={<Printing />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
