@@ -53,7 +53,8 @@ const Printing = () => {
 
   const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState<string>("");
-  const [uploadError, setUploadError] = useState(false);
+  const [uploadError, setUploadError] = useState<string>("");
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const [submitting, setSubmitting] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -94,30 +95,57 @@ const Printing = () => {
 
   /* ---- file upload handling (Upload.io) ---- */
   const uploadFile = async (selectedFile: File) => {
-    const form = new FormData();
-    form.append("file", selectedFile);
-    try {
-      const response = await fetch(
-        `https://api.upload.io/v2/accounts/${UPLOAD_IO_ACCOUNT_ID}/uploads/binary`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${UPLOAD_IO_API_KEY}`,
-          },
-          body: form,
+    return new Promise<void>((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", `https://api.upload.io/v2/accounts/${UPLOAD_IO_ACCOUNT_ID}/uploads/binary`);
+      xhr.setRequestHeader("Authorization", `Bearer ${UPLOAD_IO_API_KEY}`);
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) {
+          const percent = Math.round((e.loaded / e.total) * 100);
+          setUploadProgress(percent);
         }
-      );
-      const data = await response.json();
-      if (data && data.fileUrl) {
-        setFileUrl(data.fileUrl);
-      } else {
-        console.error("Upload.io response missing fileUrl", data);
-        setUploadError(true);
-      }
-    } catch (err) {
-      console.error("Upload error", err);
-      setUploadError(true);
-    }
+      };
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            try {
+              const data = JSON.parse(xhr.responseText);
+              if (data && data.fileUrl) {
+                setFileUrl(data.fileUrl);
+                setUploadError("");
+                setUploadProgress(100);
+                resolve();
+              } else {
+                setUploadError("Upload succeeded but no file URL returned.");
+                reject(new Error("Missing fileUrl"));
+              }
+            } catch (e) {
+              setUploadError("Invalid server response.");
+              reject(e);
+            }
+          } else {
+            let msg = "Upload failed.";
+            if (xhr.status === 413) msg = "File too large (max 32 MB).";
+            else if (xhr.status === 401) msg = "Unauthorized – check API key.";
+            else if (xhr.status === 0) msg = "Network error – please check your connection.";
+            setUploadError(msg);
+            reject(new Error(msg));
+          }
+        }
+      };
+      xhr.onerror = () => {
+        setUploadError("Network error during upload.");
+        reject(new Error("Network error"));
+      };
+      xhr.timeout = 30000; // 30 seconds
+      xhr.ontimeout = () => {
+        setUploadError("Upload timed out – please try again.");
+        reject(new Error("Timeout"));
+      };
+      const form = new FormData();
+      form.append("file", selectedFile);
+      xhr.send(form);
+    });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -319,20 +347,26 @@ const Printing = () => {
           {/* File upload */}
           <div className="border border-gold p-4 rounded-lg text-center">
             <label className="block mb-2 font-medium">Attach file (max 32 MB)</label>
-            <input
-              type="file"
-              accept=".pdf,.doc,.docx,.png,.jpg,.ppt,.pptx"
-              onChange={handleFileChange}
-              className="file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-gold file:text-[#0a1628]"
-            />
-            {file && (
-              <p className="mt-2 text-sm">
-                {file.name} ({(file.size / 1024).toFixed(1)} KB)
-              </p>
-            )}
-            {uploadError && (
-              <p className="mt-2 text-red-400">Upload failed – try again.</p>
-            )}
+              <input
+                type="file"
+                accept=".pdf,.doc,.docx,.png,.jpg,.ppt,.pptx"
+                onChange={handleFileChange}
+                className="file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-gold file:text-[#0a1628]"
+              />
+              {file && (
+                <p className="mt-2 text-sm">
+                  {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                </p>
+              )}
+              {uploadProgress > 0 && uploadProgress < 100 && (
+                <progress value={uploadProgress} max={100} className="w-full mt-2" />
+              )}
+              {uploadProgress === 100 && (
+                <p className="mt-2 text-green-400">Upload complete.</p>
+              )}
+              {uploadError && (
+                <p className="mt-2 text-red-400">{uploadError}</p>
+              )}
             {fileUrl && (
               <p className="mt-2 text-gold">
                 Uploaded: <a href={fileUrl} target="_blank" rel="noopener noreferrer" className="underline">view file</a>
@@ -355,7 +389,7 @@ const Printing = () => {
             {/* Submit button */}
           <button
             type="submit"
-            disabled={submitting || !fileUrl}
+            disabled={submitting || !fileUrl || pdfPageCount===0 || (printMode==="selected" && (selectedPages.trim()==='' || effectivePages===0))}
             className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded"
           >
             {submitting ? "Sending…" : "Place Order"}
