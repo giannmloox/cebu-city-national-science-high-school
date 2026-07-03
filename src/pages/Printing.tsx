@@ -66,6 +66,7 @@ const Printing = () => {
   const [payment, setPayment] = useState<Payment | "">("");
 
   const [file, setFile] = useState<File | null>(null);
+  const [originalFileName, setOriginalFileName] = useState<string>("");
   const [fileUrl, setFileUrl] = useState<string>("");
   const [uploadError, setUploadError] = useState<string>("");
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -166,6 +167,7 @@ const Printing = () => {
     const selected = e.target.files?.[0] ?? null;
     // Reset any previous state
     setFile(null);
+      setOriginalFileName("");
     setFileUrl("");
     setUploadError("");
     setUploadProgress(0);
@@ -251,7 +253,8 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
         setPdfPageCount(1);
         setParsing(false);
       }
-    setFile(selected);
+    setOriginalFileName(selected.name);
+      setFile(selected);
     // Start upload (errors will be captured inside uploadFile)
     uploadFile(selected).catch(() => {});
   };
@@ -310,6 +313,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
     setCopies(1);
     setBinding(BINDING_OPTIONS[0]);
     setFile(null);
+      setOriginalFileName("");
     setFileUrl("");
     setUploadError("");
     setUploadProgress(0);
@@ -640,6 +644,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
                           <p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
                         </div>
                       )}
+                      <p className="mt-2"><strong>File name:</strong> {originalFileName}</p>
                       <p className="mt-2"><strong>File URL:</strong>{' '}<a href={fileUrl} target="_blank" rel="noopener noreferrer" className="underline text-gold">View uploaded file</a></p>
                       <button
                         onClick={() => { resetForm(); setOrderPlaced(false); }}
