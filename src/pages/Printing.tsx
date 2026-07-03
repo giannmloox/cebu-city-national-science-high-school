@@ -15,7 +15,7 @@ const UPLOAD_IO_ACCOUNT_ID = "YOUR_UPLOAD_IO_ACCOUNT_ID"; // <--- fill in
 
 // Pricing placeholders – replace with actual rates (PHP)
 const B_W_PRICE_PER_PAGE = 5; // black & white price per page
-const COLOR_PRICE_PER_PAGE = 10; // color price per page
+const COLOR_PRICE_PER_PAGE = 6; // color price per page
 const STAPLE_FEE = 2; // flat fee for stapling
 const BIND_FEE = 5; // flat fee for binding
 
