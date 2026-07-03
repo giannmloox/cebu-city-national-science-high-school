@@ -526,7 +526,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
               <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
                 <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
                 <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
-                <p className="text-white/80 text-xs mt-3">Please upload your payment screenshot to the SSLG Facebook page.</p>
+                <p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
               </div>
             )}
           </div>
@@ -637,7 +637,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
                         <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
                           <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
                           <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
-                          <p className="text-white/80 text-xs mt-3">Please upload your payment screenshot to the SSLG Facebook page.</p>
+<p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
                         </div>
                       )}
 <button
