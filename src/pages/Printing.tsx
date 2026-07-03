@@ -196,7 +196,7 @@ const Printing = () => {
 
     try {
       // Fetch the uploaded file and convert to base64 for email attachment
-      let attachment = undefined;
+      let attachmentBase64: string | undefined;
       if (fileUrl && file) {
         try {
           const response = await fetch(fileUrl);
@@ -209,26 +209,24 @@ const Printing = () => {
               reader.readAsDataURL(blob);
             });
             // Extract just the base64 part (remove "data:mime/type;base64,")
-            const base64Data = base64.split(",")[1];
-            attachment = {
-              name: file.name,
-              content: base64Data,
-              encoding: "base64",
-            };
+            attachmentBase64 = base64.split(",")[1];
           }
         } catch (fetchErr) {
           console.warn("Could not fetch file for attachment, sending without:", fetchErr);
         }
       }
 
+      // Add attachment (if any) to template params under the variable name "file_attachment"
+      const finalParams = {
+        ...templateParams,
+        ...(attachmentBase64 ? { file_attachment: attachmentBase64 } : {}),
+      };
+
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        templateParams,
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-          ...(attachment ? { attachments: [attachment] } : {}),
-        }
+        finalParams,
+        EMAILJS_PUBLIC_KEY
       );
       setOrderPlaced(true);
     } catch (err) {
