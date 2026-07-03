@@ -57,6 +57,14 @@ const Printing = () => {
   const [copies, setCopies] = useState(1);
   const [binding, setBinding] = useState<typeof BINDING_OPTIONS[number]>(BINDING_OPTIONS[0]);
 
+  const [delivery, setDelivery] = useState<"Pickup at School" | "Delivery">("Pickup at School");
+  const [building, setBuilding] = useState("");
+  const [room, setRoom] = useState("");
+  const [address, setAddress] = useState("");
+
+  type Payment = "GCash" | "COD";
+  const [payment, setPayment] = useState<Payment | "">("");
+
   const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState<string>("");
   const [uploadError, setUploadError] = useState<string>("");
@@ -96,7 +104,8 @@ const Printing = () => {
 
   const pagesSubtotal = pricePerPage * effectivePages * copies;
   const bindingFee = binding === "Stapled" ? pricing.stapleFee : binding === "Bound" ? pricing.bindFee : 0;
-  const total = pagesSubtotal + bindingFee;
+  const deliveryFee = delivery === "Delivery" ? 5 : 0;
+  const total = pagesSubtotal + bindingFee + deliveryFee;
 
   /* ---- file upload handling (Upload.io) ---- */
   const uploadFile = async (selectedFile: File) => {
@@ -263,12 +272,16 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
       binding_type: binding,
       file_name: file?.name ?? "",
       file_link: fileUrl,
-      selected_pages: printMode === "selected" ? selectedPages : "",
-      price_per_page: `₱${pricePerPage}`,
-      subtotal: `₱${pagesSubtotal}`,
-      binding_fee: `₱${bindingFee}`,
-      total: `₱${total}`,
-    };
+       selected_pages: printMode === "selected" ? selectedPages : "",
+       delivery_option: delivery,
+       location: delivery === "Delivery" ? (address || `${building}, ${room}`) : "Pickup at School",
+       delivery_fee: `₱${deliveryFee}`,
+       payment_method: payment,
+       price_per_page: `₱${pricePerPage}`,
+       subtotal: `₱${pagesSubtotal}`,
+       binding_fee: `₱${bindingFee}`,
+       total: `₱${total}`,
+     };
 
     try {
       await emailjs.send(
@@ -284,6 +297,31 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
     } finally {
       setSubmitting(false);
     }
+  };
+
+  // Reset form fields after an order is closed
+  const resetForm = () => {
+    setName("");
+    setContact("");
+    setGrade("");
+    setSection("");
+    setPaperSize(PAPER_SIZES[0]);
+    setColor("B&W");
+    setCopies(1);
+    setBinding(BINDING_OPTIONS[0]);
+    setFile(null);
+    setFileUrl("");
+    setUploadError("");
+    setUploadProgress(0);
+    setPdfPageCount(0);
+    setPrintMode("entire");
+    setSelectedPages("");
+    setDelivery("Pickup at School");
+    setBuilding("");
+    setRoom("");
+    setAddress("");
+    setPayment("");
+    setParsing(false);
   };
 
   return (
@@ -404,6 +442,94 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
               </button>
             ))}
           </div>
+          {/* Delivery option */}
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setDelivery("Pickup at School")}
+              aria-pressed={delivery === "Pickup at School"}
+              className={`px-4 py-2 rounded border transition-colors ${
+                delivery === "Pickup at School" ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
+              }`}
+            >
+              Pickup at School
+            </button>
+            <button
+              type="button"
+              onClick={() => setDelivery("Delivery")}
+              aria-pressed={delivery === "Delivery"}
+              className={`px-4 py-2 rounded border transition-colors ${
+                delivery === "Delivery" ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
+              }`}
+            >
+              Delivery
+            </button>
+          </div>
+          {delivery === "Delivery" && (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Building (e.g. SB2)"
+                  required={!address}
+                  value={building}
+                  onChange={(e) => setBuilding(e.target.value)}
+                  className="w-full p-2 bg-white/5 rounded border border-white/10"
+                  aria-label="Building"
+                />
+                <input
+                  type="text"
+                  placeholder="Room (e.g. 201)"
+                  required={!address}
+                  value={room}
+                  onChange={(e) => setRoom(e.target.value)}
+                  className="w-full p-2 bg-white/5 rounded border border-white/10"
+                  aria-label="Room"
+                />
+              </div>
+              <input
+                type="text"
+                placeholder="Other address (optional)"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full p-2 bg-white/5 rounded border border-white/10"
+                aria-label="Free-form address"
+              />
+            </>
+          )}
+          {/* Payment method */}
+          <div>
+            <label className="block font-semibold mb-1">Payment Method</label>
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => setPayment("GCash")}
+                aria-pressed={payment === "GCash"}
+                className={`py-3 px-2 rounded border transition-colors ${
+                  payment === "GCash" ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"
+                }`}
+              >
+                GCash
+              </button>
+              <button
+                type="button"
+                onClick={() => setPayment("COD")}
+                aria-pressed={payment === "COD"}
+                className={`py-3 px-2 rounded border transition-colors ${
+                  payment === "COD" ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"
+                }`}
+              >
+                COD
+              </button>
+            </div>
+            {payment === "GCash" && (
+              <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
+                <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
+                <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
+                <p className="text-white/80 text-xs mt-3">Please upload your payment screenshot to the SSLG Facebook page.</p>
+              </div>
+            )}
+          </div>
           {/* Live total */}
           <div className="sticky top-0 z-10 p-4 bg-[#0a1628]/95 backdrop-blur rounded border border-white/10 text-sm">
             <p>
@@ -415,6 +541,9 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             <p>
                 <strong>{binding} fee:</strong> ₱{bindingFee}
               </p>
+            <p>
+              <strong>Delivery fee:</strong> ₱{deliveryFee}
+            </p>
             <p className="font-bold text-gold mt-2">Total: ₱{total}</p>
           </div>
           {/* File upload */}
@@ -466,7 +595,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
             {/* Submit button */}
           <button
             type="submit"
-            disabled={submitting || parsing || !fileUrl || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
+            disabled={submitting || parsing || !fileUrl || !payment || (delivery==="Delivery" && !( (building && room) || address )) || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
             className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded"
           >
             {submitting ? "Sending…" : "Place Order"}
@@ -492,19 +621,31 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
               >
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-2xl font-bold">Order Confirmed</h2>
-                  <button onClick={() => setOrderPlaced(false)} className="p-2 hover:bg-white/10 rounded-full">
+                  <button onClick={() => { resetForm(); setOrderPlaced(false); }} className="p-2 hover:bg-white/10 rounded-full">
                     <X />
                   </button>
                 </div>
                 <div className="text-center py-8">
                   <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
-                  <p className="mb-4">Your printing order has been submitted. We'll contact you shortly.</p>
-                  <button
-                    onClick={() => setOrderPlaced(false)}
-                    className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded"
-                  >
-                    Close
-                  </button>
+<p className="mb-4">Your printing order has been submitted. We'll contact you shortly.</p>
+                      <p><strong>Delivery:</strong> {delivery}</p>
+                      {delivery === "Delivery" && (
+                        <p><strong>Location:</strong> {address || `${building}, ${room}`}</p>
+                      )}
+                      <p><strong>Payment:</strong> {payment}</p>
+                      {payment === "GCash" && (
+                        <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
+                          <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
+                          <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
+                          <p className="text-white/80 text-xs mt-3">Please upload your payment screenshot to the SSLG Facebook page.</p>
+                        </div>
+                      )}
+<button
+                         onClick={() => { resetForm(); setOrderPlaced(false); }}
+                         className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded"
+                       >
+                        Close
+                      </button>
                 </div>
               </motion.div>
             </motion.div>
