@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import emailjs from "@emailjs/browser";
+import { parsePageRange } from "@/lib/printingUtils";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
 /* ---------- CONFIGURATION ---------- */
@@ -47,7 +48,8 @@ const Printing = () => {
   const [color, setColor] = useState<"B&W" | "Color">("B&W");
   const [pdfPageCount, setPdfPageCount] = useState(0);
   const [printMode, setPrintMode] = useState<"entire" | "selected">("entire");
-  const [selectedPages, setSelectedPages] = useState("");
+  const [selectedPages, setSelectedPages] = useState<string>("");
+
   const [copies, setCopies] = useState(1);
   const [binding, setBinding] = useState<typeof BINDING_OPTIONS[number]>(BINDING_OPTIONS[0]);
 
@@ -64,30 +66,7 @@ const Printing = () => {
   const pricePerPage = color === "B&W" ? B_W_PRICE_PER_PAGE : COLOR_PRICE_PER_PAGE;
 
   // Determine how many pages to print based on mode and PDF page count
-  const effectivePages = (() => {
-    if (printMode === "entire") {
-      return pdfPageCount;
-    }
-    // parse selectedPages like "1,3-5"
-    const parts = selectedPages.split(",").map(p => p.trim()).filter(Boolean);
-    let count = 0;
-    for (const part of parts) {
-      if (part.includes("-")) {
-        const [startStr, endStr] = part.split("-").map(s => s.trim());
-        const start = Number(startStr);
-        const end = Number(endStr);
-        if (!isNaN(start) && !isNaN(end) && start <= end && end <= pdfPageCount) {
-          count += end - start + 1;
-        }
-      } else {
-        const num = Number(part);
-        if (!isNaN(num) && num <= pdfPageCount) {
-          count += 1;
-        }
-      }
-    }
-    return count;
-  })();
+  // Parse selected pages (if any) and compute effective page count\n  const { pages: selectedPageArray, error: rangeError } = printMode === "selected"\n    ? parsePageRange(selectedPages, pdfPageCount)\n    : { pages: [], error: undefined };\n  const effectivePages = printMode === "selected" ? selectedPageArray.length : pdfPageCount;
 
   const pagesSubtotal = pricePerPage * effectivePages * copies;
   const bindingFee = binding === "Stapled" ? STAPLE_FEE : binding === "Bound" ? BIND_FEE : 0;
@@ -150,31 +129,43 @@ const Printing = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] ?? null;
-    setFile(selected);
-    if (selected) {
-      // Determine PDF page count if file is a PDF
-      if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
-        const reader = new FileReader();
-        reader.onload = async () => {
-          const arrayBuffer = reader.result as ArrayBuffer;
-          try {
-            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-            setPdfPageCount(pdf.numPages);
-            // Default to printing the entire document
-            setPrintMode("entire");
-          } catch (err) {
-            console.error("PDF parse error", err);
-            setPdfPageCount(0);
-          }
-        };
-        reader.readAsArrayBuffer(selected);
-      } else {
-        // Non-PDF files: we cannot determine page count
-        setPdfPageCount(0);
-      }
-      // Upload the file regardless of type
-      uploadFile(selected);
+    // Reset any previous state
+    setFile(null);
+    setFileUrl("");
+    setUploadError("");
+    setUploadProgress(0);
+    setPdfPageCount(0);
+    setPrintMode("entire");
+    setSelectedPages("");
+    if (!selected) return;
+    // File size validation (max 32 MB)
+    if (selected.size > 32 * 1024 * 1024) {
+      setUploadError("File exceeds maximum size of 32 MB.");
+      return;
     }
+    // Determine PDF page count if file is a PDF
+    if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(".pdf")) {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        try {
+          const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+          setPdfPageCount(pdf.numPages);
+          setPrintMode("entire");
+        } catch (err) {
+          console.error("PDF parse error", err);
+          setUploadError("Failed to read PDF – it may be corrupted.");
+          setPdfPageCount(0);
+        }
+      };
+      reader.readAsArrayBuffer(selected);
+    } else {
+      // Non‑PDF files: no page count information
+      setPdfPageCount(0);
+    }
+    setFile(selected);
+    // Start upload (errors will be captured inside uploadFile)
+    uploadFile(selected).catch(() => {});
   };
 
   /* ---- submit order via EmailJS ---- */
@@ -383,7 +374,8 @@ const Printing = () => {
                 </div>
                 {printMode==="selected" && (
                   <input type="text" placeholder="e.g. 1,3-5" value={selectedPages} onChange={e=>setSelectedPages(e.target.value)} className="w-full p-2 bg-white/5 rounded border border-white/10" />
-                )}
+                 )}
+                   {rangeError && <p className="mt-1 text-red-400 text-sm">{rangeError}</p>}
               </div>
             )}
             {/* Submit button */}
