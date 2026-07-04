@@ -431,16 +431,19 @@ const templateParams = {
             ))}
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <input
-              type="number"
-              min={1}
-              required
-              aria-label="Number of Copies"
-              placeholder="Copies"
-              className="w-full p-2 bg-white/5 rounded border border-white/10"
-              value={copies}
-              onChange={(e) => setCopies(Number(e.target.value))}
-            />
+            <div className="flex flex-col gap-1">
+              <label className="block font-semibold">Number of Copies</label>
+              <input
+                type="number"
+                min={1}
+                required
+                aria-label="Number of Copies"
+                placeholder="e.g. 1, 2, 3"
+                className="w-full p-2 bg-white/5 rounded border border-white/10"
+                value={copies}
+                onChange={(e) => setCopies(Number(e.target.value))}
+              />
+            </div>
           </div>
           <div className="flex gap-2">
             {BINDING_OPTIONS.map((b) => (
