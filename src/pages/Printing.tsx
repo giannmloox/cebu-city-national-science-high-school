@@ -157,9 +157,17 @@ const Printing = () => {
         setUploadError("Upload timed out – please try again.");
         reject(new Error("Timeout"));
       };
-      const form = new FormData();
-      form.append("file", selectedFile);
-      xhr.send(form);
+  const form = new FormData();
+  form.append("file", selectedFile);
+  // Attach customer metadata as Bytescale metadata so it's visible in Upload.io dashboard immediately
+  form.append("metadata", JSON.stringify({
+    originalFilename: selectedFile.name,
+    customer_name: name,
+    grade_section: `${grade} - ${section}`,
+    contact_number: contact,
+    file_extracted_at: new Date().toISOString()
+  }));
+  xhr.send(form);
     });
   };
 
