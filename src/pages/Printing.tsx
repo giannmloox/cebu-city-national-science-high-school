@@ -264,7 +264,7 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
     e.preventDefault();
     setSubmitting(true);
     setSendError(false);
-    const templateParams = {
+const templateParams = {
       customer_name: name,
       grade_section: `${grade} - ${section}`,
       contact_number: contact,
@@ -276,16 +276,17 @@ if (selected.type === "application/pdf" || selected.name.toLowerCase().endsWith(
       file_name: file?.name ?? "",
       file_link: fileUrl,
       file_link_html: `<a href="${fileUrl}" target="_blank" style="color:#ffd700; text-decoration:underline;">View uploaded file</a>`,
-       selected_pages: printMode === "selected" ? selectedPages : "",
-       delivery_option: delivery,
-       location: delivery === "Delivery" ? (address || `${building}, ${room}`) : "Pickup at School",
-       delivery_fee: `₱${deliveryFee}`,
-       payment_method: payment,
-       price_per_page: `₱${pricePerPage}`,
-       subtotal: `₱${pagesSubtotal}`,
-       binding_fee: `₱${bindingFee}`,
-       total: `₱${total}`,
-     };
+      items: `File uploaded: ${file?.name || "document"}${(fileUrl ? ` — ${fileUrl}` : "")}`,
+      selected_pages: printMode === "selected" ? selectedPages : "",
+      delivery_option: delivery,
+      location: delivery === "Delivery" ? (address || `${building}, ${room}`) : "Pickup at School",
+      delivery_fee: `₱${deliveryFee}`,
+      payment_method: payment,
+      price_per_page: `₱${pricePerPage}`,
+      subtotal: `₱${pagesSubtotal}`,
+      binding_fee: `₱${bindingFee}`,
+      total: `₱${total}`,
+    };
 
     try {
       await emailjs.send(
