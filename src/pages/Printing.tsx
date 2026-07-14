@@ -352,7 +352,7 @@ const templateParams = {
             placeholder="Full Name"
             required
             aria-label="Full Name"
-            className="w-full p-2 bg-white/5 rounded border border-white/10"
+            className="w-full p-2 bg-white/5 rounded-md border border-white/10"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -361,7 +361,7 @@ const templateParams = {
             placeholder="Contact Number"
             required
             aria-label="Contact Number"
-            className="w-full p-2 bg-white/5 rounded border border-white/10"
+            className="w-full p-2 bg-white/5 rounded-md border border-white/10"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
           />
@@ -375,7 +375,7 @@ const templateParams = {
                 setGrade(e.target.value);
                 setSection("");
               }}
-              className="w-full p-2 bg-white/5 rounded border border-white/10"
+              className="w-full p-2 bg-white/5 rounded-md border border-white/10"
             >
               <option value="">Select Grade</option>
               {Object.keys(SECTIONS_BY_GRADE).map((g) => (
@@ -390,7 +390,7 @@ const templateParams = {
               disabled={!grade}
               value={section}
               onChange={(e) => setSection(e.target.value)}
-              className="w-full p-2 bg-white/5 rounded border border-white/10 disabled:opacity-50"
+              className="w-full p-2 bg-white/5 rounded-md border border-white/10 disabled:opacity-50"
             >
               <option value="">Select Section</option>
               {grade &&
@@ -408,7 +408,7 @@ const templateParams = {
                 type="button"
                 key={size}
                 onClick={() => setPaperSize(size)}
-                className={`px-4 py-2 rounded border transition-colors ${
+                className={`px-4 py-2 rounded-md border transition-colors ${
                   paperSize === size ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
                 }`}
               >
@@ -422,7 +422,7 @@ const templateParams = {
                 type="button"
                 key={c}
                 onClick={() => setColor(c)}
-                className={`px-4 py-2 rounded border transition-colors ${
+                className={`px-4 py-2 rounded-md border transition-colors ${
                   color === c ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
                 }`}
               >
@@ -439,7 +439,7 @@ const templateParams = {
                 required
                 aria-label="Number of Copies"
                 placeholder="e.g. 1, 2, 3"
-                className="w-full p-2 bg-white/5 rounded border border-white/10"
+                className="w-full p-2 bg-white/5 rounded-md border border-white/10"
                 value={copies}
                 onChange={(e) => setCopies(Number(e.target.value))}
               />
@@ -451,7 +451,7 @@ const templateParams = {
                 type="button"
                 key={b}
                 onClick={() => setBinding(b)}
-                className={`px-4 py-2 rounded border transition-colors ${
+                className={`px-4 py-2 rounded-md border transition-colors ${
                   binding === b ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
                 }`}
               >
@@ -465,7 +465,7 @@ const templateParams = {
               type="button"
               onClick={() => setDelivery("Pickup at School")}
               aria-pressed={delivery === "Pickup at School"}
-              className={`px-4 py-2 rounded border transition-colors ${
+              className={`px-4 py-2 rounded-md border transition-colors ${
                 delivery === "Pickup at School" ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
               }`}
             >
@@ -475,7 +475,7 @@ const templateParams = {
               type="button"
               onClick={() => setDelivery("Delivery")}
               aria-pressed={delivery === "Delivery"}
-              className={`px-4 py-2 rounded border transition-colors ${
+              className={`px-4 py-2 rounded-md border transition-colors ${
                 delivery === "Delivery" ? "bg-gold text-[#0a1628]" : "border-white/20 hover:border-white/40 bg-white/5"
               }`}
             >
@@ -491,7 +491,7 @@ const templateParams = {
                   required={!address}
                   value={building}
                   onChange={(e) => setBuilding(e.target.value)}
-                  className="w-full p-2 bg-white/5 rounded border border-white/10"
+                  className="w-full p-2 bg-white/5 rounded-md border border-white/10"
                   aria-label="Building"
                 />
                 <input
@@ -500,7 +500,7 @@ const templateParams = {
                   required={!address}
                   value={room}
                   onChange={(e) => setRoom(e.target.value)}
-                  className="w-full p-2 bg-white/5 rounded border border-white/10"
+                  className="w-full p-2 bg-white/5 rounded-md border border-white/10"
                   aria-label="Room"
                 />
               </div>
@@ -509,7 +509,7 @@ const templateParams = {
                 placeholder="Other address (optional)"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full p-2 bg-white/5 rounded border border-white/10"
+                className="w-full p-2 bg-white/5 rounded-md border border-white/10"
                 aria-label="Free-form address"
               />
             </>
@@ -522,7 +522,7 @@ const templateParams = {
                 type="button"
                 onClick={() => setPayment("GCash")}
                 aria-pressed={payment === "GCash"}
-                className={`py-3 px-2 rounded border transition-colors ${
+                className={`py-3 px-2 rounded-md border transition-colors ${
                   payment === "GCash" ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"
                 }`}
               >
@@ -532,7 +532,7 @@ const templateParams = {
                 type="button"
                 onClick={() => setPayment("COD")}
                 aria-pressed={payment === "COD"}
-                className={`py-3 px-2 rounded border transition-colors ${
+                className={`py-3 px-2 rounded-md border transition-colors ${
                   payment === "COD" ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"
                 }`}
               >
@@ -542,13 +542,13 @@ const templateParams = {
             {payment === "GCash" && (
               <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
                 <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
-                <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
+                <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded-md border-2 border-gold" />
                 <p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
               </div>
             )}
           </div>
           {/* Live total */}
-          <div className="sticky top-0 z-10 p-4 bg-[#0a1628]/95 backdrop-blur rounded border border-white/10 text-sm">
+          <div className="sticky top-0 z-10 p-4 bg-[#0a1628]/95 backdrop-blur rounded-md border border-white/10 text-sm">
             <p>
               <strong>Price per page:</strong> ₱{pricePerPage}
             </p>
@@ -604,7 +604,7 @@ const templateParams = {
                   <label className="flex items-center"><input type="radio" name="printMode" value="selected" checked={printMode==="selected"} onChange={()=>setPrintMode("selected")} className="mr-1" /> Select pages</label>
                 </div>
                 {printMode==="selected" && (
-                  <input type="text" placeholder="e.g. 1,3-5" value={selectedPages} onChange={e=>setSelectedPages(e.target.value)} className="w-full p-2 bg-white/5 rounded border border-white/10" />
+                  <input type="text" placeholder="e.g. 1,3-5" value={selectedPages} onChange={e=>setSelectedPages(e.target.value)} className="w-full p-2 bg-white/5 rounded-md border border-white/10" />
                  )}
                    {rangeError && <p className="mt-1 text-red-400 text-sm">{rangeError}</p>}
               </div>
@@ -613,7 +613,7 @@ const templateParams = {
           <button
             type="submit"
             disabled={submitting || parsing || !fileUrl || !payment || (delivery==="Delivery" && !( (building && room) || address )) || (printMode==="selected" && (pdfPageCount===0 || selectedPages.trim()==='' || effectivePages===0))}
-            className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded"
+            className="w-full py-3 bg-gold text-[#0a1628] font-bold rounded-md"
           >
             {submitting ? "Sending…" : "Place Order"}
           </button>
@@ -653,7 +653,7 @@ const templateParams = {
                       {payment === "GCash" && (
                         <div className="p-4 bg-[#0e1f38] border border-white/10 rounded-lg text-center mt-2 animate-in fade-in duration-300">
                           <p className="text-white mb-3 font-medium">Scan to Pay via GCash</p>
-                          <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded border-2 border-gold" />
+                          <img src="/sslg-items/gcash.jpg" alt="GCash QR" className="mx-auto w-32 h-32 rounded-md border-2 border-gold" />
                           <p className="text-white/80 text-xs mt-3">Please send your payment screenshot via private message to an SSLG officer.</p>
                         </div>
                       )}
@@ -661,7 +661,7 @@ const templateParams = {
                       <p className="mt-2"><strong>File URL:</strong>{' '}<a href={fileUrl} target="_blank" rel="noopener noreferrer" className="underline text-gold">View uploaded file</a></p>
                       <button
                         onClick={() => { resetForm(); setOrderPlaced(false); }}
-                        className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded"
+                        className="mt-4 w-full py-2 bg-gold text-[#0a1628] font-bold rounded-md"
                       >
                         Close
                       </button>
