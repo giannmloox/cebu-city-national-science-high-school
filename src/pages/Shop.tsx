@@ -231,7 +231,7 @@ const Shop = () => {
                         </select>
                     </div>
 
-                    <select value={delivery} onChange={(e) => setDelivery(e.target.value as any)} className="w-full p-2 bg-white/5 rounded border border-white/10">
+                    <select value={delivery} onChange={(e) => setDelivery(e.target.value as "Pickup at School" | "Delivery")} className="w-full p-2 bg-white/5 rounded border border-white/10">
                         <option>Pickup at School</option>
                         <option>Delivery</option>
                     </select>
@@ -250,7 +250,7 @@ const Shop = () => {
                                 <button 
                                   key={m} 
                                   type="button" 
-                                  onClick={() => setPayment(m as any)} 
+                                  onClick={() => setPayment(m as "GCash" | "Cash on Pickup/Delivery")} 
                                   className={`py-3 px-2 rounded border transition-colors ${payment === m ? "bg-gold text-[#0a1628] border-gold" : "border-white/20 hover:border-white/40 bg-white/5"}`}
                                 >
                                     {m}

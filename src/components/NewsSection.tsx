@@ -145,7 +145,7 @@ const NewsSection = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {items.map((item, i) => (
-                <NewsCard key={item.id} item={item as any} i={i} />
+                <NewsCard key={item.id} item={item} i={i} />
               ))}
             </div>
           </motion.div>

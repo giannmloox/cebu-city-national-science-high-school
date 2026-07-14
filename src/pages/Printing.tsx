@@ -152,7 +152,7 @@ const Printing = () => {
         setUploadError(`Upload failed (status ${xhr.status}). Check credentials or CORS.`);
         reject(new Error(`Upload XHR error ${xhr.status}`));
       };
-      xhr.timeout = 30000; // 30 seconds
+      xhr.timeout = 30000; // 30 seconds
       xhr.ontimeout = () => {
         setUploadError("Upload timed out – please try again.");
         reject(new Error("Timeout"));
@@ -183,9 +183,9 @@ const Printing = () => {
     setPrintMode("entire");
     setSelectedPages("");
     if (!selected) return;
-    // File size validation (max 32 MB)
+    // File size validation (max 32 MB)
     if (selected.size > 32 * 1024 * 1024) {
-      setUploadError("File exceeds maximum size of 32 MB.");
+      setUploadError("File exceeds maximum size of 32 MB.");
       return;
     }
 // Determine page count based on file type (PDF, DOCX, PPTX)
@@ -553,7 +553,7 @@ const templateParams = {
               <strong>Price per page:</strong> ₱{pricePerPage}
             </p>
             <p>
-              <strong>Pages × Copies × Rate:</strong> ₱{pagesSubtotal}
+              <strong>Pages × Copies × Rate:</strong> ₱{pagesSubtotal}
             </p>
             <p>
                 <strong>{binding} fee:</strong> ₱{bindingFee}
@@ -565,7 +565,7 @@ const templateParams = {
           </div>
           {/* File upload */}
           <div className="border border-gold p-4 rounded-lg text-center">
-            <label className="block mb-2 font-medium">Attach file (max 32 MB)</label>
+            <label className="block mb-2 font-medium">Attach file (max 32 MB)</label>
               <input
                 type="file"
                 accept=".pdf,.doc,.docx,.png,.jpg,.ppt,.pptx"
@@ -574,7 +574,7 @@ const templateParams = {
               />
               {file && (
                 <p className="mt-2 text-sm">
-                  {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                  {file.name} ({(file.size / 1024).toFixed(1)} KB)
                 </p>
               )}
               {uploadProgress > 0 && uploadProgress < 100 && (
