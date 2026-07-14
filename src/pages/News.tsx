@@ -23,21 +23,19 @@ const newsItems: NewsItem[] = [
   },
   {
     id: 2,
-    title: "Tinig Iskolar Returns Stronger at RSPC 2026 with Multiple Wins",
-    excerpt:
-      "The Tinig Iskolar press organization of Cebu City National Science High School made a triumphant comeback at the Regional Schools Press Conference 2026",
-    image: "/bfd02d01-d17a-49e6-b403-ba05201500e5.jpg",
-    link: "https://www.facebook.com/share/p/1SDoEGmQWS/",
-    date: "MARCH 11, 2026",
+    title: "𝗧𝗨𝗧𝗢𝗞 𝗡𝗚𝗔𝗬𝗢𝗡 | 𝐒𝐞𝐫𝐛𝐢𝐬𝐲𝐨𝐧𝐠 𝐒𝐜𝐢𝐡𝐢𝐲𝐢𝐬𝐭𝐚, 𝐒𝐞𝐫𝐛𝐢𝐬𝐲𝐨𝐧𝐠 𝐒𝐮𝐠𝐛𝐮𝐚𝐧𝐨𝐧",
+    excerpt: "Mas pinaigting ng TagaSciHi Alumni Association Inc. ang diwa ng serbisyo at pagkakaisa sa matagumpay na pagdaraos ng Ikalawang Medical, Legal, and General Services Mission 2026 katuwang ang Cebu City Government. Muling ipinamalas ng mga alumni ang kanilang malasakit sa komunidad noong Hulyo 11, 2026 sa pamamagitan ng libreng konsultasyong medikal, legal, at iba pang serbisyong handog. Tunghayan ang mga kaganapan at makiisa sa diwa ng pagbabayanihan, dito lamang sa Tutok Sentral.",
+    image: "/tinig/TN-1.jpg",
+    link: "https://www.facebook.com/share/v/1FXWtpim7M/",
+    date: "JULY 11, 2026",
   },
   {
     id: 3,
-    title: "Scholars' Voice Named Region VII's Best School Paper for the 10th Consecutive Year",
-    excerpt:
-      "Cebu City National Science High School's official English publication, Scholars' Voice, has once again claimed the title of Region VII's Best School Paper at the RSPC 2026. extending a winning streak that dates bac ",
-    image: "/ba62fd12-63eb-4715-af96-83385844c503.jpg",
-    link: "https://www.facebook.com/share/p/1GaNGrn2Fn/",
-    date: "MARCH 7, 2026",
+    title: "𝗡𝗘𝗪𝗦 | 𝗖𝗖𝗡𝗦𝗛𝗦 𝗮𝗹𝘂𝗺𝗻𝗶 𝗮𝗶𝗱 𝟬𝟬𝟬+ 𝗰𝗶𝘁𝗶𝘇𝗲𝗻𝘀 𝗶𝗻 𝗰𝗼𝗺𝗺𝘂𝗻𝗶𝘁𝘆 𝗼𝘂𝘁𝗿𝗲𝗮𝗰𝗵 𝗽𝗿𝗼𝗴𝗿𝗮𝗺",
+    excerpt: "More than 600 nearby community residents received free medical, dental, legal, and general services as the Taga-SciHi Alumni Association together with the CCNSHS administration, conducted the 2nd Medical, Dental, Legal, and General Services Mission last Saturday, July 11.",
+    image: "/scholars/SV-1.jpg",
+    link: "https://www.facebook.com/share/p/1BjcYma9gw/",
+    date: "JULY 12, 2026",
   },
 ];
 
