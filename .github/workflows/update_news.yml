@@ -1,33 +1,43 @@
 name: Update News Feed
 on:
   schedule:
+    # 00:00 UTC = 8:00 AM Philippines time
     - cron: '0 0 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   update-news:
     runs-on: ubuntu-latest
     env:
       APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: pip install apify-client requests
-      - name: Run scraper
+
+      - name: Fetch and update news
         run: python update_news.py
-      - name: Commit and push
+
+      - name: Commit and push changes
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
-          git add src/components/NewsSection.tsx
-          if ! git diff --cached --quiet; then
+          git add src/data/newsData.ts
+
+          if git diff --cached --quiet; then
+            echo "No news changes detected."
+          else
             git commit -m "Automated: Update Facebook news feed via Apify"
             git push
-          else
-            echo "No changes detected."
           fi
