@@ -8,7 +8,7 @@ const SCHOOL_LNG = 123.8786598;
 type LayerKey = "light" | "satellite";
 
 const TILE_URLS: Record<LayerKey, string> = {
-  light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  light: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
   satellite:
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
 };
@@ -35,7 +35,7 @@ const SchoolMap = () => {
 
     tileLayerRef.current = L.tileLayer(TILE_URLS.light, {
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19,
     }).addTo(map);
 
