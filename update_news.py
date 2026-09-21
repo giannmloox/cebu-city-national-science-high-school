@@ -1,90 +1,153 @@
+import json
 import os
-import re
-import unicodedata
-from apify_client import ApifyClient
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 
-# Configuration
-APIFY_TOKEN = os.getenv('APIFY_TOKEN')
+from apify_client import ApifyClient
+
+
+APIFY_TOKEN = os.getenv("APIFY_TOKEN")
 ACTOR_ID = "apify/facebook-posts-scraper"
+DATA_FILE = Path("src/data/newsData.ts")
 
 PAGES = {
     "schoolNews": "https://www.facebook.com/ccnshs303141",
     "scholarsVoice": "https://www.facebook.com/profile.php?id=100087290154105",
-    "tinigIskolar": "https://www.facebook.com/profile.php?id=61551319650573"
+    "tinigIskolar": "https://www.facebook.com/profile.php?id=61551319650573",
 }
 
-def strip_unicode_bold(text):
-    if not text: return ""
-    # NFKD normalizes characters, but bold/serif variants are distinct. 
-    # A simple way to handle many is to map them or just keep ASCII.
-    # This regex approach removes non-ascii characters or you can map specific bold ones.
-    text = unicodedata.normalize('NFKD', text)
-    return "".join([c for c in text if ord(c) < 128])
 
-def sanitize_text(text, is_title=False):
-    text = strip_unicode_bold(text)
-    text = text.replace('\\', '/').replace('`', "'").replace('"', "'")
-    if is_title:
-        return text.split('\n')[0][:50].strip()
-    return text[:150].strip()
+def clean_text(value, limit):
+    """Clean scraped text while preserving Filipino/Cebuano characters."""
+    if not value:
+        return ""
+    text = " ".join(str(value).replace("\\r", "").split())
+    return text[:limit].strip()
 
-def fetch_posts(page_url):
-    client = ApifyClient(APIFY_TOKEN)
-    run = client.actor(ACTOR_ID).call(run_input={"startUrls": [{"url": page_url}], "maxPosts": 3})
-    
-    posts_data = []
-    idx = 1
-    for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-        raw_text = item.get("message") or item.get("text") or "No excerpt"
-        
-        raw_date = item.get("createdTime")
-        try:
-            formatted_date = datetime.fromisoformat(raw_date.replace("Z", "")).strftime("%B %d, %Y").upper()
-        except:
-            formatted_date = "MAY 18, 2026"
-            
-        posts_data.append({
-            "id": idx,
-            "date": formatted_date,
-            "title": sanitize_text(raw_text, is_title=True),
-            "excerpt": sanitize_text(raw_text),
-            "image": item.get("fullPicture") or "/news-placeholder.jpg",
-            "link": item.get("url")
-        })
-        idx += 1
-    return posts_data
 
-def format_ts_array(posts):
-    lines = ["  {"]
-    for p in posts:
-        lines.append(f"    id: {p['id']},")
-        lines.append(f"    date: \"{p['date']}\",")
-        lines.append(f"    title: \"{p['title']}\",")
-        lines.append(f"    excerpt: \"{p['excerpt']}\",")
-        lines.append(f"    image: \"{p['image']}\",")
-        lines.append(f"    link: \"{p['link']}\",")
-        lines.append("  },")
+def format_date(value):
+    if not value:
+        return datetime.now(timezone.utc).strftime("%B %d, %Y").upper()
+
+    try:
+        normalized = str(value).replace("Z", "+00:00")
+        return datetime.fromisoformat(normalized).strftime("%B %d, %Y").upper()
+    except (TypeError, ValueError):
+        return datetime.now(timezone.utc).strftime("%B %d, %Y").upper()
+
+
+def fetch_posts(client, page_url):
+    print(f"Fetching: {page_url}")
+
+    run = client.actor(ACTOR_ID).call(
+        run_input={
+            "startUrls": [{"url": page_url}],
+            "maxPosts": 3,
+        }
+    )
+
+    posts = []
+    dataset = client.dataset(run["defaultDatasetId"])
+
+    for index, item in enumerate(dataset.iterate_items(), start=1):
+        if len(posts) >= 3:
+            break
+
+        raw_text = item.get("message") or item.get("text") or ""
+        title = clean_text(raw_text.split("\n")[0] if raw_text else "CCNSHS News", 100)
+        excerpt = clean_text(raw_text, 180)
+
+        link = (
+            item.get("url")
+            or item.get("permalinkUrl")
+            or item.get("postUrl")
+            or ""
+        )
+
+        image = (
+            item.get("fullPicture")
+            or item.get("image")
+            or "/news-placeholder.jpg"
+        )
+
+        posts.append(
+            {
+                "id": index,
+                "date": format_date(
+                    item.get("createdTime")
+                    or item.get("timestamp")
+                    or item.get("date")
+                ),
+                "title": title or "CCNSHS News",
+                "excerpt": excerpt or "Read the full post on Facebook.",
+                "image": image,
+                "link": link,
+            }
+        )
+
+    if not posts:
+        raise RuntimeError(f"No posts were returned for {page_url}")
+
+    print(f"  Found {len(posts)} posts")
+    return posts
+
+
+def ts_string(value):
+    # JSON encoding produces a valid quoted TypeScript string and safely
+    # handles quotes, backslashes, newlines, and Unicode.
+    return json.dumps(value, ensure_ascii=False)
+
+
+def render_array(posts):
+    lines = ["["]
+
+    for post in posts:
+        lines.extend(
+            [
+                "  {",
+                f"    id: {post['id']},",
+                f"    date: {ts_string(post['date'])},",
+                f"    title: {ts_string(post['title'])},",
+                f"    excerpt: {ts_string(post['excerpt'])},",
+                f"    image: {ts_string(post['image'])},",
+                f"    link: {ts_string(post['link'])},",
+                "  },",
+            ]
+        )
+
     lines.append("];")
     return "\n".join(lines)
 
-def update_tsx():
-    file_path = 'src/components/NewsSection.tsx'
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
 
+def write_news_data(all_posts):
+    output = ['import { NewsItem } from "../types";', ""]
+
+    for key in PAGES:
+        output.append(f"export const {key}: NewsItem[] = {render_array(all_posts[key])}")
+        output.append("")
+
+    DATA_FILE.write_text("\n".join(output), encoding="utf-8")
+
+
+def main():
+    if not APIFY_TOKEN:
+        raise RuntimeError(
+            "APIFY_TOKEN is missing. Add it under GitHub Settings → "
+            "Secrets and variables → Actions."
+        )
+
+    client = ApifyClient(APIFY_TOKEN)
+
+    # Fetch every section before writing anything. If one source fails,
+    # the existing news data is left untouched instead of being partially
+    # overwritten.
+    all_posts = {}
     for key, url in PAGES.items():
-        posts = fetch_posts(url)
-        if not posts: continue
-        
-        new_array_content = format_ts_array(posts)
-        
-        # Exact match pattern to replace from const ... = [ to ];
-        pattern = rf"(const {key}: NewsItem\[\] = )\[.*?\];"
-        content = re.sub(pattern, lambda m: m.group(1) + " [" + new_array_content, content, flags=re.DOTALL)
+        all_posts[key] = fetch_posts(client, url)
 
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    write_news_data(all_posts)
+    print(f"Updated {DATA_FILE} successfully.")
+
 
 if __name__ == "__main__":
-    update_tsx()
+    main()
